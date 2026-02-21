@@ -8,6 +8,9 @@
       "name": "Everything4Everybody"
     }
   ],
+  "url": "https://github.com/tevwoods/everything-shields",
+  "manifest": "https://github.com/tevwoods/everything-shields/releases/latest/download/module.json",
+  "download": "https://github.com/tevwoods/everything-shields/releases/download/v1.0.0/everything-shields.zip",
   "compatibility": {
      "minimum": "10",
      "verified": "13",

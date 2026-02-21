@@ -7,7 +7,7 @@
   "scripts": {
     "build": "npm run clean && npm run compile && npm run bundle",
     "clean": "rimraf dist",
-    "compile": "tsc",
+    "compile": "tsc --noEmit",
     "bundle": "rollup -c rollup.config.js",
     "watch": "rollup -c rollup.config.js -w",
     "lint": "eslint src/**/*.ts",

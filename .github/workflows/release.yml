@@ -1,0 +1,73 @@
+name: Release Module
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build-and-upload:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Build
+        run: npm run build
+
+      # Extract version from the release tag (strips leading "v" if present)
+      - name: Set version from tag
+        id: version
+        run: |
+          TAG="${{ github.event.release.tag_name }}"
+          VERSION="${TAG#v}"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+
+      # Patch module.json inside dist/ with the release version and download URL
+      - name: Update module.json with release info
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          TAG="${{ steps.version.outputs.tag }}"
+          REPO="${{ github.repository }}"
+
+          # Update version
+          jq --arg v "$VERSION" '.version = $v' dist/module.json > dist/module.tmp && mv dist/module.tmp dist/module.json
+
+          # Update download URL to point to this specific release's zip
+          jq --arg url "https://github.com/${REPO}/releases/download/${TAG}/everything-shields.zip" \
+            '.download = $url' dist/module.json > dist/module.tmp && mv dist/module.tmp dist/module.json
+
+          # Update manifest URL (always points to latest)
+          jq --arg url "https://github.com/${REPO}/releases/latest/download/module.json" \
+            '.manifest = $url' dist/module.json > dist/module.tmp && mv dist/module.tmp dist/module.json
+
+          echo "--- Final module.json ---"
+          cat dist/module.json
+
+      # Create the zip from the dist/ directory contents (not nested under dist/)
+      - name: Package module zip
+        run: |
+          cd dist
+          zip -r ../everything-shields.zip . -x "*.map"
+          cd ..
+
+      # Upload both the zip and the standalone module.json as release assets.
+      # The standalone module.json is what Foundry fetches for the manifest URL,
+      # and the zip is what Foundry downloads when installing/updating.
+      - name: Upload release assets
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release upload "${{ steps.version.outputs.tag }}" \
+            everything-shields.zip \
+            dist/module.json \
+            --clobber
