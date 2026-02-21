@@ -40,9 +40,6 @@ Hooks.once('ready', () => {
     console.log('Everything Shields | Module ready');
     try {
         const setup = async () => {
-            // Migrate any legacy flags to the new system before initializing handlers
-            await migrateLegacyFlags();
-            
             // Initialize event handlers
             const eventManager = EventHandlerManager.getInstance();
             eventManager.initialize();
@@ -65,35 +62,6 @@ Hooks.once('ready', () => {
         handleError(error as Error);
     }
 });
-
-async function migrateLegacyFlags(): Promise<void> {
-    try {
-        console.log('Everything Shields | Migrating legacy flags (if any)');
-
-        if (!game?.actors) return;
-
-        for (const actor of game.actors) {
-            for (const item of actor.items) {
-                try {
-                    const flags = (item as any).flags;
-                    if (flags && flags['everything-shields'] && !flags['everything-shields']?.migrated) {
-                        // Preserve the old data under a new namespaced flag so it isn't lost
-                        const preserved = flags['everything-shields'];
-                        await (item as any).update({
-                            [`flags.everything-shields.migrated`]: true,
-                            [`flags.everything-shields.preserved`]: preserved
-                        });
-                        console.log(`Everything Shields | Migrated flags for item ${item.name}`);
-                    }
-                } catch (err) {
-                    console.warn('Everything Shields | Failed to migrate item flags', err);
-                }
-            }
-        }
-    } catch (error) {
-        handleError(error as Error);
-    }
-}
 
 import { Item, Actor, ActorSheet, DragData, UpdateData, DocumentModificationContext } from './types/foundry-types';
 

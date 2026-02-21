@@ -3,6 +3,14 @@ import { Actor, ActorSheet, DragData, Item, UpdateData } from '../types/foundry-
 import { ShieldManager } from './shield-manager';
 import { handleError } from './errors';
 import { SettingsManager } from './settings';
+import {
+    isSturdyOrWovenwoodShield,
+    isLesserVersionOfRune,
+    isGreaterOrEqualVersionOfRune,
+    getMaterialPrice,
+    getMaterialLevel,
+    getMaterialBulkModifier,
+} from '../data/shield-constants';
 
 export class EventHandlerManager {
     private static instance: EventHandlerManager;
@@ -367,7 +375,11 @@ export class EventHandlerManager {
             const materialModifier = this.getMaterialHPModifier(materialType, materialGrade);
         const potencyMultiplier = shieldItem.flags?.['everything-shields']?.potencyMultiplier || 1;
         
-        const newMaxHP = Math.floor(baseHP * potencyMultiplier) + materialModifier;
+        // Check for Divine Ally (Shield Ally) → 1.5× HP multiplier
+        const isDivineAlly = this.getIsDivineAlly(shieldItem);
+        const divineAllyMultiplier = isDivineAlly ? 1.5 : 1;
+        
+        const newMaxHP = Math.floor((Math.floor(baseHP * potencyMultiplier) + materialModifier) * divineAllyMultiplier);
         const newBrokenThreshold = Math.floor(newMaxHP / 2);
 
         // Also update hardness with material modifier
@@ -382,8 +394,28 @@ export class EventHandlerManager {
             'system.hardness': newHardness,
             'flags.everything-shields.baseHP': baseHP,
             'flags.everything-shields.materialModifier': materialModifier,
-            'flags.everything-shields.materialHardnessModifier': materialHardnessModifier
+            'flags.everything-shields.materialHardnessModifier': materialHardnessModifier,
+            'flags.everything-shields.isDivineAlly': isDivineAlly
         };
+
+        // Apply material bulk modifier (e.g. darkwood/mithral reduce bulk, siccatite increases)
+        const bulkMod = getMaterialBulkModifier(materialType, materialGrade);
+        if (bulkMod !== 0) {
+            const baseBulk = shieldItem.flags?.['everything-shields']?.bulk;
+            if (baseBulk !== undefined) {
+                // Bulk values in PF2e: 'L' = light, number = normal bulk
+                let newBulk: any = baseBulk;
+                if (typeof baseBulk === 'number') {
+                    newBulk = Math.max(0, baseBulk + bulkMod);
+                } else if (baseBulk === 'L' || baseBulk === 1) {
+                    const numericBulk = baseBulk === 'L' ? 0 : baseBulk;
+                    const adjusted = numericBulk + bulkMod;
+                    newBulk = adjusted <= 0 ? 'L' : adjusted;
+                }
+                updateData['system.bulk.value'] = newBulk;
+                updateData['flags.everything-shields.materialBulkModifier'] = bulkMod;
+            }
+        }
 
         // Ensure current HP doesn't exceed new max
         if (shieldItem.system.hp.value > newMaxHP) {
@@ -419,9 +451,12 @@ export class EventHandlerManager {
             const materialGrade = shieldItem.system.preciousMaterialGrade?.value || shieldItem.system.material?.grade || shieldItem.system.material?.precious?.grade;
             const materialModifier = this.getMaterialHPModifier(materialType, materialGrade);
         
-        // Calculate new HP: (base HP × potency multiplier) + material modifier
-        // Material HP is added AFTER potency multiplier
-        const newMaxHP = Math.floor(baseHP * multiplier) + materialModifier;
+        // Check for Divine Ally (Shield Ally) → 1.5× HP multiplier
+        const isDivineAlly = this.getIsDivineAlly(shieldItem);
+        const divineAllyMultiplier = isDivineAlly ? 1.5 : 1;
+        
+        // Calculate new HP: ((base HP × potency multiplier) + material modifier) × divine ally multiplier
+        const newMaxHP = Math.floor((Math.floor(baseHP * multiplier) + materialModifier) * divineAllyMultiplier);
         const newBrokenThreshold = Math.floor(newMaxHP / 2);
         
         // Update shield HP values
@@ -430,7 +465,8 @@ export class EventHandlerManager {
             'system.hp.brokenThreshold': newBrokenThreshold,
             'flags.everything-shields.baseHP': baseHP,
             'flags.everything-shields.potencyMultiplier': multiplier,
-            'flags.everything-shields.materialModifier': materialModifier
+            'flags.everything-shields.materialModifier': materialModifier,
+            'flags.everything-shields.isDivineAlly': isDivineAlly
         };
         
         // Ensure current HP doesn't exceed new max
@@ -440,7 +476,7 @@ export class EventHandlerManager {
         
         await shieldItem.update(updateData);
         
-        console.log(`Applied +${potencyLevel} potency rune: (${baseHP} × ${multiplier}) + ${materialModifier} = ${newMaxHP} HP`);
+        console.log(`Applied +${potencyLevel} potency rune: ((${baseHP} × ${multiplier}) + ${materialModifier}) × ${divineAllyMultiplier} = ${newMaxHP} HP`);
     }
 
     private async applyHardenedRuneEffect(shieldItem: any, hardenedLevel: string): Promise<void> {
@@ -470,6 +506,51 @@ export class EventHandlerManager {
             await shieldItem.update({
                 'system.traits.value': [...traits, 'invested']
             });
+        }
+    }
+
+    /**
+     * Apply specific traits based on property rune type.
+     * - All runed shields get the 'abjuration' trait.
+     * - Feather Shield Rune adds 'hb_shield-finesse' (homebrew finesse for shields).
+     * - Throwing Shield Rune adds 'thrown-X' trait based on shield category.
+     */
+    private async applyPropertyRuneTraits(shieldItem: any, runeName: string): Promise<void> {
+        const traits: string[] = [...(shieldItem.system.traits?.value || [])];
+        let changed = false;
+
+        // All runed shields should have the abjuration trait
+        if (!traits.includes('abjuration')) {
+            traits.push('abjuration');
+            changed = true;
+        }
+
+        // Feather Shield Rune → finesse trait
+        if (runeName.toLowerCase().includes('feather')) {
+            if (!traits.includes('hb_shield-finesse')) {
+                traits.push('hb_shield-finesse');
+                changed = true;
+            }
+        }
+
+        // Throwing Shield Rune → thrown trait with range based on category
+        if (runeName.toLowerCase().includes('throwing')) {
+            const category = this.getShieldCategory(shieldItem);
+            const rangeMap: Record<string, number> = { light: 40, medium: 30, heavy: 20 };
+            const range = rangeMap[category] || 20;
+            const thrownTrait = `thrown-${range}`;
+            // Remove any existing thrown trait
+            const existingThrown = traits.findIndex(t => t.startsWith('thrown-'));
+            if (existingThrown >= 0) {
+                traits[existingThrown] = thrownTrait;
+            } else {
+                traits.push(thrownTrait);
+            }
+            changed = true;
+        }
+
+        if (changed) {
+            await shieldItem.update({ 'system.traits.value': traits });
         }
     }
 
@@ -684,18 +765,71 @@ export class EventHandlerManager {
         const runePrice = this.getRunePrice(potencyLevel, hardenedLevel);
         const runeLevel = this.getRuneLevel(potencyLevel, hardenedLevel);
 
-        // TODO: Add material price/level when materials are applied
-        // TODO: Add property rune prices/levels
+        // Calculate material price and level
+        let materialPrice = 0;
+        let materialLevel = 0;
+        const materialType = shieldItem.system.preciousMaterial?.value || shieldItem.system.material?.type || shieldItem.system.material?.precious?.type;
+        const materialGrade = shieldItem.system.preciousMaterialGrade?.value || shieldItem.system.material?.grade || shieldItem.system.material?.precious?.grade;
+        if (materialType && materialGrade) {
+            const category = this.getShieldCategory(shieldItem);
+            materialPrice = getMaterialPrice(materialType, materialGrade, category);
+            materialLevel = getMaterialLevel(materialType, materialGrade);
+        }
 
-        const totalPrice = basePrice + runePrice;
-        const totalLevel = Math.max(baseLevel, runeLevel);
+        // Calculate property rune prices from compendium items (stored in flags)
+        let propertyRunePrice = 0;
+        let propertyRuneLevel = 0;
+        const propRunes = [
+            shieldItem.system.propertyRune1?.value,
+            shieldItem.system.propertyRune2?.value,
+            shieldItem.system.propertyRune3?.value
+        ].filter(Boolean);
+
+        // Try to get property rune prices from the compendium
+        if (propRunes.length > 0) {
+            try {
+                const pack = (game as any).packs.get('everything-shields.everything-shields-property-runes');
+                if (pack) {
+                    for (const propRuneName of propRunes) {
+                        const idx = pack.index.find((entry: any) =>
+                            entry.name === propRuneName || entry.name.toLowerCase() === propRuneName.toLowerCase()
+                        );
+                        if (idx) {
+                            const runeDoc = await pack.getDocument(idx._id) as any;
+                            if (runeDoc) {
+                                const runeRawPrice = runeDoc.system?.price?.value;
+                                if (runeRawPrice) {
+                                    // Price may be Coins object {gp, sp, cp, pp} or a number
+                                    if (typeof runeRawPrice === 'number') {
+                                        propertyRunePrice += runeRawPrice;
+                                    } else if (runeRawPrice.gp !== undefined) {
+                                        propertyRunePrice += (runeRawPrice.pp || 0) * 10 + (runeRawPrice.gp || 0) + (runeRawPrice.sp || 0) / 10 + (runeRawPrice.cp || 0) / 100;
+                                    }
+                                }
+                                const runeItemLevel = runeDoc.system?.level?.value || 0;
+                                propertyRuneLevel = Math.max(propertyRuneLevel, runeItemLevel);
+                            }
+                        }
+                    }
+                }
+            } catch (err) {
+                console.warn('Everything Shields | Error fetching property rune prices:', err);
+            }
+        }
+
+        const totalPrice = basePrice + runePrice + materialPrice + propertyRunePrice;
+        const totalLevel = Math.max(baseLevel, runeLevel, materialLevel, propertyRuneLevel);
 
         console.log('Everything Shields | Updating price and level:', {
             basePrice,
             runePrice,
+            materialPrice,
+            propertyRunePrice,
             totalPrice,
             baseLevel,
             runeLevel,
+            materialLevel,
+            propertyRuneLevel,
             totalLevel
         });
 
@@ -792,6 +926,16 @@ export class EventHandlerManager {
 
                             const shieldItem: any = (shield as any).value || shield;
                         
+                        // Block Sturdy/Wovenwood shields from receiving runes
+                        if (isSturdyOrWovenwoodShield(shieldItem)) {
+                            new (window as any).Dialog({
+                                title: 'Invalid Shield Choice',
+                                content: 'Sturdy Shields and Wovenwood Shields cannot be combined with shield runes.',
+                                buttons: { ok: { label: 'OK' } }
+                            }).render(true);
+                            return;
+                        }
+                        
                         // Handle fundamental runes (potency or hardened)
                         if (isFundamental) {
                             const isPotencyRune = runeName.toLowerCase().includes('potency') || runeName.includes('+');
@@ -813,6 +957,13 @@ export class EventHandlerManager {
                                 // Extract the potency value (+1, +2, +3)
                                 const potencyMatch = runeName.match(/\+(\d)/);
                                 const potencyLevel = potencyMatch ? potencyMatch[1] : '1';
+                                
+                                // Check if existing potency rune is equal or superior
+                                const existingPotency = reloadedShieldItem.system.potencyRune?.value;
+                                if (existingPotency && parseInt(existingPotency) >= parseInt(potencyLevel)) {
+                                    ui.notifications.warn(`This shield already has a +${existingPotency} Shield Potency Rune, which is equal or superior to +${potencyLevel}.`);
+                                    return;
+                                }
                                 
                                 const updateData: any = {};
                                 updateData['system.potencyRune.value'] = potencyLevel;
@@ -856,6 +1007,15 @@ export class EventHandlerManager {
                                 }
                                 else if (runeName.toLowerCase().includes('major')) {
                                     hardenedValue = 'major';
+                                }
+
+                                // Check if existing hardened rune is equal or superior
+                                const hardenedRank: Record<string, number> = { 'hardened': 1, 'greater': 2, 'major': 3 };
+                                const existingHardened = reloadedShieldItem.system.resiliencyRune?.value;
+                                if (existingHardened && (hardenedRank[existingHardened] || 0) >= (hardenedRank[hardenedValue] || 0)) {
+                                    const existingName = existingHardened === 'greater' ? 'Greater Hardened' : existingHardened === 'major' ? 'Major Hardened' : 'Hardened';
+                                    ui.notifications.warn(`This shield already has a ${existingName} Rune, which is equal or superior.`);
+                                    return;
                                 }
 
                                 const updateData: any = {};
@@ -903,16 +1063,52 @@ export class EventHandlerManager {
                             shieldItem.system.propertyRune3?.value
                         ].slice(0, maxSlots);
 
-                        const slot = propertyRunes.findIndex(r => !r);
+                        // Check for exact duplicate and version conflicts
+                        let isUpgradeVersion = false;
+                        let lesserSlotIndex = -1;
+                        for (let i = 0; i < propertyRunes.length; i++) {
+                            const existingRune = propertyRunes[i];
+                            if (!existingRune) continue;
 
-                        if (slot === -1) {
-                            ui.notifications.warn(`All ${maxSlots} property rune slot(s) are filled for this +${potencyValue} shield.`);
-                            return;
+                            if (existingRune === runeName) {
+                                ui.notifications.warn(`${shieldItem.name} already has this property rune.`);
+                                return;
+                            }
+                            // Check if existing rune is a superior version — block the application
+                            if (isGreaterOrEqualVersionOfRune(existingRune, runeName)) {
+                                ui.notifications.warn(`${shieldItem.name} already has a superior or equal version of this rune.`);
+                                return;
+                            }
+                            // Check if existing rune is an inferior version — we'll upgrade it
+                            if (isLesserVersionOfRune(existingRune, runeName)) {
+                                isUpgradeVersion = true;
+                                lesserSlotIndex = i;
+                            }
                         }
 
-                        const updateData: any = {};
-                        updateData[`system.propertyRune${slot+1}.value`] = runeName;
-                        await shieldItem.update(updateData);
+                        // If not an upgrade, check for open slot
+                        if (!isUpgradeVersion) {
+                            const slot = propertyRunes.findIndex(r => !r);
+                            if (slot === -1) {
+                                ui.notifications.warn(`All ${maxSlots} property rune slot(s) are filled for this +${potencyValue} shield.`);
+                                return;
+                            }
+
+                            const updateData: any = {};
+                            updateData[`system.propertyRune${slot+1}.value`] = runeName;
+                            await shieldItem.update(updateData);
+                        } else {
+                            // Upgrade: replace the lesser rune in its slot
+                            const slotNum = lesserSlotIndex + 1;
+                            const replacedRuneName = propertyRunes[lesserSlotIndex];
+                            const updateData: any = {};
+                            updateData[`system.propertyRune${slotNum}.value`] = runeName;
+                            await shieldItem.update(updateData);
+                            
+                            // Return the replaced (lesser) rune to inventory
+                            await this.returnRuneToInventory(shieldItem.parent || shieldItem.actor, replacedRuneName, false);
+                            ui.notifications.info(`Upgraded ${replacedRuneName} to ${runeName}.`);
+                        }
                         
                         // Reload shield item from actor to get fresh data
                         const reloadedShieldAfterRune = (actor as any).items.get(shieldItem.id) as any;
@@ -923,6 +1119,10 @@ export class EventHandlerManager {
                         
                         // Apply invested trait for property runes
                         await this.applyInvestedTrait(reloadedShieldAfterRune);
+                        
+                        // Apply property rune-specific traits
+                        await this.applyPropertyRuneTraits(reloadedShieldAfterRune, runeName);
+                        
                         await this.markAsSpecificMagicShield(reloadedShieldAfterRune);
                         
                         // Update shield name with new property rune
@@ -1097,6 +1297,54 @@ export class EventHandlerManager {
     }
 
     /**
+     * Return a rune to the actor's inventory by looking it up in the appropriate compendium.
+     * @param actor The actor to receive the rune item
+     * @param runeName The name of the rune to return
+     * @param isFundamental Whether this is a fundamental rune (potency/hardened) vs property rune
+     */
+    private async returnRuneToInventory(actor: any, runeName: string, isFundamental: boolean): Promise<void> {
+        if (!actor) {
+            console.warn('Everything Shields | Cannot return rune to inventory: no actor found');
+            return;
+        }
+
+        try {
+            const packName = isFundamental
+                ? 'everything-shields.everything-shields-fundamental-runes'
+                : 'everything-shields.everything-shields-property-runes';
+
+            const pack = (game as any).packs.get(packName);
+            if (!pack) {
+                console.warn(`Everything Shields | Compendium ${packName} not found`);
+                return;
+            }
+
+            // Search for the rune by name
+            const index = pack.index.find((entry: any) =>
+                entry.name === runeName ||
+                entry.name.toLowerCase() === runeName.toLowerCase()
+            );
+
+            if (!index) {
+                console.warn(`Everything Shields | Rune "${runeName}" not found in compendium ${packName}`);
+                return;
+            }
+
+            const runeDoc = await pack.getDocument(index._id) as any;
+            if (!runeDoc) {
+                console.warn(`Everything Shields | Could not load rune document for "${runeName}"`);
+                return;
+            }
+
+            const runeData = runeDoc.toObject ? runeDoc.toObject() : runeDoc;
+            await actor.createEmbeddedDocuments('Item', [runeData]);
+            console.log(`Everything Shields | Returned ${runeName} to ${actor.name}'s inventory`);
+        } catch (error) {
+            console.error('Everything Shields | Error returning rune to inventory:', error);
+        }
+    }
+
+    /**
      * Determine whether the provided Item-like object represents a shield in PF2e.
      */
     private isShieldItem(itemLike: { type?: string; system?: any }): boolean {
@@ -1114,6 +1362,32 @@ export class EventHandlerManager {
         else {
             return false;
         }
+    }
+
+    /**
+     * Detect whether the shield's owning actor has the Champion "Divine Ally → Shield Ally" class feature.
+     * If so, the shield's HP should be multiplied by 1.5×.
+     */
+    private getIsDivineAlly(shield: any): boolean {
+        try {
+            const actor = shield.parent || shield.actor;
+            if (!actor) return false;
+
+            // PF2e stores class features in feats → classfeature category
+            const classFeats = actor.feats?.get?.('classfeature');
+            if (!classFeats) return false;
+
+            const divineAlly = classFeats.feats?.find?.((entry: any) => entry.feat?.name === 'Divine Ally');
+            if (!divineAlly) return false;
+
+            // Check if the Shield Ally grant is present
+            if (divineAlly.grants?.find?.((granted: any) => granted.feat?.name === 'Shield Ally')) {
+                return true;
+            }
+        } catch {
+            // Fail silently — actor might not have feats data structure
+        }
+        return false;
     }
 
 }

@@ -6,6 +6,46 @@ import { ShieldEffectManager } from './shield-effect-manager';
 import { UpdateGuard } from './update-guard';
 import { calculateShieldUpdates } from './shield-calculator';
 
+/**
+ * Look up a rune by name in the appropriate compendium and create it in the actor's inventory.
+ */
+async function returnRuneToActorInventory(actor: any, runeName: string, isFundamental: boolean): Promise<void> {
+    if (!actor) {
+        console.warn('Everything Shields | Cannot return rune to inventory: no actor found');
+        return;
+    }
+
+    try {
+        const packName = isFundamental
+            ? 'everything-shields.everything-shields-fundamental-runes'
+            : 'everything-shields.everything-shields-property-runes';
+
+        const pack = (game as any).packs.get(packName);
+        if (!pack) {
+            console.warn(`Everything Shields | Compendium ${packName} not found`);
+            return;
+        }
+
+        const index = pack.index.find((entry: any) =>
+            entry.name === runeName || entry.name.toLowerCase() === runeName.toLowerCase()
+        );
+
+        if (!index) {
+            console.warn(`Everything Shields | Rune "${runeName}" not found in compendium ${packName}`);
+            return;
+        }
+
+        const runeDoc = await pack.getDocument(index._id) as any;
+        if (!runeDoc) return;
+
+        const runeData = runeDoc.toObject ? runeDoc.toObject() : runeDoc;
+        await actor.createEmbeddedDocuments('Item', [runeData]);
+        console.log(`Everything Shields | Returned ${runeName} to ${actor.name}'s inventory`);
+    } catch (error) {
+        console.error('Everything Shields | Error returning rune to inventory:', error);
+    }
+}
+
 export class ShieldManager {
     private static instance: ShieldManager;
     private settings: SettingsManager;
@@ -67,13 +107,14 @@ export class ShieldManager {
                 throw new RuneError(`Shield does not have property rune: ${runeName}`);
             }
 
-            // Property runes don't create ActiveEffects, so just clear the rune slot
-            // (unlike potency/hardened runes which do create effects)
-            
             // Clear the rune slot
             await UpdateGuard.runExclusive(shield.id, async () =>
                 shield.update({ [runeSlot!]: null })
             );
+
+            // Return the removed rune to the actor's inventory
+            const actor = (shield as any).parent || (shield as any).actor;
+            await returnRuneToActorInventory(actor, runeName, false);
 
             // Reload shield after update to get fresh data
             const reloadedShield = (parent as any).items.get(shieldId);
@@ -86,7 +127,7 @@ export class ShieldManager {
                 }
             }
 
-            ui.notifications.info(`Removed ${runeName} from shield.`);
+            ui.notifications.info(`Removed ${runeName} from shield and returned it to inventory.`);
         } catch (error) {
             handleError(error as Error);
         }
@@ -101,26 +142,51 @@ export class ShieldManager {
                 throw new RuneError('Shield does not have a potency rune');
             }
 
+            const actor = (shield as any).parent || (shield as any).actor;
+            const potencyLevel = shield.system.potencyRune.value;
+
+            // Cascade: remove all property runes first (property runes require a potency rune)
+            const propertyRune1 = (shield.system as any).propertyRune1?.value;
+            const propertyRune2 = (shield.system as any).propertyRune2?.value;
+            const propertyRune3 = (shield.system as any).propertyRune3?.value;
+            const removedPropertyRunes: string[] = [];
+
+            if (propertyRune1) removedPropertyRunes.push(propertyRune1);
+            if (propertyRune2) removedPropertyRunes.push(propertyRune2);
+            if (propertyRune3) removedPropertyRunes.push(propertyRune3);
+
             // Restore base HP from flags
             const baseHP = (shield as any).flags?.['everything-shields']?.baseHP || shield.system.hp.max;
             const materialModifier = (shield as any).flags?.['everything-shields']?.materialModifier || 0;
             const restoredHP = baseHP + materialModifier;
             const restoredBrokenThreshold = Math.floor(restoredHP / 2);
 
-            // Clear the rune and restore HP
+            // Clear the potency rune, all property runes, and restore HP
             await UpdateGuard.runExclusive(shield.id, async () =>
                 shield.update({
                     'system.potencyRune.value': null,
+                    'system.propertyRune1.value': null,
+                    'system.propertyRune2.value': null,
+                    'system.propertyRune3.value': null,
                     'system.hp.max': restoredHP,
                     'system.hp.brokenThreshold': restoredBrokenThreshold,
-                    'flags.everything-shields.potencyMultiplier': null
+                    'flags.everything-shields.potencyMultiplier': null,
+                    'flags.everything-shields.isDivineAlly': null
                 })
             );
+
+            // Return potency rune to inventory
+            const potencyName = `+${potencyLevel} Shield Potency`;
+            await returnRuneToActorInventory(actor, potencyName, true);
+
+            // Return each removed property rune to inventory
+            for (const propRune of removedPropertyRunes) {
+                await returnRuneToActorInventory(actor, propRune, false);
+            }
 
             // Reload shield after update to get fresh data
             const reloadedShield = (parent as any).items.get(shieldId);
             if (reloadedShield) {
-                // Update shield name and description
                 await this.updateShieldName(reloadedShield);
                 const finalShield = (parent as any).items.get(shieldId);
                 if (finalShield) {
@@ -128,7 +194,11 @@ export class ShieldManager {
                 }
             }
 
-            ui.notifications.info('Removed potency rune from shield.');
+            const removedCount = removedPropertyRunes.length;
+            const msg = removedCount > 0
+                ? `Removed potency rune and ${removedCount} property rune(s) from shield. All runes returned to inventory.`
+                : 'Removed potency rune from shield and returned it to inventory.';
+            ui.notifications.info(msg);
         } catch (error) {
             handleError(error as Error);
         }
@@ -143,6 +213,14 @@ export class ShieldManager {
                 throw new RuneError('Shield does not have a hardened rune');
             }
 
+            const actor = (shield as any).parent || (shield as any).actor;
+            const hardenedLevel = shield.system.resiliencyRune.value;
+
+            // Build rune name for inventory return
+            const hardenedName = hardenedLevel === 'greater' ? 'Hardened Rune, Greater'
+                               : hardenedLevel === 'major' ? 'Hardened Rune, Major'
+                               : 'Hardened Rune';
+
             // Restore base hardness from flags
             const baseHardness = (shield as any).flags?.['everything-shields']?.baseHardness || shield.system.hardness;
 
@@ -155,10 +233,12 @@ export class ShieldManager {
                 })
             );
 
+            // Return hardened rune to inventory
+            await returnRuneToActorInventory(actor, hardenedName, true);
+
             // Reload shield after update to get fresh data
             const reloadedShield = (parent as any).items.get(shieldId);
             if (reloadedShield) {
-                // Update shield name and description
                 await this.updateShieldName(reloadedShield);
                 const finalShield = (parent as any).items.get(shieldId);
                 if (finalShield) {
@@ -166,7 +246,7 @@ export class ShieldManager {
                 }
             }
 
-            ui.notifications.info('Removed hardened rune from shield.');
+            ui.notifications.info(`Removed ${hardenedName} from shield and returned it to inventory.`);
         } catch (error) {
             handleError(error as Error);
         }
