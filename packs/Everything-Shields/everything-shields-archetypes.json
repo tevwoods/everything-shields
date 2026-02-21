@@ -1,0 +1,2164 @@
+[
+  {
+    "_id": "0k3TTYZoYFCXH0ex",
+    "name": "Puppetmaster",
+    "type": "feat",
+    "img": "systems/pf2e/icons/default-icons/feats.webp",
+    "effects": [],
+    "folder": null,
+    "sort": 0,
+    "flags": {},
+    "system": {
+      "description": {
+        "value": "<p>Your precision with manipulating shadows reaches new depths. You may now use @Compendium[everything-shields.everything-shields-archetypes.tzQI4gQVLglBh2VS]{Shadow Puppet} at will, instead of once per hour, and you no longer have to be in dim light or darkness. Additionally, your shadow puppets become more durable. Instead of being destroyed upon being hit or failing a saving throw, your puppets have a number of Hit Points equal to half your current Hit Point total when you use the ability. You cannot have more than one Shadow Puppet at any time; if you create a new one while you already have one, the previous one is Dismissed.&nbsp;</p>"
+      },
+      "source": {
+        "value": "Everything Shields"
+      },
+      "traits": {
+        "value": [
+          "archetype"
+        ],
+        "rarity": "uncommon",
+        "custom": ""
+      },
+      "rules": [],
+      "slug": null,
+      "schema": {
+        "version": 0.93,
+        "lastMigration": {
+          "datetime": "2025-11-10T15:51:44.922Z",
+          "version": {
+            "schema": 0.93,
+            "foundry": "13",
+            "system": "6.0.0"
+          }
+        }
+      },
+      "level": {
+        "value": 14
+      },
+      "featType": {
+        "value": "archetype"
+      },
+      "onlyLevel1": false,
+      "maxTakable": 1,
+      "actionType": {
+        "value": "passive"
+      },
+      "actionCategory": {
+        "value": ""
+      },
+      "actions": {
+        "value": null
+      },
+      "prerequisites": {
+        "value": [
+          {
+            "value": "Mirror Warrior Dedication"
+          },
+          {
+            "value": "Shadow Puppet"
+          }
+        ]
+      },
+      "location": null
+    },
+    "ownership": {
+      "default": 0,
+      "4mqS4QLqshw8WhsN": 3
+    },
+    "_stats": {
+      "systemId": "pf2e",
+      "systemVersion": "4.3.4",
+      "coreVersion": "10.290",
+      "createdTime": null,
+      "modifiedTime": 1668742086961,
+      "lastModifiedBy": "XyQNEFY9gmTDIpSd"
+    },
+    "schemaVersion": 13
+  },
+  {
+    "_id": "1sJvOOwFjnZXV7tf",
+    "name": "Scourging Light",
+    "type": "feat",
+    "img": "systems/pf2e/icons/default-icons/feats.webp",
+    "effects": [],
+    "folder": null,
+    "sort": 0,
+    "flags": {},
+    "system": {
+      "description": {
+        "value": "<p>Your Coruscating Beam penetrates foes and eats away at them long after it has struck them. Any creature that takes damage from your Coruscating Beam also takes [[/r 4d6 persistent fire ]] @Compendium[pf2e.conditionitems.lDVqvLKA6eF3Df60]{Persistent Fire Damage}. If you have the Blazing Shield feat and the creature has persistent fire damage from that effect, this effect deals [[/r 6d6 persistent fire ]] @Compendium[pf2e.conditionitems.lDVqvLKA6eF3Df60]{Persistent Fire Damage} instead. Your Coruscating Beam and any persistent fire damage that results from it ignores up to 10 points of fire resistance.&nbsp;</p>"
+      },
+      "source": {
+        "value": "Everything Shields"
+      },
+      "traits": {
+        "value": [
+          "archetype"
+        ],
+        "rarity": "uncommon",
+        "custom": ""
+      },
+      "rules": [],
+      "slug": null,
+      "schema": {
+        "version": 0.93,
+        "lastMigration": {
+          "datetime": "2025-11-10T15:51:44.922Z",
+          "version": {
+            "schema": 0.93,
+            "foundry": "13",
+            "system": "6.0.0"
+          }
+        }
+      },
+      "level": {
+        "value": 14
+      },
+      "featType": {
+        "value": "archetype"
+      },
+      "onlyLevel1": false,
+      "maxTakable": 1,
+      "actionType": {
+        "value": "passive"
+      },
+      "actionCategory": {
+        "value": ""
+      },
+      "actions": {
+        "value": null
+      },
+      "prerequisites": {
+        "value": [
+          {
+            "value": "Mirror Warrior Dedication"
+          },
+          {
+            "value": "Coruscating Beam"
+          }
+        ]
+      },
+      "location": null
+    },
+    "ownership": {
+      "default": 0,
+      "4mqS4QLqshw8WhsN": 3
+    },
+    "_stats": {
+      "systemId": "pf2e",
+      "systemVersion": "4.3.4",
+      "coreVersion": "10.290",
+      "createdTime": null,
+      "modifiedTime": 1668742098495,
+      "lastModifiedBy": "XyQNEFY9gmTDIpSd"
+    },
+    "schemaVersion": 13
+  },
+  {
+    "_id": "2TDubbVZHX7L1txC",
+    "name": "Tumble Guard",
+    "type": "feat",
+    "img": "systems/pf2e/icons/default-icons/feats.webp",
+    "effects": [],
+    "folder": null,
+    "sort": 0,
+    "flags": {},
+    "system": {
+      "description": {
+        "value": "<p>You use your shield to brace your tumbles and defend yourself at the same time. When you Tumble Through you may add your shield's item bonus to attacks as a bonus to your Acrobatics check. Additionally, you gain a +2 circumstance bonus to AC against attacks triggered by your movement while Tumbling Through. If your shield is raised while you Tumble Through, this bonus increases to +4. If you are legendary in Acrobatics, on a critical success you do not treat enemies' spaces as difficult terrain.&nbsp;</p>"
+      },
+      "source": {
+        "value": "Everything Shields"
+      },
+      "traits": {
+        "value": [
+          "archetype",
+          "skill"
+        ],
+        "rarity": "uncommon",
+        "custom": ""
+      },
+      "rules": [],
+      "slug": null,
+      "schema": {
+        "version": 0.93,
+        "lastMigration": {
+          "datetime": "2025-11-10T15:51:44.922Z",
+          "version": {
+            "schema": 0.93,
+            "foundry": "13",
+            "system": "6.0.0"
+          }
+        }
+      },
+      "level": {
+        "value": 4
+      },
+      "featType": {
+        "value": "archetype"
+      },
+      "onlyLevel1": false,
+      "maxTakable": 1,
+      "actionType": {
+        "value": "passive"
+      },
+      "actionCategory": {
+        "value": "interaction"
+      },
+      "actions": {
+        "value": null
+      },
+      "prerequisites": {
+        "value": [
+          {
+            "value": "Shield Maven Dedication"
+          }
+        ]
+      },
+      "location": null
+    },
+    "ownership": {
+      "default": 0,
+      "4mqS4QLqshw8WhsN": 3
+    },
+    "_stats": {
+      "systemId": "pf2e",
+      "systemVersion": "4.3.4",
+      "coreVersion": "10.290",
+      "createdTime": null,
+      "modifiedTime": 1668742128965,
+      "lastModifiedBy": "XyQNEFY9gmTDIpSd"
+    },
+    "schemaVersion": 13
+  },
+  {
+    "_id": "3vV6rqlB16Jx3dS7",
+    "name": "Brilliant Corona",
+    "type": "feat",
+    "img": "systems/pf2e/icons/default-icons/feats.webp",
+    "effects": [],
+    "folder": null,
+    "sort": 0,
+    "flags": {},
+    "system": {
+      "description": {
+        "value": "<p><strong>Requirements</strong> You are wielding a heavy shield and you are in bright light.</p>\n<hr>\n<p>You hunker down behind your shield and use your understanding of light to bend and scatter it around yourself, making it difficult for others to see you. You have the immobilized condition until the end of your next turn. You @Compendium[pf2e.actionspf2e.xjGwis0uaC2305pm]{Raise the Shield}, @Compendium[pf2e.actionspf2e.ust1jJSCZQUhBZIz]{Take Cover}, and you are considered @Compendium[pf2e.conditionitems.iU0fEDdBp3rXpTMC]{Hidden} from all creatures that rely on sight as their only precise sense until the end of your next turn.</p>\n<p>If you spend three actions on this activity, all creatures adjacent to you are @Compendium[pf2e.conditionitems.DmAIPqOBomZ7H95W]{Concealed}&nbsp;by the light as well.</p>\n<p>If you have the @Compendium[everything-shields.everything-shields-archetypes.R6fCZkG6eIuvS64c]{Mirror Darkly} feat, you may choose to instead surround yourself and possibly your allies with shadow instead of light. If you do, this ability loses the light trait and gains the darkness and shadow traits, and it can be used in dim light or darkness, but it otherwise functions the same as the light version.&nbsp;</p>"
+      },
+      "source": {
+        "value": "Everything Shields"
+      },
+      "traits": {
+        "value": [
+          "archetype",
+          "light",
+          "visual"
+        ],
+        "rarity": "uncommon",
+        "custom": ""
+      },
+      "rules": [],
+      "slug": null,
+      "schema": {
+        "version": 0.93,
+        "lastMigration": {
+          "datetime": "2025-11-10T15:51:44.922Z",
+          "version": {
+            "schema": 0.93,
+            "foundry": "13",
+            "system": "6.0.0"
+          }
+        }
+      },
+      "level": {
+        "value": 8
+      },
+      "featType": {
+        "value": "archetype"
+      },
+      "onlyLevel1": false,
+      "maxTakable": 1,
+      "actionType": {
+        "value": "action"
+      },
+      "actionCategory": {
+        "value": "offensive"
+      },
+      "actions": {
+        "value": 2
+      },
+      "prerequisites": {
+        "value": [
+          {
+            "value": "Mirror Warrior Dedication"
+          }
+        ]
+      },
+      "location": null
+    },
+    "ownership": {
+      "default": 0,
+      "4mqS4QLqshw8WhsN": 3
+    },
+    "_stats": {
+      "systemId": "pf2e",
+      "systemVersion": "4.3.4",
+      "coreVersion": "10.290",
+      "createdTime": null,
+      "modifiedTime": 1668741984647,
+      "lastModifiedBy": "XyQNEFY9gmTDIpSd"
+    },
+    "schemaVersion": 13
+  },
+  {
+    "_id": "9FkdL8D7bKiKpcfx",
+    "name": "Shield Maven Dedication",
+    "type": "feat",
+    "img": "systems/pf2e/icons/equipment/shields/precious-material-shields/silver-buckler.webp",
+    "effects": [],
+    "folder": null,
+    "sort": 0,
+    "flags": {},
+    "system": {
+      "description": {
+        "value": "<p>You move your body and your shield around the field of combat in equal measure. Any light or medium shield you wield gains the thrown property with a range increment of 20 feet. You gain the @Compendium[everything-shields.everything-shields-actions.xQxYQqzJ3krSyNSX]{Shield Ricochet Stance}, which functions as the fighter feat @Compendium[pf2e.feats-srd.tRHjUCl0xqG97nok]{Ricochet Stance} but can only be used with light or medium shields.</p>\n<hr>\n<p><strong>Additional Feats:</strong></p>\n<p><strong>4th&nbsp;</strong>Mobility, Reactive Shield</p>\n<p><strong>6th&nbsp;</strong>Far Throw, Barreling Charge</p>\n<p><strong>10th&nbsp;</strong>Quick Shield Block</p>\n<p><strong>12th&nbsp;</strong>Ricochet Feint&nbsp;</p>\n<p>&nbsp;</p>"
+      },
+      "source": {
+        "value": "Everything Shields"
+      },
+      "traits": {
+        "value": [
+          "archetype",
+          "dedication"
+        ],
+        "rarity": "uncommon",
+        "custom": ""
+      },
+      "rules": [
+        {
+          "key": "GrantItem",
+          "uuid": "Compendium.everything-shields.everything-shields-actions.xQxYQqzJ3krSyNSX"
+        }
+      ],
+      "slug": null,
+      "schema": {
+        "version": 0.93,
+        "lastMigration": {
+          "datetime": "2025-11-10T15:51:44.922Z",
+          "version": {
+            "schema": 0.93,
+            "foundry": "13",
+            "system": "6.0.0"
+          }
+        }
+      },
+      "level": {
+        "value": 2
+      },
+      "featType": {
+        "value": "archetype"
+      },
+      "onlyLevel1": false,
+      "maxTakable": 1,
+      "actionType": {
+        "value": "passive"
+      },
+      "actionCategory": {
+        "value": ""
+      },
+      "actions": {
+        "value": null
+      },
+      "prerequisites": {
+        "value": [
+          {
+            "value": "Shield Block"
+          },
+          {
+            "value": "Light or Medium Shield Specialization"
+          }
+        ]
+      },
+      "location": null
+    },
+    "ownership": {
+      "default": 0,
+      "4mqS4QLqshw8WhsN": 3
+    },
+    "_stats": {
+      "systemId": "pf2e",
+      "systemVersion": "4.3.4",
+      "coreVersion": "10.290",
+      "createdTime": null,
+      "modifiedTime": 1668742112828,
+      "lastModifiedBy": "XyQNEFY9gmTDIpSd"
+    },
+    "schemaVersion": 13
+  },
+  {
+    "_id": "Br95gweGIJR0c2Mp",
+    "name": "Reforge Mirror",
+    "type": "feat",
+    "img": "systems/pf2e/icons/default-icons/feats.webp",
+    "effects": [],
+    "folder": null,
+    "sort": 0,
+    "flags": {},
+    "system": {
+      "description": {
+        "value": "<p>Even if your mirror is shattered, you may reforge it with a casual thought, pulling the shattered pieces back into place as if nothing had happened. You repair your Mirror adjustment completely, even if it was destroyed. This does not repair the shield.&nbsp;</p>"
+      },
+      "source": {
+        "value": "Everything Shields"
+      },
+      "traits": {
+        "value": [
+          "archetype"
+        ],
+        "rarity": "uncommon",
+        "custom": ""
+      },
+      "rules": [],
+      "slug": null,
+      "schema": {
+        "version": 0.93,
+        "lastMigration": {
+          "datetime": "2025-11-10T15:51:44.922Z",
+          "version": {
+            "schema": 0.93,
+            "foundry": "13",
+            "system": "6.0.0"
+          }
+        }
+      },
+      "level": {
+        "value": 16
+      },
+      "featType": {
+        "value": "archetype"
+      },
+      "onlyLevel1": false,
+      "maxTakable": 1,
+      "actionType": {
+        "value": "action"
+      },
+      "actionCategory": {
+        "value": ""
+      },
+      "actions": {
+        "value": 1
+      },
+      "prerequisites": {
+        "value": [
+          {
+            "value": "Mirror Warrior Dedication"
+          }
+        ]
+      },
+      "location": null
+    },
+    "ownership": {
+      "default": 0,
+      "4mqS4QLqshw8WhsN": 3
+    },
+    "_stats": {
+      "systemId": "pf2e",
+      "systemVersion": "4.3.4",
+      "coreVersion": "10.290",
+      "createdTime": null,
+      "modifiedTime": 1668742093221,
+      "lastModifiedBy": "XyQNEFY9gmTDIpSd"
+    },
+    "schemaVersion": 13
+  },
+  {
+    "_id": "F5fDjyi7bwttgqAl",
+    "name": "Practiced Distraction",
+    "type": "feat",
+    "img": "systems/pf2e/icons/default-icons/feats.webp",
+    "effects": [],
+    "folder": null,
+    "sort": 0,
+    "flags": {},
+    "system": {
+      "description": {
+        "value": "<p>The way light and shadow move and reflect has become ingrained in your thinking, to the point that you can defend yourself with your shield even as you use its mirror to distract your foes. You @Compendium[pf2e.actionspf2e.xjGwis0uaC2305pm]{Raise a Shield} with your Mirror Shield, and then @Compendium[pf2e.actionspf2e.QNAVeNKtHA0EUw4X]{Feint} or @Compendium[pf2e.actionspf2e.GkmbTGfg8KcgynOA]{Create a Diversion.}&nbsp;</p>"
+      },
+      "source": {
+        "value": "Everything Shields"
+      },
+      "traits": {
+        "value": [
+          "archetype"
+        ],
+        "rarity": "uncommon",
+        "custom": ""
+      },
+      "rules": [],
+      "slug": null,
+      "schema": {
+        "version": 0.93,
+        "lastMigration": {
+          "datetime": "2025-11-10T15:51:44.922Z",
+          "version": {
+            "schema": 0.93,
+            "foundry": "13",
+            "system": "6.0.0"
+          }
+        }
+      },
+      "level": {
+        "value": 8
+      },
+      "featType": {
+        "value": "archetype"
+      },
+      "onlyLevel1": false,
+      "maxTakable": 1,
+      "actionType": {
+        "value": "action"
+      },
+      "actionCategory": {
+        "value": ""
+      },
+      "actions": {
+        "value": 1
+      },
+      "prerequisites": {
+        "value": [
+          {
+            "value": "Mirror Warrior Dedication"
+          }
+        ]
+      },
+      "location": null
+    },
+    "ownership": {
+      "default": 0,
+      "4mqS4QLqshw8WhsN": 3
+    },
+    "_stats": {
+      "systemId": "pf2e",
+      "systemVersion": "4.3.4",
+      "coreVersion": "10.290",
+      "createdTime": null,
+      "modifiedTime": 1668742081874,
+      "lastModifiedBy": "XyQNEFY9gmTDIpSd"
+    },
+    "schemaVersion": 13
+  },
+  {
+    "_id": "GOGF1mytcjNaEwAr",
+    "name": "Medium Shield Tricks",
+    "type": "feat",
+    "img": "systems/pf2e/icons/spells/protect-companion.webp",
+    "effects": [],
+    "folder": null,
+    "sort": 0,
+    "flags": {
+      "core": {
+        "sourceId": "Item.GOGF1mytcjNaEwAr"
+      }
+    },
+    "system": {
+      "description": {
+        "value": "<p>You can now add density to your magical shield, and can use it to cover an ally's escape or aid them. You are considered to be wielding either a medium shield or a light shield (your choice) while your @Compendium[pf2e.spells-srd.TVKNbcgTee19PXZR]{Shield} cantrip is in effect, and you gain the ability to use @Compendium[everything-shields.everything-shields-actions.hEAs9KLDWgpXIOzi]{Aiding Shield} or @Compendium[everything-shields.everything-shields-actions.Rqh2hHC1ZvQwnust]{Covering Shield} during that time if you choose medium shield. This does not change other bonuses normally granted by your shield cantrip.</p>\n<p>Once you have used one of these reactions or Shield Block, the spell ends and you can't cast shield again for 10 minutes. You may recast shield during this time by spending a focus point. If you do, the effect that prevents you from casting shield ends.&nbsp;</p>"
+      },
+      "source": {
+        "value": "Everything Shields"
+      },
+      "traits": {
+        "value": [
+          "archetype"
+        ],
+        "rarity": "common",
+        "custom": ""
+      },
+      "rules": [],
+      "slug": null,
+      "schema": {
+        "version": 0.93,
+        "lastMigration": {
+          "datetime": "2025-11-10T15:51:44.922Z",
+          "version": {
+            "schema": 0.93,
+            "foundry": "13",
+            "system": "6.0.0"
+          }
+        }
+      },
+      "level": {
+        "value": 8
+      },
+      "featType": {
+        "value": "archetype"
+      },
+      "onlyLevel1": false,
+      "maxTakable": 1,
+      "actionType": {
+        "value": "passive"
+      },
+      "actionCategory": {
+        "value": ""
+      },
+      "actions": {
+        "value": null
+      },
+      "prerequisites": {
+        "value": [
+          {
+            "value": "Spell Trickster Dedication"
+          },
+          {
+            "value": "Light Shield Tricks"
+          },
+          {
+            "value": "ability to cast shield cantrip"
+          }
+        ]
+      },
+      "location": null
+    },
+    "ownership": {
+      "default": 0,
+      "4mqS4QLqshw8WhsN": 3
+    },
+    "_stats": {
+      "systemId": "pf2e",
+      "systemVersion": "4.3.4",
+      "coreVersion": "10.290",
+      "createdTime": null,
+      "modifiedTime": 1668742038842,
+      "lastModifiedBy": "XyQNEFY9gmTDIpSd"
+    },
+    "schemaVersion": 13
+  },
+  {
+    "_id": "JEBulo8177FUwh7H",
+    "name": "Throat Smash",
+    "type": "feat",
+    "img": "systems/pf2e/icons/default-icons/feats.webp",
+    "effects": [],
+    "folder": null,
+    "sort": 0,
+    "flags": {},
+    "system": {
+      "description": {
+        "value": "<p>You aim for one of the weakest parts of an enemy's body, not just to hurt them but to prevent them from calling out for help or casting spells. Make a melee Strike, or a ranged Strike against a creature within the first range increment of your shield. On a successful attack roll, the creature must attempt a Fortitude save against your class DC. If the Strike was a critical success, treat the result of this save as one degree worse.</p>\n<hr>\n<p><strong>Critical Success&nbsp;</strong>The creature is unaffected</p>\n<p><strong>Success</strong> The creature cannot cast spells with verbal components for 1 round.</p>\n<p><strong>Failure&nbsp;</strong>The creature cannot speak or use actions with the auditory trait for 1 round. This prevents it from casting spells that include verbal components.</p>\n<p><strong>Critical Failure</strong> As failure, except the duration is 1 minute.&nbsp;</p>"
+      },
+      "source": {
+        "value": "Everything Shields"
+      },
+      "traits": {
+        "value": [
+          "archetype"
+        ],
+        "rarity": "uncommon",
+        "custom": ""
+      },
+      "rules": [],
+      "slug": null,
+      "schema": {
+        "version": 0.93,
+        "lastMigration": {
+          "datetime": "2025-11-10T15:51:44.922Z",
+          "version": {
+            "schema": 0.93,
+            "foundry": "13",
+            "system": "6.0.0"
+          }
+        }
+      },
+      "level": {
+        "value": 4
+      },
+      "featType": {
+        "value": "archetype"
+      },
+      "onlyLevel1": false,
+      "maxTakable": 1,
+      "actionType": {
+        "value": "action"
+      },
+      "actionCategory": {
+        "value": "offensive"
+      },
+      "actions": {
+        "value": 1
+      },
+      "prerequisites": {
+        "value": [
+          {
+            "value": "Shield Maven Dedication"
+          }
+        ]
+      },
+      "location": null
+    },
+    "ownership": {
+      "default": 0,
+      "4mqS4QLqshw8WhsN": 3
+    },
+    "_stats": {
+      "systemId": "pf2e",
+      "systemVersion": "4.3.4",
+      "coreVersion": "10.290",
+      "createdTime": null,
+      "modifiedTime": 1668742118579,
+      "lastModifiedBy": "XyQNEFY9gmTDIpSd"
+    },
+    "schemaVersion": 13
+  },
+  {
+    "_id": "KlAJH4QoHCZAG8Uk",
+    "name": "Penetrating Shield",
+    "type": "feat",
+    "img": "systems/pf2e/icons/default-icons/feats.webp",
+    "effects": [],
+    "folder": null,
+    "sort": 0,
+    "flags": {},
+    "system": {
+      "description": {
+        "value": "<p>You can wield your shield with such force that the cutting edge can shatter almost any defense. Make a Strike with your shield. It bypasses all of the target's resistances. If the target has Hardness, the Strike treats the Hardness as if it were half its normal value.&nbsp;</p>"
+      },
+      "source": {
+        "value": "Everything Shields"
+      },
+      "traits": {
+        "value": [
+          "archetype"
+        ],
+        "rarity": "uncommon",
+        "custom": ""
+      },
+      "rules": [],
+      "slug": null,
+      "schema": {
+        "version": 0.93,
+        "lastMigration": {
+          "datetime": "2025-11-10T15:51:44.922Z",
+          "version": {
+            "schema": 0.93,
+            "foundry": "13",
+            "system": "6.0.0"
+          }
+        }
+      },
+      "level": {
+        "value": 16
+      },
+      "featType": {
+        "value": "archetype"
+      },
+      "onlyLevel1": false,
+      "maxTakable": 1,
+      "actionType": {
+        "value": "action"
+      },
+      "actionCategory": {
+        "value": "offensive"
+      },
+      "actions": {
+        "value": 2
+      },
+      "prerequisites": {
+        "value": [
+          {
+            "value": "Shield Maven Dedication"
+          }
+        ]
+      },
+      "location": null
+    },
+    "ownership": {
+      "default": 0,
+      "4mqS4QLqshw8WhsN": 3
+    },
+    "_stats": {
+      "systemId": "pf2e",
+      "systemVersion": "4.3.4",
+      "coreVersion": "10.290",
+      "createdTime": null,
+      "modifiedTime": 1668742075793,
+      "lastModifiedBy": "XyQNEFY9gmTDIpSd"
+    },
+    "schemaVersion": 13
+  },
+  {
+    "_id": "L1oS5VGQBclIdUZj",
+    "name": "Blinding Light",
+    "type": "feat",
+    "img": "systems/pf2e/icons/default-icons/feats.webp",
+    "effects": [],
+    "folder": null,
+    "sort": 0,
+    "flags": {},
+    "system": {
+      "description": {
+        "value": "<p><strong>Requirements</strong> You have your Mirror Shield raised, and you are in bright light.</p>\n<p><strong>Trigger</strong> An ally attempts an attack against an enemy within 30 feet of you but hasn't rolled yet.</p>\n<hr>\n<p>You quickly change the angle of your Mirror Shield to shine a light in an enemy's eyes right as your ally attacks them. The target is @Compendium[pf2e.conditionitems.AJh5ex99aV6VTggg]{Flat-Footed} to the attack.&nbsp;</p>"
+      },
+      "source": {
+        "value": "Everything Shields"
+      },
+      "traits": {
+        "value": [
+          "archetype",
+          "light",
+          "visual"
+        ],
+        "rarity": "uncommon",
+        "custom": ""
+      },
+      "rules": [],
+      "slug": null,
+      "schema": {
+        "version": 0.93,
+        "lastMigration": {
+          "datetime": "2025-11-10T15:51:44.922Z",
+          "version": {
+            "schema": 0.93,
+            "foundry": "13",
+            "system": "6.0.0"
+          }
+        }
+      },
+      "level": {
+        "value": 4
+      },
+      "featType": {
+        "value": "archetype"
+      },
+      "onlyLevel1": false,
+      "maxTakable": 1,
+      "actionType": {
+        "value": "reaction"
+      },
+      "actionCategory": {
+        "value": ""
+      },
+      "actions": {
+        "value": null
+      },
+      "prerequisites": {
+        "value": [
+          {
+            "value": "Mirror Warrior Dedication"
+          }
+        ]
+      },
+      "location": null
+    },
+    "ownership": {
+      "default": 0,
+      "4mqS4QLqshw8WhsN": 3
+    },
+    "_stats": {
+      "systemId": "pf2e",
+      "systemVersion": "4.3.4",
+      "coreVersion": "10.290",
+      "createdTime": null,
+      "modifiedTime": 1668741956135,
+      "lastModifiedBy": "XyQNEFY9gmTDIpSd"
+    },
+    "schemaVersion": 13
+  },
+  {
+    "_id": "R6fCZkG6eIuvS64c",
+    "name": "Mirror Darkly",
+    "type": "feat",
+    "img": "systems/pf2e/icons/default-icons/feats.webp",
+    "effects": [],
+    "folder": null,
+    "sort": 0,
+    "flags": {},
+    "system": {
+      "description": {
+        "value": "<p>Your Mirror Shield becomes imbued with essence from the plane of shadow, and you start down a path of exploring the darker aspects of your gift. If you have the @Compendium[everything-shields.everything-shields-archetypes.dBx4SlgTp7fdIHBf]{Flickering Feint} feat, you still gain the circumstance bonus to Feint and Create a Diversion from that feat even when you are in dim light or darkness.</p>\n<p>If you have the @Compendium[everything-shields.everything-shields-archetypes.L1oS5VGQBclIdUZj]{Blinding Light} feat, you may use it when you are in dim light or darkness. When you do, it loses the light trait and gains the shadow and darkness trait, and instead of shining light into their eyes to blind them, you reflect shadow essence that affects even creatures with low-light vision and darkvision.&nbsp;</p>"
+      },
+      "source": {
+        "value": "Everything Shields"
+      },
+      "traits": {
+        "value": [
+          "archetype"
+        ],
+        "rarity": "uncommon",
+        "custom": ""
+      },
+      "rules": [],
+      "slug": null,
+      "schema": {
+        "version": 0.93,
+        "lastMigration": {
+          "datetime": "2025-11-10T15:51:44.922Z",
+          "version": {
+            "schema": 0.93,
+            "foundry": "13",
+            "system": "6.0.0"
+          }
+        }
+      },
+      "level": {
+        "value": 6
+      },
+      "featType": {
+        "value": "archetype"
+      },
+      "onlyLevel1": false,
+      "maxTakable": 1,
+      "actionType": {
+        "value": "passive"
+      },
+      "actionCategory": {
+        "value": ""
+      },
+      "actions": {
+        "value": null
+      },
+      "prerequisites": {
+        "value": [
+          {
+            "value": "Mirror Warrior Dedication"
+          },
+          {
+            "value": "Blinding Light or Flickering Feint"
+          }
+        ]
+      },
+      "location": null
+    },
+    "ownership": {
+      "default": 0,
+      "4mqS4QLqshw8WhsN": 3
+    },
+    "_stats": {
+      "systemId": "pf2e",
+      "systemVersion": "4.3.4",
+      "coreVersion": "10.290",
+      "createdTime": null,
+      "modifiedTime": 1668742063907,
+      "lastModifiedBy": "XyQNEFY9gmTDIpSd"
+    },
+    "schemaVersion": 13
+  },
+  {
+    "_id": "TmkoJMLJXIpnAB4k",
+    "name": "Born in the Light",
+    "type": "feat",
+    "img": "systems/pf2e/icons/default-icons/feats.webp",
+    "effects": [],
+    "folder": null,
+    "sort": 0,
+    "flags": {},
+    "system": {
+      "description": {
+        "value": "<p>You are perpetually bathed in light. A 30-foot emanation of bright light surrounds you at all times, though you can @Compendium[pf2e.actionspf2e.AjLSHZSWQ90exdLo]{Dismiss} this effect, and reactivate it with a single action that has the concentrate trait. This effect functions as a 9th-level @Compendium[pf2e.spells-srd.WBmvzNDfpwka3qT4]{Light} spell. You gain access to the following reaction. You gain an additional reaction each round that can only be used to take this reaction.</p>\n<hr>\n<p><strong>Trigger</strong> a creature damages you or an ally that is within your light emanation, and the creature is also in your light emanation</p>\n<p><strong>Effect</strong> If this was triggered when you took damage, you may target either yourself or the creature that damaged you. If this was triggered by an ally taking damage, you may target either that ally or the creature that damaged them. If you target the creature who dealt damage, a pure beam of heaven's judging light blasts the target dealing [[/r 5d12]] fire or positive damage (your choice) with a basic Reflex save. If you target yourself or an ally, the target is bathed in heaven's soothing light and has [[/r 5d12]] Hit Points healed. This is a positive healing effect.&nbsp;</p>"
+      },
+      "source": {
+        "value": "Everything Shields"
+      },
+      "traits": {
+        "value": [
+          "archetype"
+        ],
+        "rarity": "uncommon",
+        "custom": ""
+      },
+      "rules": [],
+      "slug": null,
+      "schema": {
+        "version": 0.93,
+        "lastMigration": {
+          "datetime": "2025-11-10T15:51:44.922Z",
+          "version": {
+            "schema": 0.93,
+            "foundry": "13",
+            "system": "6.0.0"
+          }
+        }
+      },
+      "level": {
+        "value": 18
+      },
+      "featType": {
+        "value": "archetype"
+      },
+      "onlyLevel1": false,
+      "maxTakable": 1,
+      "actionType": {
+        "value": "reaction"
+      },
+      "actionCategory": {
+        "value": ""
+      },
+      "actions": {
+        "value": null
+      },
+      "prerequisites": {
+        "value": [
+          {
+            "value": "Mirror Warrior Dedication"
+          },
+          {
+            "value": "Cannot have Mirror Darkly"
+          }
+        ]
+      },
+      "location": null
+    },
+    "ownership": {
+      "default": 0,
+      "4mqS4QLqshw8WhsN": 3
+    },
+    "_stats": {
+      "systemId": "pf2e",
+      "systemVersion": "4.3.4",
+      "coreVersion": "10.290",
+      "createdTime": null,
+      "modifiedTime": 1668741963954,
+      "lastModifiedBy": "XyQNEFY9gmTDIpSd"
+    },
+    "schemaVersion": 13
+  },
+  {
+    "_id": "a7O3D9FbVu9FRRf6",
+    "name": "Thrown Shield Block",
+    "type": "feat",
+    "img": "systems/pf2e/icons/default-icons/feats.webp",
+    "effects": [],
+    "folder": null,
+    "sort": 0,
+    "flags": {},
+    "system": {
+      "description": {
+        "value": "<p><strong>Requirements&nbsp;</strong>You have a light or medium shield raised.</p>\n<p><strong>Trigger</strong> An enemy hits an ally within the first range increment of your shield's thrown property with a physical attack.</p>\n<hr>\n<p>You can throw your shield with so much precision that you can use it to absorb some of the power of an attack made against one of your allies. You use your @Compendium[pf2e.feats-srd.jM72TjJ965jocBV8]{Shield Block} reaction to reduce the damage that your ally takes from the attack.</p>\n<p>If you are in Shield Ricochet Stance or the shield has a Returning rune applied to it, the shield returns to the hand that threw it after this reaction, but it is no longer raised. If it does not, it falls in a square of your choosing that is adjacent to your ally.&nbsp;</p>"
+      },
+      "source": {
+        "value": "Everything Shields"
+      },
+      "traits": {
+        "value": [
+          "archetype"
+        ],
+        "rarity": "uncommon",
+        "custom": ""
+      },
+      "rules": [],
+      "slug": null,
+      "schema": {
+        "version": 0.93,
+        "lastMigration": {
+          "datetime": "2025-11-10T15:51:44.922Z",
+          "version": {
+            "schema": 0.93,
+            "foundry": "13",
+            "system": "6.0.0"
+          }
+        }
+      },
+      "level": {
+        "value": 14
+      },
+      "featType": {
+        "value": "archetype"
+      },
+      "onlyLevel1": false,
+      "maxTakable": 1,
+      "actionType": {
+        "value": "reaction"
+      },
+      "actionCategory": {
+        "value": "defensive"
+      },
+      "actions": {
+        "value": null
+      },
+      "prerequisites": {
+        "value": [
+          {
+            "value": "Shield Maven Dedication"
+          }
+        ]
+      },
+      "location": null
+    },
+    "ownership": {
+      "default": 0,
+      "4mqS4QLqshw8WhsN": 3
+    },
+    "_stats": {
+      "systemId": "pf2e",
+      "systemVersion": "4.3.4",
+      "coreVersion": "10.290",
+      "createdTime": null,
+      "modifiedTime": 1668742124345,
+      "lastModifiedBy": "XyQNEFY9gmTDIpSd"
+    },
+    "schemaVersion": 13
+  },
+  {
+    "_id": "afzMWhqKJTIZ58Tp",
+    "name": "Mirror Warrior Dedication",
+    "type": "feat",
+    "img": "systems/pf2e/icons/equipment/shields/precious-material-shields/silver-shield.webp",
+    "effects": [],
+    "folder": null,
+    "sort": 0,
+    "flags": {},
+    "system": {
+      "description": {
+        "value": "<p>You have learned the basics of using a mirror in combat. Choose a shield; that shield gains the @Compendium[everything-shields.everything-shields-adjustments.WAeFxORLsO0VFO4J]{Mirror Shield Adjustment} and is considered your Mirror Shield. You may still only have one adjustment on your shield as normal. You may choose a different shield to be your Mirror Shield during your daily preparations. If you use your Mirror's inherent reaction, it does not fall off, but you still cannot use that reaction again until you have succeeded on a Repair action on the shield. All of your Mirror Warrior feats and abilities depend upon this Mirror; if it is broken or destroyed, you cannot use any of these abilities. You gain a new mirror for your Mirror Shield, or repair the existing one, each day during your daily preparations.</p>\n<p>When you reach 8th level, your Mirror adjustment becomes an @Compendium[everything-shields.everything-shields-adjustments.zhzfD36XB0ko3ixJ]{Improved Mirror Shield Adjustment}.</p>\n<p>You gain access to the @Compendium[everything-shields.everything-shields-actions.ZhQNQNyHGyfEJJLE]{Directed Shatter} action.</p>\n<hr>\n<p><strong>Additional Feats</strong></p>\n<p><strong>4th&nbsp;</strong>Goading Feint&nbsp;</p>"
+      },
+      "source": {
+        "value": "Everything Shields"
+      },
+      "traits": {
+        "value": [
+          "archetype",
+          "dedication"
+        ],
+        "rarity": "uncommon",
+        "custom": ""
+      },
+      "rules": [
+        {
+          "allowDuplicate": false,
+          "key": "GrantItem",
+          "uuid": "Compendium.everything-shields.everything-shields-actions.ZhQNQNyHGyfEJJLE"
+        }
+      ],
+      "slug": null,
+      "schema": {
+        "version": 0.93,
+        "lastMigration": {
+          "datetime": "2025-11-10T15:51:44.922Z",
+          "version": {
+            "schema": 0.93,
+            "foundry": "13",
+            "system": "6.0.0"
+          }
+        }
+      },
+      "level": {
+        "value": 2
+      },
+      "featType": {
+        "value": "archetype"
+      },
+      "onlyLevel1": false,
+      "maxTakable": 1,
+      "actionType": {
+        "value": "passive"
+      },
+      "actionCategory": {
+        "value": ""
+      },
+      "actions": {
+        "value": null
+      },
+      "prerequisites": {
+        "value": [
+          {
+            "value": "Trained in Crafting"
+          },
+          {
+            "value": "Shield Block"
+          }
+        ]
+      },
+      "location": null
+    },
+    "ownership": {
+      "default": 0,
+      "4mqS4QLqshw8WhsN": 3
+    },
+    "_stats": {
+      "systemId": "pf2e",
+      "systemVersion": "4.3.4",
+      "coreVersion": "10.290",
+      "createdTime": null,
+      "modifiedTime": 1668742070571,
+      "lastModifiedBy": "XyQNEFY9gmTDIpSd"
+    },
+    "schemaVersion": 13
+  },
+  {
+    "_id": "cEPNbBPUsSIz5nHU",
+    "name": "Acrobatic Shield Flurry",
+    "type": "feat",
+    "img": "systems/pf2e/icons/default-icons/feats.webp",
+    "effects": [],
+    "folder": null,
+    "sort": 0,
+    "flags": {},
+    "system": {
+      "description": {
+        "value": "<p><strong>Requirements</strong> You are in Shield Ricochet Stance</p>\n<hr>\n<p>Your mastery of your shield's dynamics allows you to bounce it off of a single target multiple times in a quick series of attacks. Make two Strikes with your shield against one creature within the first range increment of your shield.&nbsp;</p>"
+      },
+      "source": {
+        "value": "Everything Shields"
+      },
+      "traits": {
+        "value": [
+          "archetype",
+          "flourish"
+        ],
+        "rarity": "uncommon",
+        "custom": ""
+      },
+      "rules": [],
+      "slug": null,
+      "schema": {
+        "version": 0.93,
+        "lastMigration": {
+          "datetime": "2025-11-10T15:51:44.922Z",
+          "version": {
+            "schema": 0.93,
+            "foundry": "13",
+            "system": "6.0.0"
+          }
+        }
+      },
+      "level": {
+        "value": 10
+      },
+      "featType": {
+        "value": "archetype"
+      },
+      "onlyLevel1": false,
+      "maxTakable": 1,
+      "actionType": {
+        "value": "action"
+      },
+      "actionCategory": {
+        "value": "offensive"
+      },
+      "actions": {
+        "value": 1
+      },
+      "prerequisites": {
+        "value": [
+          {
+            "value": "Shield Maven Dedication"
+          }
+        ]
+      },
+      "location": null
+    },
+    "ownership": {
+      "default": 0,
+      "4mqS4QLqshw8WhsN": 3
+    },
+    "_stats": {
+      "systemId": "pf2e",
+      "systemVersion": "4.3.4",
+      "coreVersion": "10.290",
+      "createdTime": null,
+      "modifiedTime": 1668741942986,
+      "lastModifiedBy": "XyQNEFY9gmTDIpSd"
+    },
+    "schemaVersion": 13
+  },
+  {
+    "_id": "dBx4SlgTp7fdIHBf",
+    "name": "Flickering Feint",
+    "type": "feat",
+    "img": "systems/pf2e/icons/default-icons/feats.webp",
+    "effects": [],
+    "folder": null,
+    "sort": 0,
+    "flags": {},
+    "system": {
+      "description": {
+        "value": "<p>You shine bright reflections into your enemies' eyes when you are distracting them to enhance the effect. As long as you are in bright light, you gain a +1 circumstance bonus to attempts to @Compendium[pf2e.actionspf2e.QNAVeNKtHA0EUw4X]{Feint} or @Compendium[pf2e.actionspf2e.GkmbTGfg8KcgynOA]{Create a Diversion}. If you have an Improved Mirror adjustment on your Mirror Shield, this bonus increases to +2.&nbsp;</p>"
+      },
+      "source": {
+        "value": "Everything Shields"
+      },
+      "traits": {
+        "value": [
+          "archetype",
+          "skill"
+        ],
+        "rarity": "uncommon",
+        "custom": ""
+      },
+      "rules": [
+        {
+          "key": "FlatModifier",
+          "selector": "deception",
+          "predicate": {
+            "any": [
+              "action:create-a-diversion",
+              "action:feint"
+            ]
+          },
+          "value": {
+            "brackets": [
+              {
+                "end": 7,
+                "value": 1
+              },
+              {
+                "start": 8,
+                "value": 2
+              }
+            ]
+          },
+          "type": "circumstance"
+        }
+      ],
+      "slug": null,
+      "schema": {
+        "version": 0.93,
+        "lastMigration": {
+          "datetime": "2025-11-10T15:51:44.922Z",
+          "version": {
+            "schema": 0.93,
+            "foundry": "13",
+            "system": "6.0.0"
+          }
+        }
+      },
+      "level": {
+        "value": 4
+      },
+      "featType": {
+        "value": "archetype"
+      },
+      "onlyLevel1": false,
+      "maxTakable": 1,
+      "actionType": {
+        "value": "passive"
+      },
+      "actionCategory": {
+        "value": ""
+      },
+      "actions": {
+        "value": null
+      },
+      "prerequisites": {
+        "value": [
+          {
+            "value": "Mirror Warrior Dedication"
+          }
+        ]
+      },
+      "location": null
+    },
+    "ownership": {
+      "default": 0,
+      "4mqS4QLqshw8WhsN": 3
+    },
+    "_stats": {
+      "systemId": "pf2e",
+      "systemVersion": "4.3.4",
+      "coreVersion": "10.290",
+      "createdTime": null,
+      "modifiedTime": 1668742006349,
+      "lastModifiedBy": "XyQNEFY9gmTDIpSd"
+    },
+    "schemaVersion": 13
+  },
+  {
+    "_id": "dRAajlSDPTqHugyg",
+    "name": "Blazing Shield",
+    "type": "feat",
+    "img": "systems/pf2e/icons/default-icons/feats.webp",
+    "effects": [],
+    "folder": null,
+    "sort": 0,
+    "flags": {},
+    "system": {
+      "description": {
+        "value": "<p><strong>Requirements</strong> You are in bright light.</p>\n<hr>\n<p>When you are in bright light you always position your shield to reflect light at anyone who attacks you up close. Once per turn when an enemy attempts a melee attack against you, you reflect focused light to burn them. The creature takes <span style=\"font-family: var(--font-primary); font-size: var(--font-size-14);\">[[/r 2d6 persistent fire ]] @Compendium[pf2e.conditionitems.lDVqvLKA6eF3Df60]{Persistent Fire Damage}.&nbsp;</span></p>"
+      },
+      "source": {
+        "value": "Everything Shields"
+      },
+      "traits": {
+        "value": [
+          "archetype",
+          "fire",
+          "light"
+        ],
+        "rarity": "uncommon",
+        "custom": ""
+      },
+      "rules": [],
+      "slug": null,
+      "schema": {
+        "version": 0.93,
+        "lastMigration": {
+          "datetime": "2025-11-10T15:51:44.922Z",
+          "version": {
+            "schema": 0.93,
+            "foundry": "13",
+            "system": "6.0.0"
+          }
+        }
+      },
+      "level": {
+        "value": 12
+      },
+      "featType": {
+        "value": "archetype"
+      },
+      "onlyLevel1": false,
+      "maxTakable": 1,
+      "actionType": {
+        "value": "passive"
+      },
+      "actionCategory": {
+        "value": ""
+      },
+      "actions": {
+        "value": null
+      },
+      "prerequisites": {
+        "value": [
+          {
+            "value": "Mirror Warrior Dedication"
+          }
+        ]
+      },
+      "location": null
+    },
+    "ownership": {
+      "default": 0,
+      "4mqS4QLqshw8WhsN": 3
+    },
+    "_stats": {
+      "systemId": "pf2e",
+      "systemVersion": "4.3.4",
+      "coreVersion": "10.290",
+      "createdTime": null,
+      "modifiedTime": 1668741951106,
+      "lastModifiedBy": "XyQNEFY9gmTDIpSd"
+    },
+    "schemaVersion": 13
+  },
+  {
+    "_id": "fXiE8A9A6VKuA6XJ",
+    "name": "Born to Darkness",
+    "type": "feat",
+    "img": "systems/pf2e/icons/default-icons/feats.webp",
+    "effects": [],
+    "folder": null,
+    "sort": 0,
+    "flags": {},
+    "system": {
+      "description": {
+        "value": "<p>You are perpetually cloaked in shadow. A 30-foot emanation of darkness surrounds you at all times, though you can @Compendium[pf2e.actionspf2e.AjLSHZSWQ90exdLo]{Dismiss} this effect, and reactivate it with a single action that has the concentrate trait. This effect functions as a 9th-level @Compendium[pf2e.spells-srd.4GE2ZdODgIQtg51c]{Darkness} spell. You gain access to the following reaction. You gain an additional reaction each round that can only be used to take this reaction.</p>\n<hr>\n<p><strong>Trigger</strong> A creature enters your darkness emanation</p>\n<p><strong>Effect</strong> Tendrils of darkness leap out faster than the eye can follow to lash the target in place. Make a @Compendium[pf2e.actionspf2e.PMbdMWc2QroouFGD]{Grapple} check against the triggering creature without needing a free hand and regardless of their size as long as they are fully within your darkness emanation. If the triggering creature does not fully enter your darkness emanation you may still use this reaction with a -2 circumstance penalty on the check. You may use your Athletics skill for this check, or your highest spell attack modifier, whichever is higher.&nbsp;</p>"
+      },
+      "source": {
+        "value": "Everything Shields"
+      },
+      "traits": {
+        "value": [
+          "archetype"
+        ],
+        "rarity": "uncommon",
+        "custom": ""
+      },
+      "rules": [],
+      "slug": null,
+      "schema": {
+        "version": 0.93,
+        "lastMigration": {
+          "datetime": "2025-11-10T15:51:44.922Z",
+          "version": {
+            "schema": 0.93,
+            "foundry": "13",
+            "system": "6.0.0"
+          }
+        }
+      },
+      "level": {
+        "value": 18
+      },
+      "featType": {
+        "value": "archetype"
+      },
+      "onlyLevel1": false,
+      "maxTakable": 1,
+      "actionType": {
+        "value": "reaction"
+      },
+      "actionCategory": {
+        "value": ""
+      },
+      "actions": {
+        "value": null
+      },
+      "prerequisites": {
+        "value": [
+          {
+            "value": "Mirror Warrior Dedication"
+          },
+          {
+            "value": "Mirror Darkly"
+          }
+        ]
+      },
+      "location": null
+    },
+    "ownership": {
+      "default": 0,
+      "4mqS4QLqshw8WhsN": 3
+    },
+    "_stats": {
+      "systemId": "pf2e",
+      "systemVersion": "4.3.4",
+      "coreVersion": "10.290",
+      "createdTime": null,
+      "modifiedTime": 1668741970285,
+      "lastModifiedBy": "XyQNEFY9gmTDIpSd"
+    },
+    "schemaVersion": 13
+  },
+  {
+    "_id": "fiFBkMG8S3Idu283",
+    "name": "Light Shield Tricks",
+    "type": "feat",
+    "img": "systems/pf2e/icons/spells/inspire-defense.webp",
+    "effects": [],
+    "folder": null,
+    "sort": 0,
+    "flags": {
+      "core": {
+        "sourceId": "Item.fiFBkMG8S3Idu283"
+      }
+    },
+    "system": {
+      "description": {
+        "value": "<p>You have learned to quickly move your magical shield to disrupt foes and even intercept projectiles that would hit your allies. You are considered to be wielding a light shield while your @Compendium[pf2e.spells-srd.TVKNbcgTee19PXZR]{Shield} cantrip is in effect, and you gain the ability to use @Compendium[everything-shields.everything-shields-actions.1tKyIgAiewNqGaLz]{Disrupting Shield} and @Compendium[everything-shields.everything-shields-actions.TqEAIf4HzI44LIoh]{Intercepting Shield} during that time. Once you have used one of these reactions or Shield Block, the spell ends and you can't cast shield again for 10 minutes.&nbsp;</p>"
+      },
+      "source": {
+        "value": "Everything Shields"
+      },
+      "traits": {
+        "value": [
+          "archetype"
+        ],
+        "rarity": "common",
+        "custom": ""
+      },
+      "rules": [],
+      "slug": null,
+      "schema": {
+        "version": 0.93,
+        "lastMigration": {
+          "datetime": "2025-11-10T15:51:44.922Z",
+          "version": {
+            "schema": 0.93,
+            "foundry": "13",
+            "system": "6.0.0"
+          }
+        }
+      },
+      "level": {
+        "value": 4
+      },
+      "featType": {
+        "value": "archetype"
+      },
+      "onlyLevel1": false,
+      "maxTakable": 1,
+      "actionType": {
+        "value": "passive"
+      },
+      "actionCategory": {
+        "value": ""
+      },
+      "actions": {
+        "value": null
+      },
+      "prerequisites": {
+        "value": [
+          {
+            "value": "Spell Trickster Dedication"
+          },
+          {
+            "value": "ability to cast shield cantrip"
+          }
+        ]
+      },
+      "location": null
+    },
+    "ownership": {
+      "default": 0,
+      "4mqS4QLqshw8WhsN": 3
+    },
+    "_stats": {
+      "systemId": "pf2e",
+      "systemVersion": "4.3.4",
+      "coreVersion": "10.290",
+      "createdTime": null,
+      "modifiedTime": 1668742032575,
+      "lastModifiedBy": "XyQNEFY9gmTDIpSd"
+    },
+    "schemaVersion": 13
+  },
+  {
+    "_id": "koiETTcFDeCdD2l7",
+    "name": "Chain Bouncing Shield",
+    "type": "feat",
+    "img": "systems/pf2e/icons/default-icons/feats.webp",
+    "effects": [],
+    "folder": null,
+    "sort": 0,
+    "flags": {},
+    "system": {
+      "description": {
+        "value": "<p><strong>Requirements</strong> You are in Shield Ricochet Stance</p>\n<hr>\n<p>You can calculate the trajectory of a ricocheting shield so accurately, you can bounce it off of multiple targets in a single throw. You make a Strike using the rules of @Compendium[everything-shields.everything-shields-archetypes.oGg1dgxJUpLChAnK]{Bouncing Shield}, but in addition to the primary target, you may also Strike up to two additional targets, as long as they are each within the first range increment of the shield as measured from the most recently struck target. Use the same multiple attack penalty for each of these Strikes. The shield returns to you after the last Strike. If any strike is a critical failure, you cannot make any further Strikes with this ability and the shield returns to you.&nbsp;</p>"
+      },
+      "source": {
+        "value": "Everything Shields"
+      },
+      "traits": {
+        "value": [
+          "archetype"
+        ],
+        "rarity": "uncommon",
+        "custom": ""
+      },
+      "rules": [],
+      "slug": null,
+      "schema": {
+        "version": 0.93,
+        "lastMigration": {
+          "datetime": "2025-11-10T15:51:44.922Z",
+          "version": {
+            "schema": 0.93,
+            "foundry": "13",
+            "system": "6.0.0"
+          }
+        }
+      },
+      "level": {
+        "value": 8
+      },
+      "featType": {
+        "value": "archetype"
+      },
+      "onlyLevel1": false,
+      "maxTakable": 1,
+      "actionType": {
+        "value": "action"
+      },
+      "actionCategory": {
+        "value": "offensive"
+      },
+      "actions": {
+        "value": 2
+      },
+      "prerequisites": {
+        "value": [
+          {
+            "value": "Shield Maven Dedication"
+          },
+          {
+            "value": "Bouncing Shield"
+          }
+        ]
+      },
+      "location": null
+    },
+    "ownership": {
+      "default": 0,
+      "4mqS4QLqshw8WhsN": 3
+    },
+    "_stats": {
+      "systemId": "pf2e",
+      "systemVersion": "4.3.4",
+      "coreVersion": "10.290",
+      "createdTime": null,
+      "modifiedTime": 1668741990562,
+      "lastModifiedBy": "XyQNEFY9gmTDIpSd"
+    },
+    "schemaVersion": 13
+  },
+  {
+    "_id": "kwfQNozEW3IXkdWc",
+    "name": "Heavy Shield Tricks",
+    "type": "feat",
+    "img": "systems/pf2e/icons/spells/desperate-repair.webp",
+    "effects": [],
+    "folder": null,
+    "sort": 0,
+    "flags": {
+      "core": {
+        "sourceId": "Item.kwfQNozEW3IXkdWc"
+      }
+    },
+    "system": {
+      "description": {
+        "value": "<p>You can now create a truly massive magical shield, and can use it to block large explosions or shove enemies around the battlefield. You are considered to be wielding either a heavy, medium, or light shield (your choice) while your @Compendium[pf2e.spells-srd.TVKNbcgTee19PXZR]{Shield} cantrip is in effect, and you gain the ability to use @Compendium[everything-shields.everything-shields-actions.FTSBSxOuc2WaHWIN]{Bulwark Shield} and @Compendium[everything-shields.everything-shields-actions.PryAVFCjglp4YXXv]{Shoving Shield} during that time if you choose heavy shield. This does not change other bonuses normally granted by your shield cantrip. Once you have used one of these reactions or Shield Block, the spell ends and you can't cast shield again for 10 minutes. You may recast shield during this time by spending a focus point. If you do, the effect that prevents you from casting shield ends.</p>\n<p>You may cast shield as a two-action activity. If you do so, you @Compendium[pf2e.actionspf2e.ust1jJSCZQUhBZIz]{Take Cover} behind your shield to gain an additional +2 circumstance bonus to AC (for a total of a +3 circumstance bonus to AC).&nbsp;</p>"
+      },
+      "source": {
+        "value": "Everything Shields"
+      },
+      "traits": {
+        "value": [
+          "archetype"
+        ],
+        "rarity": "common",
+        "custom": ""
+      },
+      "rules": [],
+      "slug": null,
+      "schema": {
+        "version": 0.93,
+        "lastMigration": {
+          "datetime": "2025-11-10T15:51:44.922Z",
+          "version": {
+            "schema": 0.93,
+            "foundry": "13",
+            "system": "6.0.0"
+          }
+        }
+      },
+      "level": {
+        "value": 12
+      },
+      "featType": {
+        "value": "archetype"
+      },
+      "onlyLevel1": false,
+      "maxTakable": 1,
+      "actionType": {
+        "value": "passive"
+      },
+      "actionCategory": {
+        "value": ""
+      },
+      "actions": {
+        "value": null
+      },
+      "prerequisites": {
+        "value": [
+          {
+            "value": "Spell Trickster Dedication"
+          },
+          {
+            "value": "Medium Shield Tricks"
+          },
+          {
+            "value": "ability to cast shield cantrip"
+          }
+        ]
+      },
+      "location": null
+    },
+    "ownership": {
+      "default": 0,
+      "4mqS4QLqshw8WhsN": 3
+    },
+    "_stats": {
+      "systemId": "pf2e",
+      "systemVersion": "4.3.4",
+      "coreVersion": "10.290",
+      "createdTime": null,
+      "modifiedTime": 1668742020079,
+      "lastModifiedBy": "XyQNEFY9gmTDIpSd"
+    },
+    "schemaVersion": 13
+  },
+  {
+    "_id": "nHXLAUulTHi6qAog",
+    "name": "Coruscating Beam",
+    "type": "feat",
+    "img": "systems/pf2e/icons/default-icons/feats.webp",
+    "effects": [],
+    "folder": null,
+    "sort": 0,
+    "flags": {},
+    "system": {
+      "description": {
+        "value": "<p><strong>Requirements</strong> You are not in dim light or darkness.</p>\n<p><strong>Frequency</strong> once per hour</p>\n<hr>\n<p>Your entire shield is lit up from a light source and you reflect that beam in a line that burns and blinds your enemies. The light deals [[/r 8d6]] fire damage in a 60-foot line. Each creature in the area must attempt a Reflex saving throw against the higher of your class DC or spell DC. Increase the damage by 2d6 for every 2 levels after 10th.</p>\n<hr>\n<p><strong>Critical Success</strong> The triggering creature is unaffected.</p>\n<p><strong>Success</strong> The creature takes half damage and is @Compendium[pf2e.conditionitems.TkIyaNPgTZFBCCuh]{Dazzled} for 1 round.</p>\n<p><strong>Failure</strong> The creature takes full damage and is @Compendium[pf2e.conditionitems.XgEqL1kFApUbl5Z2]{Blinded} for 1 round</p>\n<p><strong>Critical Failure</strong> The creature takes double damage and is Blinded for 1 minute.</p>\n<p>@Compendium[everything-shields.everything-shields-effects.kGIRwjKiulM0GwYb]{Effect: Coruscating Beam Expended}&nbsp;</p>"
+      },
+      "source": {
+        "value": "Everything Shields"
+      },
+      "traits": {
+        "value": [
+          "archetype",
+          "fire",
+          "light"
+        ],
+        "rarity": "uncommon",
+        "custom": ""
+      },
+      "rules": [],
+      "slug": null,
+      "schema": {
+        "version": 0.93,
+        "lastMigration": {
+          "datetime": "2025-11-10T15:51:44.922Z",
+          "version": {
+            "schema": 0.93,
+            "foundry": "13",
+            "system": "6.0.0"
+          }
+        }
+      },
+      "level": {
+        "value": 10
+      },
+      "featType": {
+        "value": "archetype"
+      },
+      "onlyLevel1": false,
+      "maxTakable": 1,
+      "actionType": {
+        "value": "action"
+      },
+      "actionCategory": {
+        "value": ""
+      },
+      "actions": {
+        "value": 2
+      },
+      "prerequisites": {
+        "value": [
+          {
+            "value": "Mirror Warrior Dedication"
+          }
+        ]
+      },
+      "location": null
+    },
+    "ownership": {
+      "default": 0,
+      "4mqS4QLqshw8WhsN": 3
+    },
+    "_stats": {
+      "systemId": "pf2e",
+      "systemVersion": "4.3.4",
+      "coreVersion": "10.290",
+      "createdTime": null,
+      "modifiedTime": 1668741997895,
+      "lastModifiedBy": "XyQNEFY9gmTDIpSd"
+    },
+    "schemaVersion": 13
+  },
+  {
+    "_id": "oGg1dgxJUpLChAnK",
+    "name": "Bouncing Shield",
+    "type": "feat",
+    "img": "systems/pf2e/icons/default-icons/feats.webp",
+    "effects": [],
+    "folder": null,
+    "sort": 0,
+    "flags": {},
+    "system": {
+      "description": {
+        "value": "<p><strong>Requirements</strong> Your are in Ricochet Stance</p>\n<hr>\n<p>You can attack creatures behind cover and even around walls by bouncing your shield off of a solid object at the correct angle to avoid an obstacle. Choose a point on a solid object within your shield's first range increment, then choose a target within your shield's first range increment from that point.</p>\n<p>You must be aware of your target's location, but do not have to have line of effect to the target. If you cannot see the target, you must make a DC 11 flat check as if the target were hidden. If the point you choose would create a path for your shield that would bypass the target's cover, it does not benefit from cover for this attack. Make a Strike against the target with your shield. The shield returns to your hand after the Strike is complete.&nbsp;</p>"
+      },
+      "source": {
+        "value": "Everything Shields"
+      },
+      "traits": {
+        "value": [
+          "archetype"
+        ],
+        "rarity": "uncommon",
+        "custom": ""
+      },
+      "rules": [],
+      "slug": null,
+      "schema": {
+        "version": 0.93,
+        "lastMigration": {
+          "datetime": "2025-11-10T15:51:44.922Z",
+          "version": {
+            "schema": 0.93,
+            "foundry": "13",
+            "system": "6.0.0"
+          }
+        }
+      },
+      "level": {
+        "value": 4
+      },
+      "featType": {
+        "value": "archetype"
+      },
+      "onlyLevel1": false,
+      "maxTakable": 1,
+      "actionType": {
+        "value": "action"
+      },
+      "actionCategory": {
+        "value": "offensive"
+      },
+      "actions": {
+        "value": 1
+      },
+      "prerequisites": {
+        "value": [
+          {
+            "value": "Shield Maven Dedication"
+          }
+        ]
+      },
+      "location": null
+    },
+    "ownership": {
+      "default": 0,
+      "4mqS4QLqshw8WhsN": 3
+    },
+    "_stats": {
+      "systemId": "pf2e",
+      "systemVersion": "4.3.4",
+      "coreVersion": "10.290",
+      "createdTime": null,
+      "modifiedTime": 1668741979081,
+      "lastModifiedBy": "XyQNEFY9gmTDIpSd"
+    },
+    "schemaVersion": 13
+  },
+  {
+    "_id": "swYGfaeA01FuIN2L",
+    "name": "Glimmering Mirror",
+    "type": "feat",
+    "img": "systems/pf2e/icons/default-icons/feats.webp",
+    "effects": [],
+    "folder": null,
+    "sort": 0,
+    "flags": {},
+    "system": {
+      "description": {
+        "value": "<p>Your Mirror Shield retains the light that it reflects, allowing you to release that light wherever you desire. You may cast the @Compendium[pf2e.spells-srd.WBmvzNDfpwka3qT4]{Light} cantrip at will, heightened based on your level as normal. When you use the @Compendium[everything-shields.everything-shields-archetypes.L1oS5VGQBclIdUZj]{Blinding Light} reaction or you succeed on an attempt to @Compendium[pf2e.actionspf2e.QNAVeNKtHA0EUw4X]{Feint} or @Compendium[pf2e.actionspf2e.GkmbTGfg8KcgynOA]{Create a Diversion} while benefiting from @Compendium[everything-shields.everything-shields-archetypes.dBx4SlgTp7fdIHBf]{Flickering Feint}, you may cast <em>light</em> as a free action.</p>\n<p>When cast this way, you may also target an enemy creature in addition to the normal targets of the&nbsp;<em>light</em> cantrip. When you do so, the target is bathed in light and must make a Will save against the better of your class DC or spell DC. On a failure, it cannot benefit from the concealed condition, and if it is hidden, the flat check to target the creature is reduced to DC 5. On a critical failure, the target cannot benefit from the concealed or hidden conditions. This effect lasts for 1 minute.</p>\n<p>@Compendium[everything-shields.everything-shields-effects.lkDfboIZohVv6ExH]{Effect: Glimmering Mirror Light}&nbsp;</p>"
+      },
+      "source": {
+        "value": "Everything Shields"
+      },
+      "traits": {
+        "value": [
+          "archetype"
+        ],
+        "rarity": "uncommon",
+        "custom": ""
+      },
+      "rules": [],
+      "slug": null,
+      "schema": {
+        "version": 0.93,
+        "lastMigration": {
+          "datetime": "2025-11-10T15:51:44.922Z",
+          "version": {
+            "schema": 0.93,
+            "foundry": "13",
+            "system": "6.0.0"
+          }
+        }
+      },
+      "level": {
+        "value": 6
+      },
+      "featType": {
+        "value": "archetype"
+      },
+      "onlyLevel1": false,
+      "maxTakable": 1,
+      "actionType": {
+        "value": "passive"
+      },
+      "actionCategory": {
+        "value": ""
+      },
+      "actions": {
+        "value": null
+      },
+      "prerequisites": {
+        "value": [
+          {
+            "value": "Mirror Warrior Dedication"
+          },
+          {
+            "value": "Blinding Light or Flickering Feint"
+          }
+        ]
+      },
+      "location": null
+    },
+    "ownership": {
+      "default": 0,
+      "4mqS4QLqshw8WhsN": 3
+    },
+    "_stats": {
+      "systemId": "pf2e",
+      "systemVersion": "4.3.4",
+      "coreVersion": "10.290",
+      "createdTime": null,
+      "modifiedTime": 1668742013531,
+      "lastModifiedBy": "XyQNEFY9gmTDIpSd"
+    },
+    "schemaVersion": 13
+  },
+  {
+    "_id": "tzQI4gQVLglBh2VS",
+    "name": "Shadow Puppet",
+    "type": "feat",
+    "img": "systems/pf2e/icons/default-icons/feats.webp",
+    "effects": [],
+    "folder": null,
+    "sort": 0,
+    "flags": {},
+    "system": {
+      "description": {
+        "value": "<p><strong>Requirements</strong> You are in dim light or darkness.</p>\n<p><strong>Frequency</strong> once per hour</p>\n<hr>\n<p>Your understanding of shadow energy increases, and you learn to blend shadow and light to create a shadow puppet from the reflection of your shield. You cast @Compendium[pf2e.spells-srd.f8SBoXiXQjlCKqly]{Illusory Creature}&nbsp;as a 4th-level spell, except that it has a range of 100 feet instead of the normal range, and it does not have a verbal component when used this way.</p>\n<p>Instead of the normal way to sustain a spell, you Sustain the Spell by spending an action to @Compendium[pf2e.actionspf2e.xjGwis0uaC2305pm]{Raise a Shield}. When you Raise a Shield for this purpose, it does not trigger any other feats or abilities that would otherwise trigger when you Raise a Shield. As you increase in level, so does your Shadow Puppet. For every 2 levels after 10th, increase the spell level of&nbsp;<em>illusory creature</em> when used this way by 1.</p>\n<p>@Compendium[everything-shields.everything-shields-effects.9OOi7tR8bjiAnpyn]{Effect: Shadow Puppet Expended}&nbsp;</p>"
+      },
+      "source": {
+        "value": "Everything Shields"
+      },
+      "traits": {
+        "value": [
+          "archetype"
+        ],
+        "rarity": "uncommon",
+        "custom": ""
+      },
+      "rules": [],
+      "slug": null,
+      "schema": {
+        "version": 0.93,
+        "lastMigration": {
+          "datetime": "2025-11-10T15:51:44.922Z",
+          "version": {
+            "schema": 0.93,
+            "foundry": "13",
+            "system": "6.0.0"
+          }
+        }
+      },
+      "level": {
+        "value": 10
+      },
+      "featType": {
+        "value": "archetype"
+      },
+      "onlyLevel1": false,
+      "maxTakable": 1,
+      "actionType": {
+        "value": "action"
+      },
+      "actionCategory": {
+        "value": ""
+      },
+      "actions": {
+        "value": 2
+      },
+      "prerequisites": {
+        "value": [
+          {
+            "value": "Mirror Warrior Dedication"
+          },
+          {
+            "value": "Mirror Darkly"
+          }
+        ]
+      },
+      "location": null
+    },
+    "ownership": {
+      "default": 0,
+      "4mqS4QLqshw8WhsN": 3
+    },
+    "_stats": {
+      "systemId": "pf2e",
+      "systemVersion": "4.3.4",
+      "coreVersion": "10.290",
+      "createdTime": null,
+      "modifiedTime": 1668742105050,
+      "lastModifiedBy": "XyQNEFY9gmTDIpSd"
+    },
+    "schemaVersion": 13
+  },
+  {
+    "_id": "zPwJwePtwFrGm1Ao",
+    "name": "Leaking Darkness",
+    "type": "feat",
+    "img": "systems/pf2e/icons/default-icons/feats.webp",
+    "effects": [],
+    "folder": null,
+    "sort": 0,
+    "flags": {},
+    "system": {
+      "description": {
+        "value": "<p><strong>Requirements</strong> You are in dim light or darkness.</p>\n<hr>\n<p>Your shield reflects the shadows around you to envelop your enemies. Once per turn when an enemy attempts a melee attack against you, the shadows reflected from your shield reach out to the creature's eyes and inflict the @Compendium[pf2e.conditionitems.TkIyaNPgTZFBCCuh]{Dazzled} condition on the enemy for 1 minute. The creature must attempt a Reflex save against the better of your class DC or spell DC, and they ignore this condition on a successful save. On a critical failure, they are @Compendium[pf2e.conditionitems.XgEqL1kFApUbl5Z2]{Blinded} instead. Either condition applies to the attack that triggered this effect. If the creature already has the dazzled condition, treat their saving throw as one degree worse. Once an enemy has failed or critically failed their saving throw against this effect, it cannot trigger again for 1 minute.</p>\n<p>@Compendium[everything-shields.everything-shields-effects.oXoRE0v4LK3Zk5ka]{Effect: Leaking Darkness Expended}&nbsp;</p>"
+      },
+      "source": {
+        "value": "Everything Shields"
+      },
+      "traits": {
+        "value": [
+          "archetype",
+          "darkness",
+          "shadow"
+        ],
+        "rarity": "uncommon",
+        "custom": ""
+      },
+      "rules": [],
+      "slug": null,
+      "schema": {
+        "version": 0.93,
+        "lastMigration": {
+          "datetime": "2025-11-10T15:51:44.922Z",
+          "version": {
+            "schema": 0.93,
+            "foundry": "13",
+            "system": "6.0.0"
+          }
+        }
+      },
+      "level": {
+        "value": 12
+      },
+      "featType": {
+        "value": "archetype"
+      },
+      "onlyLevel1": false,
+      "maxTakable": 1,
+      "actionType": {
+        "value": "passive"
+      },
+      "actionCategory": {
+        "value": ""
+      },
+      "actions": {
+        "value": null
+      },
+      "prerequisites": {
+        "value": [
+          {
+            "value": "Mirror Warrior Dedication"
+          },
+          {
+            "value": "Mirror Darkly"
+          }
+        ]
+      },
+      "location": null
+    },
+    "ownership": {
+      "default": 0,
+      "4mqS4QLqshw8WhsN": 3
+    },
+    "_stats": {
+      "systemId": "pf2e",
+      "systemVersion": "4.3.4",
+      "coreVersion": "10.290",
+      "createdTime": null,
+      "modifiedTime": 1668742026293,
+      "lastModifiedBy": "XyQNEFY9gmTDIpSd"
+    },
+    "schemaVersion": 13
+  }
+]

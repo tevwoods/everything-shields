@@ -1,0 +1,533 @@
+[
+  {
+    "_id": "1tKyIgAiewNqGaLz",
+    "name": "Disrupting Shield",
+    "type": "action",
+    "img": "systems/pf2e/icons/actions/Reaction.webp",
+    "effects": [],
+    "folder": null,
+    "sort": 0,
+    "permission": {
+      "default": 0,
+      "4mqS4QLqshw8WhsN": 3
+    },
+    "flags": {},
+    "system": {
+      "description": {
+        "value": "<p><strong>Prerequisites&nbsp;</strong>trained in shield attacks</p>\n<p><strong>Requirements&nbsp;</strong>You have a light shield raised.</p>\n<p><strong>Trigger&nbsp;</strong>An adjacent enemy uses an action with the concentrate trait.</p>\n<hr />\n<p>You watch enemies for that single moment when they focus their attention on a diffcult task, and that's when you strike. Attempt an attack roll against the target's AC using a shield that satisfies the requirements of this ability.</p>\n<p>This attack deals no damage, but on a hit the target is flat-footed until the start of your next turn.</p>\n<p>On a critical hit, the target's action is disrupted and has no effect.</p>\n<p>On a failure or critical failure, your shield loses Hit Points equal to the creature's level. On a success or critical success, your shield loses Hit Points equal to two times the creature's level.</p>"
+      },
+      "source": {
+        "value": "Everything Shields"
+      },
+      "traits": {
+        "value": [
+          "attack",
+          "concentrate"
+        ],
+        "rarity": "common",
+        "custom": ""
+      },
+      "rules": [],
+      "slug": null,
+      "schema": {
+        "version": 0.93,
+        "lastMigration": {
+          "datetime": "2025-11-10T15:51:44.917Z",
+          "version": {
+            "schema": 0.93,
+            "foundry": "13",
+            "system": "6.0.0"
+          }
+        }
+      },
+      "actionType": {
+        "value": "reaction"
+      },
+      "actionCategory": {
+        "value": ""
+      },
+      "actions": {
+        "value": null
+      },
+      "requirements": {
+        "value": ""
+      },
+      "trigger": {
+        "value": ""
+      },
+      "deathNote": false
+    },
+    "schemaVersion": 13
+  },
+  {
+    "_id": "FTSBSxOuc2WaHWIN",
+    "name": "Bulwark Shield",
+    "type": "action",
+    "img": "systems/pf2e/icons/actions/Reaction.webp",
+    "effects": [],
+    "folder": null,
+    "sort": 0,
+    "permission": {
+      "default": 0,
+      "4mqS4QLqshw8WhsN": 3
+    },
+    "flags": {},
+    "system": {
+      "description": {
+        "value": "<p><strong>Requirements </strong>You have a heavy shield raised.</p>\n<p><strong>Trigger </strong>You and at least one other ally are in an area of effect that deals damage or has the visual trait.</p>\n<hr />\n<p>You plant your massive shield at an angle to absorb explosions and protect your allies' eyes. You create a 15-foot cone of protected space. You and any allies who are within this protected space receive the following benefits.</p>\n<p>If the effect deals damage, reduce the damage that you and your allies take as if you had used the Shield Block reaction against the effect. Your shield takes double damage, reduced by its Hardness as normal.</p>\n<p>If the effect has the visual trait, you and your allies within the protected space receive a +2 circumstance bonus to your saving throws against the effect.</p>\n<p>If the effect has both, you receive both benefits.</p>"
+      },
+      "source": {
+        "value": "Everything Shields"
+      },
+      "traits": {
+        "value": [],
+        "rarity": "common",
+        "custom": ""
+      },
+      "rules": [],
+      "slug": null,
+      "schema": {
+        "version": 0.93,
+        "lastMigration": {
+          "datetime": "2025-11-10T15:51:44.917Z",
+          "version": {
+            "schema": 0.93,
+            "foundry": "13",
+            "system": "6.0.0"
+          }
+        }
+      },
+      "actionType": {
+        "value": "reaction"
+      },
+      "actionCategory": {
+        "value": ""
+      },
+      "actions": {
+        "value": null
+      },
+      "requirements": {
+        "value": ""
+      },
+      "trigger": {
+        "value": ""
+      },
+      "deathNote": false
+    },
+    "schemaVersion": 13
+  },
+  {
+    "_id": "PryAVFCjglp4YXXv",
+    "name": "Shoving Shield",
+    "type": "action",
+    "img": "systems/pf2e/icons/actions/Reaction.webp",
+    "effects": [],
+    "folder": null,
+    "sort": 0,
+    "permission": {
+      "default": 0,
+      "4mqS4QLqshw8WhsN": 3
+    },
+    "flags": {},
+    "system": {
+      "description": {
+        "value": "<p><strong>Requirements </strong>You have a heavy shield raised.</p>\n<p><strong>Trigger </strong>An adjacent enemy critically fails an attack against you or an ally.</p>\n<hr />\n<p>When an enemy fumbles their attack, you use the enormous heft of your shield to bully the enemy backward. You <span data-pf2-action=\"shove\" data-pf2-glyph=\"A\">Shove</span> the enemy, without needing a free hand to do so. This action doesn't count toward your multiple attack penalty, and your multiple attack&nbsp; penalty doesn't apply to this action.</p>\n<p>Your shield is no longer raised after you take this reaction, and it loses Hit Points equal to the creature's level on a failure or critical failure, or two times the creature's level on a success or critical success.</p>"
+      },
+      "source": {
+        "value": "Everything Shields"
+      },
+      "traits": {
+        "value": [],
+        "rarity": "common",
+        "custom": ""
+      },
+      "rules": [],
+      "slug": null,
+      "schema": {
+        "version": 0.93,
+        "lastMigration": {
+          "datetime": "2025-11-10T15:51:44.917Z",
+          "version": {
+            "schema": 0.93,
+            "foundry": "13",
+            "system": "6.0.0"
+          }
+        }
+      },
+      "actionType": {
+        "value": "reaction"
+      },
+      "actionCategory": {
+        "value": ""
+      },
+      "actions": {
+        "value": null
+      },
+      "requirements": {
+        "value": ""
+      },
+      "trigger": {
+        "value": ""
+      },
+      "deathNote": false
+    },
+    "schemaVersion": 13
+  },
+  {
+    "_id": "Rqh2hHC1ZvQwnust",
+    "name": "Covering Shield",
+    "type": "action",
+    "img": "systems/pf2e/icons/actions/Reaction.webp",
+    "effects": [],
+    "folder": null,
+    "sort": 0,
+    "permission": {
+      "default": 0,
+      "4mqS4QLqshw8WhsN": 3
+    },
+    "flags": {},
+    "system": {
+      "description": {
+        "value": "<p><strong>Requirements </strong>You have a medium shield raised.</p>\n<p><strong>Trigger </strong>An enemy attacks an adjacent ally with a reaction that was triggered by the ally leaving their current square, but has not yet rolled.</p>\n<hr />\n<p>You launch yourself into the void left by your ally and cover their escape, potentially leaving yourself unprotected. Stride into the space the ally left with the movement that triggered this reaction. The enemy's attack now targets you instead. If the attack is a hit or critical hit, your shield takes damage as if you had used the Shield Block reaction against the attack, but it does not reduce the&nbsp; damage you take.</p>"
+      },
+      "source": {
+        "value": "Everything Shields"
+      },
+      "traits": {
+        "value": [
+          "move"
+        ],
+        "rarity": "common",
+        "custom": ""
+      },
+      "rules": [],
+      "slug": null,
+      "schema": {
+        "version": 0.93,
+        "lastMigration": {
+          "datetime": "2025-11-10T15:51:44.917Z",
+          "version": {
+            "schema": 0.93,
+            "foundry": "13",
+            "system": "6.0.0"
+          }
+        }
+      },
+      "actionType": {
+        "value": "reaction"
+      },
+      "actionCategory": {
+        "value": ""
+      },
+      "actions": {
+        "value": null
+      },
+      "requirements": {
+        "value": ""
+      },
+      "trigger": {
+        "value": ""
+      },
+      "deathNote": false
+    },
+    "schemaVersion": 13
+  },
+  {
+    "_id": "ThMUtWHNtRBSK4Cw",
+    "name": "Catch and Twist",
+    "type": "action",
+    "img": "systems/pf2e/icons/actions/Reaction.webp",
+    "effects": [],
+    "folder": null,
+    "sort": 0,
+    "permission": {
+      "default": 0,
+      "4mqS4QLqshw8WhsN": 3
+    },
+    "flags": {},
+    "system": {
+      "description": {
+        "value": "<p><strong>Prerequisites&nbsp;</strong>trained in shield attacks</p>\n<p><strong>Requirements&nbsp;</strong>You are wielding a shield gauntlet and have it raised.</p>\n<p><strong>Trigger&nbsp;</strong>A foe critically fails a melee attack against you.</p>\n<hr />\n<p>You not only catch the foe's attack in your shield gauntlet, but you take the opportunity put them off balance or even make them drop their weapon. Attempt a shield attack against the triggering creature's AC.</p>\n<p>&nbsp;</p>\n<p><strong>Critical Success</strong> If the attack was a weapon attack, the weapon is disarmed. If the weapon's bulk would make you encumbered, it falls at your feet, otherwise you keep it in your hand. If you keep it in your hand, you are not considered to be wielding the weapon, but you may spend an action to Change Grip on your turn to do so.</p>\n<p>If you keep the weapon in your hand, your shield gauntlet is no longer raised. If the attack was made with an unarmed attack, the target instead takes a -2 circumstance penalty to attacks made with that unarmed attack and is clumsy 1 or enfeebled 1 (your choice) for 1 round. The shield gauntlet loses Hit Points equal to two times the creature's level.</p>\n<p><strong>Success</strong> The foe takes a -2 circumstance penalty to attacks made with the triggering weapon or unarmed attack. The shield gauntlet loses Hit Points equal to two times the creature's level.</p>\n<p><strong>Failure</strong> no effect.</p>\n<p><strong>Critical Failure</strong> You fail to cause the enemy any trouble, and damage your gauntlet in the process. Roll the creature's damage as if it had hit with the attack and apply it to the gauntlet, reducing the damage by the gauntlet's Hardness as normal.&nbsp;</p>"
+      },
+      "source": {
+        "value": "Everything Shields"
+      },
+      "traits": {
+        "value": [
+          "attack"
+        ],
+        "rarity": "common",
+        "custom": ""
+      },
+      "rules": [],
+      "slug": null,
+      "schema": {
+        "version": 0.93,
+        "lastMigration": {
+          "datetime": "2025-11-10T15:51:44.917Z",
+          "version": {
+            "schema": 0.93,
+            "foundry": "13",
+            "system": "6.0.0"
+          }
+        }
+      },
+      "actionType": {
+        "value": "reaction"
+      },
+      "actionCategory": {
+        "value": ""
+      },
+      "actions": {
+        "value": null
+      },
+      "requirements": {
+        "value": ""
+      },
+      "trigger": {
+        "value": ""
+      },
+      "deathNote": false
+    },
+    "schemaVersion": 13
+  },
+  {
+    "_id": "TqEAIf4HzI44LIoh",
+    "name": "Intercepting Shield",
+    "type": "action",
+    "img": "systems/pf2e/icons/actions/Reaction.webp",
+    "effects": [],
+    "folder": null,
+    "sort": 0,
+    "permission": {
+      "default": 0,
+      "4mqS4QLqshw8WhsN": 3
+    },
+    "flags": {},
+    "system": {
+      "description": {
+        "value": "<p><strong>Requirements</strong> You have a light shield raised. This cannot be used with a shield gauntlet.</p>\n<p><strong>Trigger</strong> An ally within 15 feet is hit by a ranged weapon attack, and a +2 circumstance bonus to AC would turn the critical hit into a hit or the hit into a miss.</p>\n<hr />\n<p>You quickly throw your shield to intercept a projectile and knock it slightly off course. Your ally gains a +2 circumstance bonus to AC against the triggering attack. This turns the triggering critical hit into a hit, or the triggering hit into a miss. Your shield is no longer raised.</p>\n<p>If the shield has a returning or throwing rune, it returns immediately to the hand that threw it. Otherwise, the shield lands in a square of your choosing that is adjacent to the ally who&nbsp; received the bonus.</p>\n<p>If you have Reflexive Shield or Mirror Shield, or any other feat that allows you to reduce or redirect damage from non-physical attacks using your shield, you can use Intercepting Shield to grant your ally this bonus against ranged unarmed attacks and ranged magical attacks in addition to the normal trigger.&nbsp;</p>"
+      },
+      "source": {
+        "value": "Everything Shields"
+      },
+      "traits": {
+        "value": [
+          "manipulate"
+        ],
+        "rarity": "common",
+        "custom": ""
+      },
+      "rules": [],
+      "slug": null,
+      "schema": {
+        "version": 0.93,
+        "lastMigration": {
+          "datetime": "2025-11-10T15:51:44.917Z",
+          "version": {
+            "schema": 0.93,
+            "foundry": "13",
+            "system": "6.0.0"
+          }
+        }
+      },
+      "actionType": {
+        "value": "reaction"
+      },
+      "actionCategory": {
+        "value": ""
+      },
+      "actions": {
+        "value": null
+      },
+      "requirements": {
+        "value": ""
+      },
+      "trigger": {
+        "value": ""
+      },
+      "deathNote": false
+    },
+    "schemaVersion": 13
+  },
+  {
+    "name": "Directed Shatter",
+    "type": "action",
+    "img": "systems/pf2e/icons/actions/FreeAction.webp",
+    "effects": [],
+    "folder": null,
+    "sort": 0,
+    "permission": {
+      "default": 0,
+      "4mqS4QLqshw8WhsN": 3,
+      "rIqY5HUcAHArIcvJ": 3
+    },
+    "flags": {
+      "core": {
+        "sourceId": "Compendium.everything-shields.everything-shields-archetypes.WqhDDsGw1ALV19lW"
+      }
+    },
+    "_id": "ZhQNQNyHGyfEJJLE",
+    "system": {
+      "description": {
+        "value": "<p><strong>Trigger</strong> You use the Shield Block reaction in response to a critical success from an attack and your Mirror adjustment would be broken or destroyed.</p>\n<p><strong>Effect</strong> You push the shield forward as your mirror is broken, angling the shield to spray broken glass into your enemy's face. The triggering creature must make a Reflex save against the better of your class DC or spell DC.</p>\n<hr />\n<p><strong>Critical Success</strong> The triggering creature is unaffected.</p>\n<p><strong>Success</strong> The triggering creature is @Compendium[pf2e.conditionitems.TkIyaNPgTZFBCCuh]{Dazzled} for 1 round.</p>\n<p><strong>Failure</strong> The triggering creature is @Compendium[pf2e.conditionitems.XgEqL1kFApUbl5Z2]{Blinded} for 1 round.</p>\n<p><strong>Critical Failure</strong> The triggering creature is Blinded for 1 minute.</p>"
+      },
+      "source": {
+        "value": ""
+      },
+      "traits": {
+        "value": [],
+        "rarity": "common",
+        "custom": ""
+      },
+      "rules": [],
+      "slug": null,
+      "schema": {
+        "version": 0.93,
+        "lastMigration": {
+          "datetime": "2025-11-10T15:51:44.917Z",
+          "version": {
+            "schema": 0.93,
+            "foundry": "13",
+            "system": "6.0.0"
+          }
+        }
+      },
+      "actionType": {
+        "value": "free"
+      },
+      "actionCategory": {
+        "value": ""
+      },
+      "actions": {
+        "value": null
+      },
+      "requirements": {
+        "value": ""
+      },
+      "trigger": {
+        "value": ""
+      },
+      "deathNote": false
+    },
+    "schemaVersion": 13
+  },
+  {
+    "_id": "hEAs9KLDWgpXIOzi",
+    "name": "Aiding Shield",
+    "type": "action",
+    "img": "systems/pf2e/icons/actions/Reaction.webp",
+    "effects": [],
+    "folder": null,
+    "sort": 0,
+    "permission": {
+      "default": 0,
+      "4mqS4QLqshw8WhsN": 3
+    },
+    "flags": {},
+    "system": {
+      "description": {
+        "value": "<p><strong>Prerequisites </strong>trained in shield attacks.</p>\n<p><strong>Requirements </strong>You have a medium shield raised.</p>\n<p><strong>Trigger </strong>An ally attempts a skill check against an enemy that you are adjacent to.</p>\n<hr />\n<p>You use your shield to create space on the battlefield and distract opponents, with a mind to create openings for your allies' plans. Attempt an attack roll with your shield and use the result as your check to Aid your ally's skill check. For the purpose of this Aid check, the Raise a Shield action was your preparation for this reaction. Your shield is no longer raised after you take this&nbsp; reaction, and it loses Hit Points equal to the creature's level on a failure or critical failure, or two times the creature's level on a success or critical success.</p>"
+      },
+      "source": {
+        "value": "Everything Shields"
+      },
+      "traits": {
+        "value": [
+          "concentrate"
+        ],
+        "rarity": "common",
+        "custom": ""
+      },
+      "rules": [],
+      "slug": null,
+      "schema": {
+        "version": 0.93,
+        "lastMigration": {
+          "datetime": "2025-11-10T15:51:44.917Z",
+          "version": {
+            "schema": 0.93,
+            "foundry": "13",
+            "system": "6.0.0"
+          }
+        }
+      },
+      "actionType": {
+        "value": "reaction"
+      },
+      "actionCategory": {
+        "value": ""
+      },
+      "actions": {
+        "value": null
+      },
+      "requirements": {
+        "value": ""
+      },
+      "trigger": {
+        "value": ""
+      },
+      "deathNote": false
+    },
+    "schemaVersion": 13
+  },
+  {
+    "_id": "xQxYQqzJ3krSyNSX",
+    "name": "Shield Ricochet Stance",
+    "type": "action",
+    "img": "systems/pf2e/icons/actions/OneAction.webp",
+    "effects": [],
+    "folder": null,
+    "sort": 0,
+    "permission": {
+      "default": 0,
+      "4mqS4QLqshw8WhsN": 3
+    },
+    "flags": {},
+    "system": {
+      "description": {
+        "value": "<p>You adopt a stance designed to rebound your thrown shield back toward you. While you are in this stance, any thrown shield you use as part of a ranged Strike to deal bludgeoning or slashing damage immediately return to your hand, enabling you to use them for additional Strikes.</p>\n<p>You must be within the shield's listed range increment and have a hand free to catch the weapon. If you make a ranged Strike with a thrown shield outside of its listed range increment, it instead flies back toward you a number of feet equal to its listed range increment and then falls to the ground.</p>\n<p>@Compendium[everything-shields.everything-shields-effects.VKE86U2ppCEhmbAs]{Effect: Shield Ricochet Stance}</p>"
+      },
+      "source": {
+        "value": "Everything Shields"
+      },
+      "traits": {
+        "value": [
+          "stance"
+        ],
+        "rarity": "common",
+        "custom": ""
+      },
+      "rules": [],
+      "slug": null,
+      "schema": {
+        "version": 0.93,
+        "lastMigration": {
+          "datetime": "2025-11-10T15:51:44.917Z",
+          "version": {
+            "schema": 0.93,
+            "foundry": "13",
+            "system": "6.0.0"
+          }
+        }
+      },
+      "actionType": {
+        "value": "action"
+      },
+      "actionCategory": {
+        "value": ""
+      },
+      "actions": {
+        "value": 1
+      },
+      "requirements": {
+        "value": ""
+      },
+      "trigger": {
+        "value": ""
+      },
+      "deathNote": false
+    },
+    "schemaVersion": 13
+  }
+]

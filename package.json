@@ -1,0 +1,39 @@
+{
+  "name": "everything-shields",
+  "version": "1.0.0",
+  "description": "Everything Shields module for Foundry VTT",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "npm run clean && npm run compile && npm run bundle",
+    "clean": "rimraf dist",
+    "compile": "tsc",
+    "bundle": "rollup -c rollup.config.js",
+    "watch": "rollup -c rollup.config.js -w",
+    "lint": "eslint src/**/*.ts",
+    "test": "jest",
+    "package": "npm test && npm run build && npm run package-module",
+    "convert-packs": "node scripts/convert-packs-v13.js",
+    "package-module": "node ./scripts/create-package.js"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.0",
+    "@rollup/plugin-node-resolve": "^15.0.0",
+    "@rollup/plugin-typescript": "^11.0.0",
+    "@types/archiver": "^7.0.0",
+    "@types/jest": "^27.5.2",
+    "@typescript-eslint/eslint-plugin": "^4.0.0",
+    "@typescript-eslint/parser": "^4.0.0",
+    "archiver": "^7.0.1",
+    "eslint": "^7.32.0",
+    "jest": "^27.0.0",
+    "nedb": "^1.8.0",
+    "rimraf": "^5.0.0",
+    "rollup": "^3.0.0",
+    "rollup-plugin-copy": "^3.5.0",
+    "rollup-plugin-terser": "^7.0.0",
+    "ts-jest": "^27.0.0",
+    "tslib": "^2.5.0",
+    "typescript": "^4.4.0"
+  }
+}

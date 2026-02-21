@@ -1,0 +1,8 @@
+.everything-shields-buttons {
+    text-align: center;
+}
+
+.everything-shields-buttons button {
+    display: inline-block;
+    width: fit-content;
+}

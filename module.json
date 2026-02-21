@@ -1,0 +1,106 @@
+{
+  "id": "everything-shields",
+  "title": "Everything Shields",
+  "description": "A module for managing shield properties and runes in Pathfinder 2e.",
+  "version": "1.0.0",
+  "authors": [
+    {
+      "name": "Everything4Everybody"
+    }
+  ],
+  "compatibility": {
+     "minimum": "10",
+     "verified": "13",
+     "maximum": "13"
+    },
+    "packs": [
+      {
+        "name": "everything-shields-actions",
+        "label": "Actions",
+  "path": "packs/Everything-Shields/everything-shields-actions.db",
+        "folder": "Everything-Shields",
+        "type": "Item"
+      },
+      {
+        "name": "everything-shields-adjustments",
+        "label": "Adjustments",
+  "path": "packs/Everything-Shields/everything-shields-adjustments.db",
+        "folder": "Everything-Shields",
+        "type": "Item"
+      },
+      {
+        "name": "everything-shields-archetypes",
+        "label": "Archetypes",
+  "path": "packs/Everything-Shields/everything-shields-archetypes.db",
+        "folder": "Everything-Shields",
+        "type": "Item"
+      },
+      {
+        "name": "everything-shields-effects",
+        "label": "Effects",
+  "path": "packs/Everything-Shields/everything-shields-effects.db",
+        "folder": "Everything-Shields",
+        "type": "Item"
+      },
+      {
+        "name": "everything-shields-fundamental-runes",
+        "label": "Fundamental Runes",
+  "path": "packs/Everything-Shields/everything-shields-fundamental-runes.db",
+        "folder": "Everything-Shields",
+        "type": "Item"
+      },
+      {
+        "name": "everything-shields-general-feats",
+        "label": "General Feats",
+  "path": "packs/Everything-Shields/everything-shields-general-feats.db",
+        "folder": "Everything-Shields",
+        "type": "Item"
+      },
+      {
+        "name": "everything-shields-guide",
+        "label": "Guide",
+  "path": "packs/Everything-Shields/everything-shields-guide.db",
+        "folder": "Everything-Shields",
+        "type": "JournalEntry"
+      },
+      {
+        "name": "everything-shields-property-runes",
+        "label": "Property Runes",
+  "path": "packs/Everything-Shields/everything-shields-property-runes.db",
+        "folder": "Everything-Shields",
+        "type": "Item"
+      },
+      {
+        "name": "everything-shields-shields",
+        "label": "Shields",
+  "path": "packs/Everything-Shields/everything-shields-shields.db",
+        "folder": "Everything-Shields",
+        "type": "Item"
+      }
+    ],
+  "esmodules": [
+    "index.js"
+  ],
+  "styles": [
+    "styles/everything-shields.css"
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ],
+  "relationships": {
+    "systems": [
+      {
+        "id": "pf2e",
+        "type": "system",
+        "compatibility": {
+          "minimum": "5.0.0"
+        }
+      }
+    ]
+  },
+  "socket": true
+}

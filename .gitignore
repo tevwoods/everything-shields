@@ -1,0 +1,27 @@
+# Excluded folders
+1-old-reference-code/
+additional-info/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Dependencies
+node_modules/
+.npm
+
+# Build output
+dist/
+package/
+
+# IDE
+.idea/
+.vs/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db

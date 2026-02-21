@@ -1,0 +1,422 @@
+[
+  {
+    "_id": "9OOi7tR8bjiAnpyn",
+    "name": "Effect: Shadow Puppet Expended",
+    "type": "item",
+    "img": "systems/pf2e/icons/spells/illusory-creature.webp",
+    "effects": [],
+    "folder": null,
+    "sort": 0,
+    "flags": {},
+    "system": {
+      "description": {
+        "value": ""
+      },
+      "source": {
+        "value": ""
+      },
+      "traits": {
+        "value": [],
+        "rarity": "common"
+      },
+      "rules": [],
+      "slug": "effect-shadow-puppet-expended",
+      "schema": {
+        "version": 0.93,
+        "lastMigration": {
+          "datetime": "2025-11-10T15:51:44.924Z",
+          "version": {
+            "schema": 0.93,
+            "foundry": "13",
+            "system": "6.0.0"
+          }
+        }
+      },
+      "level": {
+        "value": 1
+      },
+      "duration": {
+        "unit": "hours",
+        "sustained": false,
+        "expiry": "turn-start",
+        "value": 1
+      },
+      "start": {
+        "value": 0,
+        "initiative": null
+      },
+      "target": null,
+      "tokenIcon": {
+        "show": true
+      },
+      "badge": null,
+      "unidentified": false,
+      "_migration": {
+        "version": 0.854
+      }
+    },
+    "ownership": {
+      "default": 0,
+      "4mqS4QLqshw8WhsN": 3
+    },
+    "_stats": {
+      "systemId": "pf2e",
+      "systemVersion": "4.3.4",
+      "coreVersion": "10.290",
+      "createdTime": null,
+      "modifiedTime": 1668741642334,
+      "lastModifiedBy": "XyQNEFY9gmTDIpSd"
+    },
+    "schemaVersion": 13
+  },
+  {
+    "_id": "VKE86U2ppCEhmbAs",
+    "name": "Effect: Shield Ricochet Stance",
+    "type": "item",
+    "img": "systems/pf2e/icons/equipment/shields/precious-material-shields/dragonhide-buckler.webp",
+    "effects": [],
+    "folder": null,
+    "sort": 0,
+    "flags": {},
+    "system": {
+      "description": {
+        "value": ""
+      },
+      "source": {
+        "value": ""
+      },
+      "traits": {
+        "value": [],
+        "rarity": "common"
+      },
+      "rules": [],
+      "slug": "effect-shield-ricochet-stance",
+      "schema": {
+        "version": 0.93,
+        "lastMigration": {
+          "datetime": "2025-11-10T15:51:44.924Z",
+          "version": {
+            "schema": 0.93,
+            "foundry": "13",
+            "system": "6.0.0"
+          }
+        }
+      },
+      "level": {
+        "value": 1
+      },
+      "duration": {
+        "unit": "encounter",
+        "sustained": false,
+        "expiry": "turn-start",
+        "value": -1
+      },
+      "start": {
+        "value": 0,
+        "initiative": null
+      },
+      "target": null,
+      "tokenIcon": {
+        "show": true
+      },
+      "badge": null,
+      "unidentified": false,
+      "_migration": {
+        "version": 0.854
+      }
+    },
+    "ownership": {
+      "default": 0,
+      "4mqS4QLqshw8WhsN": 3
+    },
+    "_stats": {
+      "systemId": "pf2e",
+      "systemVersion": "4.3.4",
+      "coreVersion": "10.290",
+      "createdTime": null,
+      "modifiedTime": 1668741643929,
+      "lastModifiedBy": "XyQNEFY9gmTDIpSd"
+    },
+    "schemaVersion": 13
+  },
+  {
+    "_id": "hfbBeIKAbBJLmB97",
+    "name": "Effect: Floating Shield Rune",
+    "type": "item",
+    "img": "systems/pf2e/icons/spells/levitate.webp",
+    "effects": [],
+    "folder": null,
+    "sort": 0,
+    "flags": {},
+    "system": {
+      "description": {
+        "value": ""
+      },
+      "source": {
+        "value": ""
+      },
+      "traits": {
+        "value": [],
+        "rarity": "common"
+      },
+      "rules": [],
+      "slug": "effect-floating-shield-rune",
+      "schema": {
+        "version": 0.93,
+        "lastMigration": {
+          "datetime": "2025-11-10T15:51:44.924Z",
+          "version": {
+            "schema": 0.93,
+            "foundry": "13",
+            "system": "6.0.0"
+          }
+        }
+      },
+      "level": {
+        "value": 1
+      },
+      "duration": {
+        "unit": "minutes",
+        "sustained": false,
+        "expiry": "turn-start",
+        "value": 1
+      },
+      "start": {
+        "value": 0,
+        "initiative": null
+      },
+      "target": null,
+      "tokenIcon": {
+        "show": true
+      },
+      "badge": null,
+      "unidentified": false,
+      "_migration": {
+        "version": 0.854
+      }
+    },
+    "ownership": {
+      "default": 0,
+      "4mqS4QLqshw8WhsN": 3
+    },
+    "_stats": {
+      "systemId": "pf2e",
+      "systemVersion": "4.3.4",
+      "coreVersion": "10.290",
+      "createdTime": null,
+      "modifiedTime": 1668741637235,
+      "lastModifiedBy": "XyQNEFY9gmTDIpSd"
+    },
+    "schemaVersion": 13
+  },
+  {
+    "_id": "kGIRwjKiulM0GwYb",
+    "name": "Effect: Coruscating Beam Expended",
+    "type": "item",
+    "img": "systems/pf2e/icons/spells/radiant-beam.webp",
+    "effects": [],
+    "folder": null,
+    "sort": 0,
+    "flags": {},
+    "system": {
+      "description": {
+        "value": ""
+      },
+      "source": {
+        "value": ""
+      },
+      "traits": {
+        "value": [],
+        "rarity": "common"
+      },
+      "rules": [],
+      "slug": "effect-coruscating-beam-expended",
+      "schema": {
+        "version": 0.93,
+        "lastMigration": {
+          "datetime": "2025-11-10T15:51:44.924Z",
+          "version": {
+            "schema": 0.93,
+            "foundry": "13",
+            "system": "6.0.0"
+          }
+        }
+      },
+      "level": {
+        "value": 1
+      },
+      "duration": {
+        "unit": "hours",
+        "sustained": false,
+        "expiry": "turn-start",
+        "value": 1
+      },
+      "start": {
+        "value": 0,
+        "initiative": null
+      },
+      "target": null,
+      "tokenIcon": {
+        "show": true
+      },
+      "badge": null,
+      "unidentified": false,
+      "_migration": {
+        "version": 0.854
+      }
+    },
+    "ownership": {
+      "default": 0,
+      "4mqS4QLqshw8WhsN": 3
+    },
+    "_stats": {
+      "systemId": "pf2e",
+      "systemVersion": "4.3.4",
+      "coreVersion": "10.290",
+      "createdTime": null,
+      "modifiedTime": 1668741634738,
+      "lastModifiedBy": "XyQNEFY9gmTDIpSd"
+    },
+    "schemaVersion": 13
+  },
+  {
+    "_id": "oXoRE0v4LK3Zk5ka",
+    "name": "Effect: Leaking Darkness Expended",
+    "type": "item",
+    "img": "systems/pf2e/icons/spells/dance-of-darkness.webp",
+    "effects": [],
+    "folder": null,
+    "sort": 0,
+    "flags": {},
+    "system": {
+      "description": {
+        "value": ""
+      },
+      "source": {
+        "value": ""
+      },
+      "traits": {
+        "value": [],
+        "rarity": "common"
+      },
+      "rules": [],
+      "slug": "effect-leaking-darkness-expended",
+      "schema": {
+        "version": 0.93,
+        "lastMigration": {
+          "datetime": "2025-11-10T15:51:44.924Z",
+          "version": {
+            "schema": 0.93,
+            "foundry": "13",
+            "system": "6.0.0"
+          }
+        }
+      },
+      "level": {
+        "value": 1
+      },
+      "duration": {
+        "unit": "minutes",
+        "sustained": false,
+        "expiry": "turn-start",
+        "value": 1
+      },
+      "start": {
+        "value": 0,
+        "initiative": null
+      },
+      "target": null,
+      "tokenIcon": {
+        "show": true
+      },
+      "badge": null,
+      "unidentified": false,
+      "_migration": {
+        "version": 0.854
+      }
+    },
+    "ownership": {
+      "default": 0,
+      "4mqS4QLqshw8WhsN": 3
+    },
+    "_stats": {
+      "systemId": "pf2e",
+      "systemVersion": "4.3.4",
+      "coreVersion": "10.290",
+      "createdTime": null,
+      "modifiedTime": 1668741639110,
+      "lastModifiedBy": "XyQNEFY9gmTDIpSd"
+    },
+    "schemaVersion": 13
+  },
+  {
+    "_id": "shNds8nxBjEl4QEM",
+    "name": "Effect: Mirror",
+    "type": "item",
+    "img": "systems/pf2e/icons/equipment/adventuring-gear/mirror.webp",
+    "effects": [],
+    "folder": null,
+    "sort": 0,
+    "flags": {},
+    "system": {
+      "description": {
+        "value": ""
+      },
+      "source": {
+        "value": ""
+      },
+      "traits": {
+        "value": [],
+        "rarity": "common"
+      },
+      "rules": [],
+      "slug": "effect-mirror",
+      "schema": {
+        "version": 0.93,
+        "lastMigration": {
+          "datetime": "2025-11-10T15:51:44.924Z",
+          "version": {
+            "schema": 0.93,
+            "foundry": "13",
+            "system": "6.0.0"
+          }
+        }
+      },
+      "level": {
+        "value": 1
+      },
+      "duration": {
+        "unit": "unlimited",
+        "sustained": false,
+        "expiry": "turn-start",
+        "value": -1
+      },
+      "start": {
+        "value": 0,
+        "initiative": null
+      },
+      "target": null,
+      "tokenIcon": {
+        "show": true
+      },
+      "badge": null,
+      "unidentified": false,
+      "_migration": {
+        "version": 0.854
+      }
+    },
+    "ownership": {
+      "default": 0,
+      "4mqS4QLqshw8WhsN": 3
+    },
+    "_stats": {
+      "systemId": "pf2e",
+      "systemVersion": "4.3.4",
+      "coreVersion": "10.290",
+      "createdTime": null,
+      "modifiedTime": 1668741640730,
+      "lastModifiedBy": "XyQNEFY9gmTDIpSd"
+    },
+    "schemaVersion": 13
+  }
+]

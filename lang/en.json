@@ -1,0 +1,29 @@
+{
+    "everything-shields": {
+        "runes": {
+            "reinforcing": "Reinforcing",
+            "hardened": "Hardened",
+            "potency": "Potency",
+            "property": "Property"
+        },
+        "properties": {
+            "blocking": "Blocking",
+            "reflecting": "Reflecting",
+            "fortifying": "Fortifying"
+        },
+        "buttons": {
+            "addRune": "Add Rune",
+            "removeRune": "Remove Rune"
+        },
+        "messages": {
+            "runeAdded": "Rune added to shield",
+            "runeRemoved": "Rune removed from shield",
+            "shieldUpdated": "Shield properties updated"
+        },
+        "errors": {
+            "invalidRune": "Invalid rune type",
+            "maxRunesReached": "Maximum number of runes reached",
+            "incompatibleRunes": "Incompatible rune combination"
+        }
+    }
+}
