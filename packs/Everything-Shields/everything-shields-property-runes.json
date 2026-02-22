@@ -5,15 +5,14 @@
     "img": "systems/pf2e/icons/spells/murderous-vine.webp",
     "system": {
       "description": {
-        "value": "<p><strong>Usage&nbsp;</strong>etched onto a shield</p>\n<hr>\n<p>This rune of twisting roots causes the shield to morph and change into a thick mass of overlapping, living vines. The shield gains the plant trait and is considered to be made entirely of wood. It is considered a valid target for @UUID[Compendium.pf2e.spells-srd.s3abwDbTV43pGFFW]{Shillelagh}, and once per day you may cast&nbsp;<em>shillelagh</em> as a 1st-level spell. This rune may be etched onto a shield made from precious materials. If it is, the shield retains the benefits of the precious material, but is still considered to be made of wood.</p>"
+        "value": "<p><strong>Usage&nbsp;</strong>etched onto a shield</p>\n<hr>\n<p>This rune of twisting roots causes the shield to morph and change into a thick mass of overlapping, living vines. The shield gains the plant trait and is considered to be made entirely of wood. It is considered a valid target for @UUID[Compendium.pf2e.spells-srd.s3abwDbTV43pGFFW]{Shillelagh}, and once per day you may cast&nbsp;<em>shillelagh</em> as a 1st-rank spell. This rune may be etched onto a shield made from precious materials. If it is, the shield retains the benefits of the precious material, but is still considered to be made of wood.</p>"
       },
       "source": {
         "value": "Everything Shields"
       },
       "traits": {
         "value": [
-          "primal",
-          "transmutation"
+          "primal"
         ],
         "rarity": "common",
         "custom": "",
@@ -125,7 +124,6 @@
       },
       "traits": {
         "value": [
-          "enchantment",
           "invested",
           "magical"
         ],
@@ -234,7 +232,6 @@
       },
       "traits": {
         "value": [
-          "abjuration",
           "invested",
           "magical"
         ],
@@ -344,8 +341,7 @@
       "traits": {
         "value": [
           "invested",
-          "magical",
-          "necromancy"
+          "magical"
         ],
         "rarity": "common",
         "custom": "",
@@ -452,7 +448,6 @@
       },
       "traits": {
         "value": [
-          "abjuration",
           "invested",
           "magical"
         ],
@@ -594,7 +589,6 @@
       },
       "traits": {
         "value": [
-          "divination",
           "invested",
           "magical"
         ],
@@ -714,7 +708,6 @@
       },
       "traits": {
         "value": [
-          "abjuration",
           "invested",
           "magical"
         ],
@@ -811,15 +804,14 @@
     "img": "systems/pf2e/icons/spells/bone-spray.webp",
     "system": {
       "description": {
-        "value": "<p><strong>Usage&nbsp;</strong>etched onto a shield</p>\n<hr>\n<p>This rune in the shape of a skull transforms your shield into an intertwined mass of bones. It is considered to be made of bones regardless of its original material. Once per day you may cast the @UUID[Compendium.pf2e.spells-srd.zdNUbHqqZzjA07oM]{Boneshaker}&nbsp;spell. You do not need a free hand to supply any of the material components for this casting. This rune may be etched onto a shield made from precious materials. If it is, the shield retains the benefits of the precious material, but is still considered to be made of bone.</p>\n<p>The shield is considered an undead creature for the purpose of healing derived from negative energy, and regains Hit Points as normal when it is affected by these abilities. When targeted by the @UUID[Compendium.pf2e.actionspf2e.bT3skovyLUtP22ME]{Repair} activity it regains half the normal amount of Hit Points.</p>\n<p>The shield becomes sentient and has a personality of its own. It can speak through an animated mouth on the shield, and you can also communicate with it telepathically. The shield's personality is generally helpful to you. Each <em>true undead rune</em> is either @UUID[Compendium.everything-shields.everything-shields-adjustments.ELT5GbvQ99xwX8Ox]{charismatic} or @UUID[Compendium.everything-shields.everything-shields-adjustments.CjhxrUPb50xff5Ev]{knowledgeable}, which affects its abilities and personality.</p>"
+        "value": "<p><strong>Usage&nbsp;</strong>etched onto a shield</p>\n<hr>\n<p>This rune in the shape of a skull transforms your shield into an intertwined mass of bones. It is considered to be made of bones regardless of its original material. Once per day you may cast the @UUID[Compendium.pf2e.spells-srd.zdNUbHqqZzjA07oM]{Boneshaker}&nbsp;spell. You do not need a free hand for the manipulate components of this casting. This rune may be etched onto a shield made from precious materials. If it is, the shield retains the benefits of the precious material, but is still considered to be made of bone.</p>\n<p>The shield is considered an undead creature for the purpose of healing derived from void energy, and regains Hit Points as normal when it is affected by these abilities. When targeted by the @UUID[Compendium.pf2e.actionspf2e.bT3skovyLUtP22ME]{Repair} activity it regains half the normal amount of Hit Points.</p>\n<p>The shield becomes sentient and has a personality of its own. It can speak through an animated mouth on the shield, and you can also communicate with it telepathically. The shield's personality is generally helpful to you. Each <em>true undead rune</em> is either @UUID[Compendium.everything-shields.everything-shields-adjustments.ELT5GbvQ99xwX8Ox]{charismatic} or @UUID[Compendium.everything-shields.everything-shields-adjustments.CjhxrUPb50xff5Ev]{knowledgeable}, which affects its abilities and personality.</p>"
       },
       "source": {
         "value": "Everything Shields"
       },
       "traits": {
         "value": [
-          "magical",
-          "transmutation"
+          "magical"
         ],
         "rarity": "common",
         "custom": "",
@@ -930,7 +922,6 @@
       },
       "traits": {
         "value": [
-          "divination",
           "magical"
         ],
         "rarity": "common",
@@ -1038,7 +1029,6 @@
       },
       "traits": {
         "value": [
-          "evocation",
           "magical"
         ],
         "rarity": "common",
@@ -1139,15 +1129,14 @@
     "img": "systems/pf2e/icons/spells/murderous-vine.webp",
     "system": {
       "description": {
-        "value": "<p><strong>Usage&nbsp;</strong>etched onto a shield</p>\n<hr>\n<p>This rune of twisting roots causes the shield to morph and change into a thick mass of overlapping, living vines. The shield gains the plant trait and is considered to be made entirely of wood. It is considered a valid target for @UUID[Compendium.pf2e.spells-srd.s3abwDbTV43pGFFW]{Shillelagh}, and once per day you may cast&nbsp;<em>shillelagh</em>&nbsp;as a 1st-level spell.</p>\n<p>The shield is considered a living creature for the purpose of healing derived from positive energy, and regains Hit Points as normal when it is affected by these abilities. When targeted by the @UUID[Compendium.pf2e.actionspf2e.bT3skovyLUtP22ME]{Repair} activity it regains half the normal amount of Hit Points.</p>\n<p>The shield becomes sentient and has a personality of its own. It can speak through an animated mouth on the shield, and you can also communicate with it telepathically. The shield's personality is generally helpful to you. Each <em>true living rune</em> is either @UUID[Compendium.everything-shields.everything-shields-adjustments.ELT5GbvQ99xwX8Ox]{charismatic} or @UUID[Compendium.everything-shields.everything-shields-adjustments.CjhxrUPb50xff5Ev]{knowledgeable}, which affects its abilities and personality.</p>"
+        "value": "<p><strong>Usage&nbsp;</strong>etched onto a shield</p>\n<hr>\n<p>This rune of twisting roots causes the shield to morph and change into a thick mass of overlapping, living vines. The shield gains the plant trait and is considered to be made entirely of wood. It is considered a valid target for @UUID[Compendium.pf2e.spells-srd.s3abwDbTV43pGFFW]{Shillelagh}, and once per day you may cast&nbsp;<em>shillelagh</em>&nbsp;as a 1st-rank spell.</p>\n<p>The shield is considered a living creature for the purpose of healing derived from vitality, and regains Hit Points as normal when it is affected by these abilities. When targeted by the @UUID[Compendium.pf2e.actionspf2e.bT3skovyLUtP22ME]{Repair} activity it regains half the normal amount of Hit Points.</p>\n<p>The shield becomes sentient and has a personality of its own. It can speak through an animated mouth on the shield, and you can also communicate with it telepathically. The shield's personality is generally helpful to you. Each <em>true living rune</em> is either @UUID[Compendium.everything-shields.everything-shields-adjustments.ELT5GbvQ99xwX8Ox]{charismatic} or @UUID[Compendium.everything-shields.everything-shields-adjustments.CjhxrUPb50xff5Ev]{knowledgeable}, which affects its abilities and personality.</p>"
       },
       "source": {
         "value": "Everything Shields"
       },
       "traits": {
         "value": [
-          "primal",
-          "transmutation"
+          "primal"
         ],
         "rarity": "rare",
         "custom": "",
@@ -1258,7 +1247,6 @@
       },
       "traits": {
         "value": [
-          "abjuration",
           "magical"
         ],
         "rarity": "common",
@@ -1366,7 +1354,6 @@
       },
       "traits": {
         "value": [
-          "abjuration",
           "magical"
         ],
         "rarity": "common",
@@ -1479,7 +1466,6 @@
       },
       "traits": {
         "value": [
-          "evocation",
           "invested",
           "magical"
         ],
@@ -1588,7 +1574,6 @@
       },
       "traits": {
         "value": [
-          "conjuration",
           "invested",
           "magical"
         ],
@@ -1697,7 +1682,6 @@
       },
       "traits": {
         "value": [
-          "conjuration",
           "invested",
           "magical"
         ],
@@ -1806,7 +1790,6 @@
       },
       "traits": {
         "value": [
-          "conjuration",
           "extradimensional",
           "invested",
           "magical"
@@ -1916,7 +1899,6 @@
       },
       "traits": {
         "value": [
-          "conjuration",
           "invested",
           "magical"
         ],
@@ -2025,7 +2007,6 @@
       },
       "traits": {
         "value": [
-          "divination",
           "invested",
           "magical"
         ],
@@ -2149,8 +2130,7 @@
       "traits": {
         "value": [
           "invested",
-          "magical",
-          "transmutation"
+          "magical"
         ],
         "rarity": "common",
         "custom": "",
@@ -2258,8 +2238,7 @@
       "traits": {
         "value": [
           "invested",
-          "magical",
-          "necromancy"
+          "magical"
         ],
         "rarity": "common",
         "custom": "",
@@ -2366,7 +2345,6 @@
       },
       "traits": {
         "value": [
-          "enchantment",
           "invested",
           "magical"
         ],
@@ -2470,7 +2448,6 @@
       },
       "traits": {
         "value": [
-          "divination",
           "magical"
         ],
         "rarity": "common",
@@ -2583,7 +2560,6 @@
       },
       "traits": {
         "value": [
-          "evocation",
           "invested",
           "magical"
         ],
@@ -2692,7 +2668,6 @@
       },
       "traits": {
         "value": [
-          "conjuration",
           "invested",
           "magical"
         ],
@@ -2802,8 +2777,7 @@
       "traits": {
         "value": [
           "invested",
-          "magical",
-          "transmutation"
+          "magical"
         ],
         "rarity": "common",
         "custom": "",
@@ -2910,7 +2884,6 @@
       },
       "traits": {
         "value": [
-          "abjuration",
           "invested",
           "magical"
         ],
@@ -3019,7 +2992,6 @@
       },
       "traits": {
         "value": [
-          "abjuration",
           "invested",
           "magical"
         ],
@@ -3128,7 +3100,6 @@
       },
       "traits": {
         "value": [
-          "evocation",
           "invested",
           "magical"
         ],
@@ -3237,7 +3208,6 @@
       },
       "traits": {
         "value": [
-          "abjuration",
           "invested",
           "magical"
         ],
@@ -3346,7 +3316,6 @@
       },
       "traits": {
         "value": [
-          "abjuration",
           "invested",
           "magical"
         ],
@@ -3456,8 +3425,7 @@
       "traits": {
         "value": [
           "invested",
-          "magical",
-          "necromancy"
+          "magical"
         ],
         "rarity": "common",
         "custom": "",
@@ -3564,7 +3532,6 @@
       },
       "traits": {
         "value": [
-          "abjuration",
           "invested",
           "magical"
         ],
@@ -3661,15 +3628,14 @@
     "img": "systems/pf2e/icons/spells/murderous-vine.webp",
     "system": {
       "description": {
-        "value": "<p><strong>Usage&nbsp;</strong>etched onto a shield</p>\n<hr>\n<p>This rune of twisting roots causes the shield to morph and change into a thick mass of overlapping, living vines. The shield gains the plant trait and is considered to be made entirely of wood. It is considered a valid target for @UUID[Compendium.pf2e.spells-srd.s3abwDbTV43pGFFW]{Shillelagh}, and once per day you may cast&nbsp;<em>shillelagh</em> as a 1st-level spell. This rune may be etched onto a shield made from precious materials. If it is, the shield retains the benefits of the precious material, but is still considered to be made of wood.</p>\n<p>The shield is considered a living creature for the purpose of healing derived from positive energy, and regains Hit Points as normal when it is affected by these abilities. When targeted by the @UUID[Compendium.pf2e.actionspf2e.bT3skovyLUtP22ME]{Repair} activity it regains half the normal amount of Hit Points.</p>"
+        "value": "<p><strong>Usage&nbsp;</strong>etched onto a shield</p>\n<hr>\n<p>This rune of twisting roots causes the shield to morph and change into a thick mass of overlapping, living vines. The shield gains the plant trait and is considered to be made entirely of wood. It is considered a valid target for @UUID[Compendium.pf2e.spells-srd.s3abwDbTV43pGFFW]{Shillelagh}, and once per day you may cast&nbsp;<em>shillelagh</em> as a 1st-rank spell. This rune may be etched onto a shield made from precious materials. If it is, the shield retains the benefits of the precious material, but is still considered to be made of wood.</p>\n<p>The shield is considered a living creature for the purpose of healing derived from vitality, and regains Hit Points as normal when it is affected by these abilities. When targeted by the @UUID[Compendium.pf2e.actionspf2e.bT3skovyLUtP22ME]{Repair} activity it regains half the normal amount of Hit Points.</p>"
       },
       "source": {
         "value": "Everything Shields"
       },
       "traits": {
         "value": [
-          "primal",
-          "transmutation"
+          "primal"
         ],
         "rarity": "common",
         "custom": "",
@@ -3786,8 +3752,7 @@
       "traits": {
         "value": [
           "invested",
-          "magical",
-          "transmutation"
+          "magical"
         ],
         "rarity": "common",
         "custom": "",
@@ -3894,7 +3859,6 @@
       },
       "traits": {
         "value": [
-          "conjuration",
           "extradimensional",
           "invested",
           "magical"
@@ -4004,7 +3968,6 @@
       },
       "traits": {
         "value": [
-          "abjuration",
           "invested",
           "magical"
         ],
@@ -4113,7 +4076,6 @@
       },
       "traits": {
         "value": [
-          "divination",
           "invested",
           "magical"
         ],
@@ -4231,7 +4193,6 @@
       },
       "traits": {
         "value": [
-          "abjuration",
           "magical"
         ],
         "rarity": "common",
@@ -4583,7 +4544,6 @@
       },
       "traits": {
         "value": [
-          "enchantment",
           "invested",
           "magical"
         ],
@@ -4697,8 +4657,7 @@
       "traits": {
         "value": [
           "invested",
-          "magical",
-          "transmutation"
+          "magical"
         ],
         "rarity": "common",
         "custom": "",
@@ -4800,7 +4759,6 @@
       },
       "traits": {
         "value": [
-          "abjuration",
           "magical"
         ],
         "rarity": "common",
@@ -4914,7 +4872,6 @@
       },
       "traits": {
         "value": [
-          "divination",
           "invested",
           "magical"
         ],
@@ -5032,7 +4989,6 @@
       },
       "traits": {
         "value": [
-          "divination",
           "magical"
         ],
         "rarity": "common",
@@ -5145,7 +5101,6 @@
       },
       "traits": {
         "value": [
-          "abjuration",
           "invested",
           "magical"
         ],
@@ -5254,7 +5209,6 @@
       },
       "traits": {
         "value": [
-          "enchantment",
           "invested",
           "magical"
         ],
@@ -5358,7 +5312,6 @@
       },
       "traits": {
         "value": [
-          "conjuration",
           "magical"
         ],
         "rarity": "common",
@@ -5471,7 +5424,6 @@
       },
       "traits": {
         "value": [
-          "abjuration",
           "invested",
           "magical"
         ],
@@ -5568,15 +5520,14 @@
     "img": "systems/pf2e/icons/spells/bone-spray.webp",
     "system": {
       "description": {
-        "value": "<p><strong>Usage&nbsp;</strong>etched onto a shield</p>\n<hr>\n<p>This rune in the shape of a skull transforms your shield into an intertwined mass of bones. It is considered to be made of bones regardless of its original material. Once per day you may cast the @UUID[Compendium.pf2e.spells-srd.zdNUbHqqZzjA07oM]{Boneshaker}&nbsp;spell. You do not need a free hand to supply any of the material components for this casting. This rune may be etched onto a shield made from precious materials. If it is, the shield retains the benefits of the precious material, but is still considered to be made of bone.</p>"
+        "value": "<p><strong>Usage&nbsp;</strong>etched onto a shield</p>\n<hr>\n<p>This rune in the shape of a skull transforms your shield into an intertwined mass of bones. It is considered to be made of bones regardless of its original material. Once per day you may cast the @UUID[Compendium.pf2e.spells-srd.zdNUbHqqZzjA07oM]{Boneshaker}&nbsp;spell. You do not need a free hand for the manipulate components of this casting. This rune may be etched onto a shield made from precious materials. If it is, the shield retains the benefits of the precious material, but is still considered to be made of bone.</p>"
       },
       "source": {
         "value": "Everything Shields"
       },
       "traits": {
         "value": [
-          "magical",
-          "transmutation"
+          "magical"
         ],
         "rarity": "common",
         "custom": "",
@@ -5693,8 +5644,7 @@
       "traits": {
         "value": [
           "invested",
-          "magical",
-          "necromancy"
+          "magical"
         ],
         "rarity": "common",
         "custom": "",
@@ -5802,8 +5752,7 @@
       "traits": {
         "value": [
           "invested",
-          "magical",
-          "transmutation"
+          "magical"
         ],
         "rarity": "common",
         "custom": "",
@@ -5905,7 +5854,6 @@
       },
       "traits": {
         "value": [
-          "divination",
           "magical"
         ],
         "rarity": "common",
@@ -6006,15 +5954,14 @@
     "img": "systems/pf2e/icons/spells/bone-spray.webp",
     "system": {
       "description": {
-        "value": "<p><strong>Usage&nbsp;</strong>etched onto a shield</p>\n<hr>\n<p>This rune in the shape of a skull transforms your shield into an intertwined mass of bones. It is considered to be made of bones regardless of its original material. Once per day you may cast the @UUID[Compendium.pf2e.spells-srd.zdNUbHqqZzjA07oM]{Boneshaker}&nbsp;spell. You do not need a free hand to supply any of the material components for this casting. This rune may be etched onto a shield made from precious materials. If it is, the shield retains the benefits of the precious material, but is still considered to be made of bone.</p>\n<p>The shield is considered an undead creature for the purpose of healing derived from negative energy, and regains Hit Points as normal when it is affected by these abilities. When targeted by the @UUID[Compendium.pf2e.actionspf2e.bT3skovyLUtP22ME]{Repair} activity it regains half the normal amount of Hit Points.</p>"
+        "value": "<p><strong>Usage&nbsp;</strong>etched onto a shield</p>\n<hr>\n<p>This rune in the shape of a skull transforms your shield into an intertwined mass of bones. It is considered to be made of bones regardless of its original material. Once per day you may cast the @UUID[Compendium.pf2e.spells-srd.zdNUbHqqZzjA07oM]{Boneshaker}&nbsp;spell. You do not need a free hand for the manipulate components of this casting. This rune may be etched onto a shield made from precious materials. If it is, the shield retains the benefits of the precious material, but is still considered to be made of bone.</p>\n<p>The shield is considered an undead creature for the purpose of healing derived from void energy, and regains Hit Points as normal when it is affected by these abilities. When targeted by the @UUID[Compendium.pf2e.actionspf2e.bT3skovyLUtP22ME]{Repair} activity it regains half the normal amount of Hit Points.</p>"
       },
       "source": {
         "value": "Everything Shields"
       },
       "traits": {
         "value": [
-          "magical",
-          "transmutation"
+          "magical"
         ],
         "rarity": "common",
         "custom": "",
@@ -6130,7 +6077,6 @@
       },
       "traits": {
         "value": [
-          "abjuration",
           "invested",
           "magical"
         ],
@@ -6273,8 +6219,7 @@
       "traits": {
         "value": [
           "invested",
-          "magical",
-          "necromancy"
+          "magical"
         ],
         "rarity": "common",
         "custom": "",
@@ -6381,7 +6326,6 @@
       },
       "traits": {
         "value": [
-          "abjuration",
           "invested",
           "magical"
         ],
@@ -6504,7 +6448,6 @@
       },
       "traits": {
         "value": [
-          "conjuration",
           "invested",
           "magical"
         ],
@@ -6613,7 +6556,6 @@
       },
       "traits": {
         "value": [
-          "enchantment",
           "invested",
           "magical"
         ],
@@ -6722,7 +6664,6 @@
       },
       "traits": {
         "value": [
-          "evocation",
           "invested",
           "magical"
         ],
@@ -6831,7 +6772,6 @@
       },
       "traits": {
         "value": [
-          "evocation",
           "invested",
           "magical"
         ],
@@ -6941,8 +6881,7 @@
       "traits": {
         "value": [
           "invested",
-          "magical",
-          "transmutation"
+          "magical"
         ],
         "rarity": "common",
         "custom": "",
@@ -7049,7 +6988,6 @@
       },
       "traits": {
         "value": [
-          "divination",
           "invested",
           "magical"
         ],
@@ -7171,7 +7109,6 @@
       },
       "traits": {
         "value": [
-          "abjuration",
           "invested",
           "magical"
         ],
@@ -7280,7 +7217,6 @@
       },
       "traits": {
         "value": [
-          "abjuration",
           "invested",
           "magical"
         ],
@@ -7422,7 +7358,6 @@
       },
       "traits": {
         "value": [
-          "enchantment",
           "magical"
         ],
         "rarity": "common",
@@ -7525,7 +7460,6 @@
       },
       "traits": {
         "value": [
-          "conjuration",
           "magical"
         ],
         "rarity": "common",
