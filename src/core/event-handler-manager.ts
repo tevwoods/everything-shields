@@ -519,76 +519,76 @@ export class EventHandlerManager {
         // Generate a unique ID prefix for this rune's rules on this shield
         const runeTag = runeName.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase();
         const uniqueId = (typeof randomID === 'function') ? randomID() : Math.random().toString(36).substring(2, 10);
-        let choiceSetId: string | undefined;
 
-        // Collect ChoiceSet rules that need user input — we'll prompt for them
-        const choiceSetSelections: Record<string, string> = {};
+        // First pass: identify ChoiceSet rules and resolve user selections.
+        // We resolve choices up front so we can hardcode the values into
+        // dependent rules rather than relying on PF2e's template resolution
+        // (which doesn't work when rules are injected via item.update()).
+        const choiceSetResolutions: Record<string, string> = {};  // originalFlag → chosenValue
 
         for (const rule of clonedRules) {
+            if (rule.key === 'ChoiceSet') {
+                const originalFlag = rule.flag || 'choice';
+
+                // Check if the source rune item already has a selection
+                const existingSelection = runeItem?.flags?.pf2e?.rulesSelections?.[originalFlag];
+
+                if (existingSelection) {
+                    choiceSetResolutions[originalFlag] = existingSelection;
+                } else if (Array.isArray(rule.choices) && rule.choices.length > 0) {
+                    const userChoice = await this.promptChoiceSetSelection(runeName, rule.choices);
+                    if (userChoice === null) {
+                        ui.notifications.warn(`Cancelled element selection for ${runeName}. Rules were not applied.`);
+                        return;
+                    }
+                    choiceSetResolutions[originalFlag] = userChoice;
+                }
+            }
+        }
+
+        // Second pass: build the final rules list.
+        // - Skip ChoiceSet rules entirely (we've already resolved them)
+        // - Replace template references with hardcoded values
+        const rulesToAdd: any[] = [];
+
+        for (const rule of clonedRules) {
+            if (rule.key === 'ChoiceSet') {
+                // Don't copy ChoiceSet rules — they were only needed for selection
+                continue;
+            }
+
             const ruleId = `${runeTag}-${uniqueId}`;
 
             // Mark each rule with its origin rune name so we can remove them later
             rule._esRuneSource = runeName;
 
-            if (rule.key === 'ChoiceSet') {
-                const originalFlag = rule.flag || 'choice';
-                const prefixedFlag = `${ruleId}-${originalFlag}`;
-                rule.flag = prefixedFlag;
-                choiceSetId = ruleId;
-
-                // Check if the source rune item already has a selection for this ChoiceSet
-                const existingSelection = runeItem?.flags?.pf2e?.rulesSelections?.[originalFlag];
-
-                if (existingSelection) {
-                    // The rune item already had a choice made (e.g. from inventory) — reuse it
-                    choiceSetSelections[prefixedFlag] = existingSelection;
-                } else if (Array.isArray(rule.choices) && rule.choices.length > 0) {
-                    // No existing selection — prompt the user with our own dialog
-                    const userChoice = await this.promptChoiceSetSelection(runeName, rule.choices);
-                    if (userChoice === null) {
-                        // User cancelled — abort the entire rule copy
-                        ui.notifications.warn(`Cancelled element selection for ${runeName}. Rules were not applied.`);
-                        return;
-                    }
-                    choiceSetSelections[prefixedFlag] = userChoice;
-                }
-            }
-
-            // Rewrite any ChoiceSet flag references in string values
-            if (choiceSetId) {
-                for (const key of Object.keys(rule)) {
-                    if (typeof rule[key] === 'string') {
-                        rule[key] = rule[key].replace(
-                            /item\|flags\.pf2e\.rulesSelections\./g,
-                            `item|flags.pf2e.rulesSelections.${choiceSetId}-`
-                        );
+            // Resolve any {item|flags.pf2e.rulesSelections.FLAG} templates
+            // with the actual hardcoded choice value
+            for (const key of Object.keys(rule)) {
+                if (typeof rule[key] === 'string') {
+                    for (const [flag, value] of Object.entries(choiceSetResolutions)) {
+                        const pattern = `{item|flags.pf2e.rulesSelections.${flag}}`;
+                        if (rule[key].includes(pattern)) {
+                            rule[key] = rule[key].replace(pattern, value);
+                        }
                     }
                 }
             }
 
             rule.slug = `${rule.key}-${ruleId}`;
+            rulesToAdd.push(rule);
+        }
+
+        if (rulesToAdd.length === 0) {
+            return;
         }
 
         // Merge into the shield's existing rules
         const existingRules: any[] = [...(shieldItem.system.rules || [])];
-        existingRules.push(...clonedRules);
+        existingRules.push(...rulesToAdd);
 
-        // Build the rulesSelections for the shield — merge existing shield selections
-        // with the new ChoiceSet selections (using the prefixed flag keys)
-        const shieldSelections = shieldItem.flags?.pf2e?.rulesSelections || {};
-        const mergedSelections = { ...shieldSelections, ...choiceSetSelections };
-
-        const updateData: any = {
-            'system.rules': existingRules,
-        };
-
-        // Always write rulesSelections if we have any choices
-        if (Object.keys(mergedSelections).length > 0) {
-            updateData['flags.pf2e.rulesSelections'] = mergedSelections;
-        }
-
-        await shieldItem.update(updateData);
-        console.log(`Everything Shields | Added ${clonedRules.length} rule element(s) from ${runeName} to ${shieldItem.name}`);
+        await shieldItem.update({ 'system.rules': existingRules });
+        console.log(`Everything Shields | Added ${rulesToAdd.length} rule element(s) from ${runeName} to ${shieldItem.name}`);
     }
 
     /**
@@ -624,7 +624,6 @@ export class EventHandlerManager {
     /**
      * Remove a property rune's Rule Elements from the shield.
      * Matches rules by the _esRuneSource tag we set during addRulesToShield().
-     * Also cleans up any rulesSelections flags that were created for ChoiceSet rules.
      */
     private async removeRulesFromShield(shieldItem: any, runeName: string): Promise<void> {
         const existingRules: any[] = shieldItem.system.rules || [];
@@ -632,28 +631,10 @@ export class EventHandlerManager {
             return;
         }
 
-        // Collect the ChoiceSet flag keys from the rules being removed
-        // so we can clean up rulesSelections
-        const choiceSetFlagKeys: string[] = existingRules
-            .filter((rule: any) => rule._esRuneSource === runeName && rule.key === 'ChoiceSet' && rule.flag)
-            .map((rule: any) => rule.flag);
-
         const filteredRules = existingRules.filter((rule: any) => rule._esRuneSource !== runeName);
 
         if (filteredRules.length !== existingRules.length) {
-            const updateData: any = { 'system.rules': filteredRules };
-
-            // Remove the corresponding rulesSelections entries
-            if (choiceSetFlagKeys.length > 0) {
-                const currentSelections = shieldItem.flags?.pf2e?.rulesSelections || {};
-                const cleanedSelections = { ...currentSelections };
-                for (const flagKey of choiceSetFlagKeys) {
-                    delete cleanedSelections[flagKey];
-                }
-                updateData['flags.pf2e.rulesSelections'] = cleanedSelections;
-            }
-
-            await shieldItem.update(updateData);
+            await shieldItem.update({ 'system.rules': filteredRules });
             console.log(`Everything Shields | Removed ${existingRules.length - filteredRules.length} rule element(s) for ${runeName} from ${shieldItem.name}`);
         }
     }
