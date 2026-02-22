@@ -435,17 +435,17 @@ ${runeDescription}
             }
         }
         
-        // Add buttons for removing fundamental runes
-        if (potencyRune || hardenedRune) {
-            // Remove existing buttons if any
-            const buttonStart = description.indexOf('<div class="dialog-buttons everything-shields-buttons">');
-            if (buttonStart !== -1) {
-                const buttonEnd = description.indexOf('</div>', buttonStart);
-                if (buttonEnd !== -1) {
-                    description = description.substring(0, buttonStart) + description.substring(buttonEnd + 6);
-                }
+        // Always remove existing fundamental rune buttons before rebuilding
+        const buttonStart = description.indexOf('<div class="dialog-buttons everything-shields-buttons">');
+        if (buttonStart !== -1) {
+            const buttonEnd = description.indexOf('</div>', buttonStart);
+            if (buttonEnd !== -1) {
+                description = description.substring(0, buttonStart) + description.substring(buttonEnd + 6);
             }
-            
+        }
+
+        // Add buttons for removing fundamental runes (only if runes are present)
+        if (potencyRune || hardenedRune) {
             description += '<div class="dialog-buttons everything-shields-buttons">';
             
             if (hardenedRune) {
