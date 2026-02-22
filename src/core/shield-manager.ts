@@ -194,7 +194,7 @@ export class ShieldManager {
             }
 
             // Return potency rune to inventory
-            const potencyName = `+${potencyLevel} Shield Potency`;
+            const potencyName = `+${potencyLevel} Shield Potency Rune`;
             await returnRuneToActorInventory(actor, potencyName, true);
 
             // Return each removed property rune to inventory
