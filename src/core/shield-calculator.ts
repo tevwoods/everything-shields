@@ -47,7 +47,9 @@ export function calculateShieldUpdates(shield: Shield): ShieldCalculations {
             // We want to extract just "Hoplon" at the end
             const parts = nameWithoutParens.split(/\s+/);
             // The base name is everything that's not a rune-related word
-            const runeWords = ['greater', 'major', 'hardened', 'reinforcing', 'seeing', 'attached', 'defiant', 'energy-resistant'];
+            const runeWords = ['greater', 'major', 'lesser', 'true', 'hardened', 'reinforcing', 'seeing', 'attached', 'defiant', 'energy-resistant',
+                'reflecting', 'taunting', 'glyphed', 'thirsting', 'moonlit', 'undead', 'focusing', 'launching', 'living',
+                'sliding', 'spell-saving', 'reverberating', 'summoning', 'feather', 'throwing', 'ramming', 'jagged', 'winged'];
             
             // Start from the end and find the first non-rune word that's not just a + number
             for (let i = parts.length - 1; i >= 0; i--) {
@@ -104,13 +106,29 @@ export function calculateShieldUpdates(shield: Shield): ShieldCalculations {
     
     // Capitalize each property rune name and clean up suffixes
     const capitalizedPropertyRunes = propertyRunes.map(rune => {
+        // Extract version suffix if present (e.g. ", Greater" or ", Major")
+        let versionPrefix = '';
+        let cleanedRune = rune;
+        
+        const versionMatch = cleanedRune.match(/,\s*(Greater|Major|Lesser|True)\s*$/i);
+        if (versionMatch) {
+            versionPrefix = versionMatch[1].charAt(0).toUpperCase() + versionMatch[1].slice(1).toLowerCase();
+            cleanedRune = cleanedRune.replace(/,\s*(Greater|Major|Lesser|True)\s*$/i, '').trim();
+        }
+
         // Remove "Shield Rune" or "Rune" suffix if present
-        let cleanedRune = rune.replace(/\s*Shield\s+Rune\s*$/i, '').replace(/\s*Rune\s*$/i, '').trim();
+        cleanedRune = cleanedRune.replace(/\s*Shield\s+Rune\s*$/i, '').replace(/\s*Rune\s*$/i, '').trim();
         
         // Capitalize first letter of each word
-        return cleanedRune.split(/[\s-]+/).map(word => 
+        cleanedRune = cleanedRune.split(/[\s-]+/).map(word => 
             word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
         ).join(' ');
+
+        // Prepend version prefix: "Major Reflecting" instead of "Reflecting, Major"
+        if (versionPrefix) {
+            return `${versionPrefix} ${cleanedRune}`;
+        }
+        return cleanedRune;
     });
     
     if (capitalizedPropertyRunes.length > 0) {
