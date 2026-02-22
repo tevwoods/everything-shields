@@ -25,3 +25,9 @@ package/
 # OS
 .DS_Store
 Thumbs.db
+
+# Testing (local config and generated output)
+testing/test-config.ini
+testing/test-report.txt
+testing/test-runner.log
+testing/test-results.json
