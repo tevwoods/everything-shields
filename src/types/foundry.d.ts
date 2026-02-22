@@ -47,3 +47,4 @@ declare const Dialog: Dialog;
 
 // Helper function provided by Foundry
 declare function fromUuid(uuid: string): Promise<any>;
+declare function randomID(length?: number): string;

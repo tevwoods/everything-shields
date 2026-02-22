@@ -112,6 +112,14 @@ export class ShieldManager {
                 shield.update({ [runeSlot!]: null })
             );
 
+            // Remove any Rule Elements that were copied from this property rune
+            const existingRules: any[] = (shield as any).system.rules || [];
+            const filteredRules = existingRules.filter((rule: any) => rule._esRuneSource !== runeName);
+            if (filteredRules.length !== existingRules.length) {
+                await shield.update({ 'system.rules': filteredRules });
+                console.log(`Everything Shields | Removed ${existingRules.length - filteredRules.length} rule element(s) for ${runeName}`);
+            }
+
             // Return the removed rune to the actor's inventory
             const actor = (shield as any).parent || (shield as any).actor;
             await returnRuneToActorInventory(actor, runeName, false);
@@ -174,6 +182,16 @@ export class ShieldManager {
                     'flags.everything-shields.isDivineAlly': null
                 })
             );
+
+            // Remove Rule Elements for all property runes being cascaded
+            const existingRules: any[] = (shield as any).system.rules || [];
+            const filteredRules = existingRules.filter((rule: any) =>
+                !removedPropertyRunes.includes(rule._esRuneSource)
+            );
+            if (filteredRules.length !== existingRules.length) {
+                await shield.update({ 'system.rules': filteredRules });
+                console.log(`Everything Shields | Cascade removed ${existingRules.length - filteredRules.length} rule element(s)`);
+            }
 
             // Return potency rune to inventory
             const potencyName = `+${potencyLevel} Shield Potency`;

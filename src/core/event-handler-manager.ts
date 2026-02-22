@@ -499,6 +499,129 @@ export class EventHandlerManager {
         console.log(`Applied ${hardenedLevel} hardened rune: ${baseHardness} hardness -> ${newHardness} hardness (+${hardnessBonus})`);
     }
 
+    /**
+     * Copy a property rune's Rule Elements (system.rules) onto the shield.
+     * This is required for runes like Energy-Resistant that use a ChoiceSet
+     * rule element to prompt the user for an element selection.
+     *
+     * Each rule gets a unique slug so multiple property runes' rules don't collide.
+     * ChoiceSet flag references are also prefixed to keep selections separate.
+     */
+    private async addRulesToShield(shieldItem: any, runeItem: any, runeName: string): Promise<void> {
+        const runeRules: any[] = runeItem?.system?.rules;
+        if (!runeRules || runeRules.length === 0) {
+            return;
+        }
+
+        // Deep clone so we don't mutate the source item
+        const clonedRules: any[] = JSON.parse(JSON.stringify(runeRules));
+
+        // Generate a unique ID prefix for this rune's rules on this shield
+        const runeTag = runeName.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase();
+        const uniqueId = (typeof randomID === 'function') ? randomID() : Math.random().toString(36).substring(2, 10);
+        let choiceSetId: string | undefined;
+
+        for (const rule of clonedRules) {
+            const ruleId = `${runeTag}-${uniqueId}`;
+
+            // Mark each rule with its origin rune name so we can remove them later
+            rule._esRuneSource = runeName;
+
+            if (rule.key === 'ChoiceSet') {
+                rule.flag = `${ruleId}-${rule.flag || 'choice'}`;
+                choiceSetId = ruleId;
+            }
+
+            // Rewrite any ChoiceSet flag references in string values
+            if (choiceSetId) {
+                for (const key of Object.keys(rule)) {
+                    if (typeof rule[key] === 'string') {
+                        rule[key] = rule[key].replace(
+                            /item\|flags\.pf2e\.rulesSelections\./g,
+                            `item|flags.pf2e.rulesSelections.${choiceSetId}-`
+                        );
+                    }
+                }
+            }
+
+            rule.slug = `${rule.key}-${ruleId}`;
+        }
+
+        // Merge into the shield's existing rules
+        const existingRules: any[] = [...(shieldItem.system.rules || [])];
+        existingRules.push(...clonedRules);
+
+        // Also copy rulesSelections flags if present
+        const runeSelections = runeItem?.flags?.pf2e?.rulesSelections;
+        const shieldSelections = shieldItem.flags?.pf2e?.rulesSelections || {};
+
+        const updateData: any = {
+            'system.rules': existingRules,
+        };
+
+        if (runeSelections) {
+            const merged = { ...shieldSelections, ...runeSelections };
+            updateData['flags.pf2e.rulesSelections'] = merged;
+        }
+
+        await shieldItem.update(updateData);
+        console.log(`Everything Shields | Added ${clonedRules.length} rule element(s) from ${runeName} to ${shieldItem.name}`);
+    }
+
+    /**
+     * Remove a property rune's Rule Elements from the shield.
+     * Matches rules by the _esRuneSource tag we set during addRulesToShield().
+     */
+    private async removeRulesFromShield(shieldItem: any, runeName: string): Promise<void> {
+        const existingRules: any[] = shieldItem.system.rules || [];
+        if (existingRules.length === 0) {
+            return;
+        }
+
+        const filteredRules = existingRules.filter((rule: any) => rule._esRuneSource !== runeName);
+
+        if (filteredRules.length !== existingRules.length) {
+            await shieldItem.update({ 'system.rules': filteredRules });
+            console.log(`Everything Shields | Removed ${existingRules.length - filteredRules.length} rule element(s) for ${runeName} from ${shieldItem.name}`);
+        }
+    }
+
+    /**
+     * Get the full rune item data, either from the provided runeData object,
+     * from the actor's inventory, or from the compendium.
+     */
+    private async getRuneItemData(actor: any, runeName: string, sourceRuneItemId?: string, runeData?: any): Promise<any> {
+        // If we already have the full rune data (compendium drop), use it
+        if (runeData?.system?.rules) {
+            return runeData;
+        }
+
+        // Try to get from actor's inventory (inventory drop)
+        if (sourceRuneItemId) {
+            const inventoryItem = actor.items.get(sourceRuneItemId);
+            if (inventoryItem) {
+                return inventoryItem.toObject ? inventoryItem.toObject() : inventoryItem;
+            }
+        }
+
+        // Fall back: search compendium for the rune by name
+        try {
+            const pack = (game.packs as any).get('everything-shields.everything-shields-property-runes');
+            if (pack) {
+                const index = await pack.getIndex();
+                const entry = index.find((e: any) => e.name === runeName);
+                if (entry) {
+                    const item = await pack.getDocument(entry._id);
+                    return (item as any).toObject ? (item as any).toObject() : item;
+                }
+            }
+        } catch (err) {
+            console.warn(`Everything Shields | Could not find rune item data for "${runeName}" in compendium:`, err);
+        }
+
+        return null;
+    }
+
     private async applyInvestedTrait(shieldItem: any): Promise<void> {
         // Check if invested trait already exists
         const traits = shieldItem.system.traits?.value || [];
@@ -1086,6 +1209,9 @@ export class EventHandlerManager {
                             }
                         }
 
+                        // Get the full rune item data so we can copy its Rule Elements
+                        const runeItemData = await this.getRuneItemData(actor, runeName, sourceRuneItemId, runeData);
+
                         // If not an upgrade, check for open slot
                         if (!isUpgradeVersion) {
                             const slot = propertyRunes.findIndex(r => !r);
@@ -1101,6 +1227,10 @@ export class EventHandlerManager {
                             // Upgrade: replace the lesser rune in its slot
                             const slotNum = lesserSlotIndex + 1;
                             const replacedRuneName = propertyRunes[lesserSlotIndex];
+
+                            // Remove the old rune's Rule Elements before replacing
+                            await this.removeRulesFromShield(shieldItem, replacedRuneName);
+
                             const updateData: any = {};
                             updateData[`system.propertyRune${slotNum}.value`] = runeName;
                             await shieldItem.update(updateData);
@@ -1115,6 +1245,12 @@ export class EventHandlerManager {
                         if (!reloadedShieldAfterRune) {
                             ui.notifications.error('Failed to reload shield after adding property rune');
                             return;
+                        }
+
+                        // Copy the rune's Rule Elements onto the shield
+                        // (e.g. Energy-Resistant's ChoiceSet for element selection)
+                        if (runeItemData) {
+                            await this.addRulesToShield(reloadedShieldAfterRune, runeItemData, runeName);
                         }
                         
                         // Apply invested trait for property runes
