@@ -33,7 +33,15 @@ declare interface ui {
 
 declare const ui: ui;
 
-declare interface Dialog {
+declare interface DialogConstructor {
+    new (data: {
+        title: string;
+        content: string;
+        buttons: Record<string, { label: string; callback?: (...args: any[]) => any }>;
+        default?: string;
+        close?: (...args: any[]) => any;
+    }): { render(force?: boolean): void };
+
     confirm(options: {
         title: string;
         content: string;
@@ -43,7 +51,7 @@ declare interface Dialog {
     }): Promise<boolean>;
 }
 
-declare const Dialog: Dialog;
+declare const Dialog: DialogConstructor;
 
 // Helper function provided by Foundry
 declare function fromUuid(uuid: string): Promise<any>;

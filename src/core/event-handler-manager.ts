@@ -521,6 +521,9 @@ export class EventHandlerManager {
         const uniqueId = (typeof randomID === 'function') ? randomID() : Math.random().toString(36).substring(2, 10);
         let choiceSetId: string | undefined;
 
+        // Collect ChoiceSet rules that need user input — we'll prompt for them
+        const choiceSetSelections: Record<string, string> = {};
+
         for (const rule of clonedRules) {
             const ruleId = `${runeTag}-${uniqueId}`;
 
@@ -528,8 +531,27 @@ export class EventHandlerManager {
             rule._esRuneSource = runeName;
 
             if (rule.key === 'ChoiceSet') {
-                rule.flag = `${ruleId}-${rule.flag || 'choice'}`;
+                const originalFlag = rule.flag || 'choice';
+                const prefixedFlag = `${ruleId}-${originalFlag}`;
+                rule.flag = prefixedFlag;
                 choiceSetId = ruleId;
+
+                // Check if the source rune item already has a selection for this ChoiceSet
+                const existingSelection = runeItem?.flags?.pf2e?.rulesSelections?.[originalFlag];
+
+                if (existingSelection) {
+                    // The rune item already had a choice made (e.g. from inventory) — reuse it
+                    choiceSetSelections[prefixedFlag] = existingSelection;
+                } else if (Array.isArray(rule.choices) && rule.choices.length > 0) {
+                    // No existing selection — prompt the user with our own dialog
+                    const userChoice = await this.promptChoiceSetSelection(runeName, rule.choices);
+                    if (userChoice === null) {
+                        // User cancelled — abort the entire rule copy
+                        ui.notifications.warn(`Cancelled element selection for ${runeName}. Rules were not applied.`);
+                        return;
+                    }
+                    choiceSetSelections[prefixedFlag] = userChoice;
+                }
             }
 
             // Rewrite any ChoiceSet flag references in string values
@@ -551,17 +573,18 @@ export class EventHandlerManager {
         const existingRules: any[] = [...(shieldItem.system.rules || [])];
         existingRules.push(...clonedRules);
 
-        // Also copy rulesSelections flags if present
-        const runeSelections = runeItem?.flags?.pf2e?.rulesSelections;
+        // Build the rulesSelections for the shield — merge existing shield selections
+        // with the new ChoiceSet selections (using the prefixed flag keys)
         const shieldSelections = shieldItem.flags?.pf2e?.rulesSelections || {};
+        const mergedSelections = { ...shieldSelections, ...choiceSetSelections };
 
         const updateData: any = {
             'system.rules': existingRules,
         };
 
-        if (runeSelections) {
-            const merged = { ...shieldSelections, ...runeSelections };
-            updateData['flags.pf2e.rulesSelections'] = merged;
+        // Always write rulesSelections if we have any choices
+        if (Object.keys(mergedSelections).length > 0) {
+            updateData['flags.pf2e.rulesSelections'] = mergedSelections;
         }
 
         await shieldItem.update(updateData);
@@ -569,8 +592,39 @@ export class EventHandlerManager {
     }
 
     /**
+     * Present a dialog to the user to select from a ChoiceSet's options.
+     * Returns the chosen value, or null if the user cancels.
+     */
+    private async promptChoiceSetSelection(
+        runeName: string,
+        choices: Array<{ label: string; value: string }>
+    ): Promise<string | null> {
+        return new Promise((resolve) => {
+            const buttons: Record<string, any> = {};
+
+            for (const choice of choices) {
+                buttons[choice.value] = {
+                    label: choice.label,
+                    callback: () => resolve(choice.value)
+                };
+            }
+
+            const dialog = new Dialog({
+                title: `${runeName} — Select Element`,
+                content: `<p>Choose the damage type for <strong>${runeName}</strong>:</p>`,
+                buttons,
+                default: choices[0]?.value,
+                close: () => resolve(null)
+            });
+
+            dialog.render(true);
+        });
+    }
+
+    /**
      * Remove a property rune's Rule Elements from the shield.
      * Matches rules by the _esRuneSource tag we set during addRulesToShield().
+     * Also cleans up any rulesSelections flags that were created for ChoiceSet rules.
      */
     private async removeRulesFromShield(shieldItem: any, runeName: string): Promise<void> {
         const existingRules: any[] = shieldItem.system.rules || [];
@@ -578,10 +632,28 @@ export class EventHandlerManager {
             return;
         }
 
+        // Collect the ChoiceSet flag keys from the rules being removed
+        // so we can clean up rulesSelections
+        const choiceSetFlagKeys: string[] = existingRules
+            .filter((rule: any) => rule._esRuneSource === runeName && rule.key === 'ChoiceSet' && rule.flag)
+            .map((rule: any) => rule.flag);
+
         const filteredRules = existingRules.filter((rule: any) => rule._esRuneSource !== runeName);
 
         if (filteredRules.length !== existingRules.length) {
-            await shieldItem.update({ 'system.rules': filteredRules });
+            const updateData: any = { 'system.rules': filteredRules };
+
+            // Remove the corresponding rulesSelections entries
+            if (choiceSetFlagKeys.length > 0) {
+                const currentSelections = shieldItem.flags?.pf2e?.rulesSelections || {};
+                const cleanedSelections = { ...currentSelections };
+                for (const flagKey of choiceSetFlagKeys) {
+                    delete cleanedSelections[flagKey];
+                }
+                updateData['flags.pf2e.rulesSelections'] = cleanedSelections;
+            }
+
+            await shieldItem.update(updateData);
             console.log(`Everything Shields | Removed ${existingRules.length - filteredRules.length} rule element(s) for ${runeName} from ${shieldItem.name}`);
         }
     }
