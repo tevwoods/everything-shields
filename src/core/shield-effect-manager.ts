@@ -45,19 +45,8 @@ export class ShieldEffectManager {
 
         switch (runeType) {
             case 'reinforcing':
-                effect.changes = [
-                    {
-                        key: 'system.hardness',
-                        mode: 2, // ADD mode
-                        value: value * 2 // Reinforcing adds 2 hardness per level
-                    },
-                    {
-                        key: 'system.hp.max',
-                        mode: 2, // ADD mode
-                        value: value * 20 // Reinforcing adds 20 HP per level
-                    }
-                ];
-                break;
+                // PF2e derives reinforcing HP and hardness from system.runes.reinforcing.
+                return;
             case 'potency':
                 effect.changes = [
                     {
@@ -94,44 +83,13 @@ export class ShieldEffectManager {
         const currentHp = shield.system.hp.value;
         const newHp = Math.max(0, currentHp - damage);
 
-        const effect: ShieldEffect = {
-            id: `${shield.id}-damage-${Date.now()}`,
-            label: 'Shield Damage',
-            icon: 'systems/pf2e/icons/effects/damaged.webp',
-            duration: {},
-            changes: [
-                {
-                    key: 'system.hp.value',
-                    mode: 5, // OVERRIDE mode
-                    value: newHp
-                }
-            ]
-        };
+        await shield.update({ 'system.hp.value': newHp });
 
-        await this.addEffect(shield, effect);
-
-        // Check for broken threshold
-        if (newHp <= shield.system.hp.brokenThreshold) {
-            await this.applyBrokenEffect(shield);
-        }
+        // PF2e derives the shield's broken state from HP and broken threshold.
     }
 
     public async applyBrokenEffect(shield: Shield): Promise<void> {
-        const effect: ShieldEffect = {
-            id: `${shield.id}-broken`,
-            label: 'Shield Broken',
-            icon: 'systems/pf2e/icons/effects/broken.webp',
-            duration: {},
-            changes: [
-                {
-                    key: 'system.traits.value',
-                    mode: 0, // CUSTOM mode - add trait
-                    value: 'broken'
-                }
-            ]
-        };
-
-        await this.addEffect(shield, effect);
+        return;
     }
 
     public async repair(shield: Shield, amount: number): Promise<void> {
@@ -139,28 +97,8 @@ export class ShieldEffectManager {
         const maxHp = shield.system.hp.max;
         const newHp = Math.min(maxHp, currentHp + amount);
 
-        const effect: ShieldEffect = {
-            id: `${shield.id}-repair-${Date.now()}`,
-            label: 'Shield Repair',
-            icon: 'systems/pf2e/icons/effects/repaired.webp',
-            duration: {},
-            changes: [
-                {
-                    key: 'system.hp.value',
-                    mode: 5, // OVERRIDE mode
-                    value: newHp
-                }
-            ]
-        };
+        await shield.update({ 'system.hp.value': newHp });
 
-        await this.addEffect(shield, effect);
-
-        // Remove broken effect if HP is above broken threshold
-        if (newHp > shield.system.hp.brokenThreshold) {
-            const brokenEffect = shield.effects?.find(e => e.id === `${shield.id}-broken`);
-            if (brokenEffect) {
-                await this.removeEffect(shield, brokenEffect.id);
-            }
-        }
+        // PF2e derives the shield's broken state from HP and broken threshold.
     }
 }

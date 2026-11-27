@@ -4,6 +4,8 @@ declare interface Game {
             RemovePropertyRune: (shieldParentId: string, shieldId: string, runeName: string) => Promise<void>;
             RemoveHardenedRune: (shieldParentId: string, shieldId: string) => Promise<void>;
             RemovePotencyRune: (shieldParentId: string, shieldId: string) => Promise<void>;
+            ApplyDamage: (shieldParentId: string, shieldId: string, damage: number) => Promise<void>;
+            Repair: (shieldParentId: string, shieldId: string, amount: number) => Promise<void>;
         }
     };
     settings: {
@@ -11,7 +13,9 @@ declare interface Game {
         get: (module: string, key: string) => any;
         set: (module: string, key: string, value: any) => Promise<void>;
     };
-    actors?: any[];
+    actors?: {
+        get(id: string): any;
+    } & any[];
 }
 
 declare const game: Game;

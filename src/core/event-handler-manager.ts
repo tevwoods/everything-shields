@@ -140,16 +140,29 @@ export class EventHandlerManager {
             if (hasMaterialChange) {
                 console.log('Material change detected:', changes);
                 await this.handleMaterialChange(itemAny);
+                const refreshedItem = itemAny.actor?.items?.get?.(itemAny.id) ?? itemAny;
+                await this.updatePriceAndLevel(refreshedItem);
+                await this.shieldManager.updateShieldName(refreshedItem);
+                const refreshedForDescription = itemAny.actor?.items?.get?.(itemAny.id) ?? refreshedItem;
+                await this.shieldManager.updateShieldDescription(refreshedForDescription);
             }
 
             // Update names and descriptions if needed
             // Check for any rune-related changes: system.runes, potencyRune, resiliencyRune, or propertyRune1/2/3
             const hasRuneChange = changes['system.runes'] || 
+                                 changes['system.runes.potency'] ||
+                                 changes['system.runes.hardened'] ||
+                                 changes['system.runes.reinforcing'] ||
                                  changes['system.potencyRune'] || 
                                  changes['system.resiliencyRune'] ||
                                  changes['system.propertyRune1'] ||
                                  changes['system.propertyRune2'] ||
                                  changes['system.propertyRune3'] ||
+                                 changes['system.potencyRune.value'] ||
+                                 changes['system.resiliencyRune.value'] ||
+                                 changes['system.propertyRune1.value'] ||
+                                 changes['system.propertyRune2.value'] ||
+                                 changes['system.propertyRune3.value'] ||
                                  (changes.system && ((changes.system as any).potencyRune || 
                                                     (changes.system as any).resiliencyRune ||
                                                     (changes.system as any).propertyRune1 ||
@@ -167,16 +180,20 @@ export class EventHandlerManager {
             }
 
             // Check for rune changes and apply effects
-            if (changes['system.runes']) {
-                const runes = changes['system.runes'];
-                if (runes.potency) {
-                    await this.shieldManager.addRune(shield, 'potency', runes.potency);
+            const runeUpdates = {
+                potency: changes['system.runes.potency'] ?? changes['system.runes']?.potency,
+                hardened: changes['system.runes.hardened'] ?? changes['system.runes']?.hardened,
+                reinforcing: changes['system.runes.reinforcing'] ?? changes['system.runes']?.reinforcing
+            };
+            if (Object.values(runeUpdates).some(value => value !== undefined)) {
+                if (runeUpdates.potency) {
+                    await this.shieldManager.addRune(shield, 'potency', runeUpdates.potency, false);
                 }
-                if (runes.hardened) {
-                    await this.shieldManager.addRune(shield, 'hardened', runes.hardened);
+                if (runeUpdates.hardened) {
+                    await this.shieldManager.addRune(shield, 'hardened', runeUpdates.hardened, false);
                 }
-                if (runes.reinforcing) {
-                    await this.shieldManager.addRune(shield, 'reinforcing', runes.reinforcing);
+                if (runeUpdates.reinforcing) {
+                    await this.shieldManager.addRune(shield, 'reinforcing', runeUpdates.reinforcing, false);
                 }
             }
         }
@@ -225,7 +242,7 @@ export class EventHandlerManager {
     }
 
     private getShieldCategory(shield: any): 'light' | 'medium' | 'heavy' {
-        const bulk = shield.system?.bulk?.value;
+        const bulk = shield.system?.bulk?.value ?? shield.flags?.['everything-shields']?.bulk;
         if (bulk === 'L' || bulk === 0 || !bulk) {
             return 'light';
         }
@@ -256,6 +273,7 @@ export class EventHandlerManager {
     }
 
     private getMaterialHPModifier(materialType: string, materialGrade?: string): number {
+        materialType = this.normalizeMaterialType(materialType);
         // Based on Everything Shields PDF Table 5-3
         // Returns flat HP adjustment (NOT affected by shield category)
         
@@ -273,10 +291,12 @@ export class EventHandlerManager {
             'abysium-standard-grade': 4,
             'adamantine-standard-grade': 20,
             'darkwood-standard-grade': 0,
+            'duskwood-standard-grade': 0,
             'djezet-standard-grade': 0,
-            'dragonhide-standard-grade': 4,
+            'dragonhide-standard-grade': -4,
             'inubrix-standard-grade': -4,
             'mithral-standard-grade': 0,
+            'dawnsilver-standard-grade': 0,
             'noqual-standard-grade': 4,
             'siccatite-standard-grade': 4,
             // High-grade materials
@@ -285,13 +305,16 @@ export class EventHandlerManager {
             'abysium-high-grade': 20,
             'adamantine-high-grade': 32,
             'darkwood-high-grade': 20,
+            'duskwood-high-grade': 20,
             'djezet-high-grade': 12,
             'dragonhide-high-grade': 12,
             'inubrix-high-grade': 8,
             'mithral-high-grade': 12,
+            'dawnsilver-high-grade': 12,
             'noqual-high-grade': 20,
             'siccatite-high-grade': 20,
             'orichalcum': 44,
+            'orichalcum-high-grade': 44,
             // Common materials (no grade)
             'wood': 0,
             'steel': 0,
@@ -302,6 +325,7 @@ export class EventHandlerManager {
     }
 
     private getMaterialHardnessModifier(materialType: string, materialGrade?: string): number {
+        materialType = this.normalizeMaterialType(materialType);
         // Based on Everything Shields PDF Table 5-3
         // Returns flat Hardness adjustment (NOT affected by shield category)
         
@@ -319,10 +343,12 @@ export class EventHandlerManager {
             'abysium-standard-grade': 1,
             'adamantine-standard-grade': 5,
             'darkwood-standard-grade': 0,
+            'duskwood-standard-grade': 0,
             'djezet-standard-grade': 0,
             'dragonhide-standard-grade': -1,
             'inubrix-standard-grade': -1,
             'mithral-standard-grade': 0,
+            'dawnsilver-standard-grade': 0,
             'noqual-standard-grade': 1,
             'siccatite-standard-grade': 1,
             // High-grade materials
@@ -331,13 +357,16 @@ export class EventHandlerManager {
             'abysium-high-grade': 5,
             'adamantine-high-grade': 13,
             'darkwood-high-grade': 3,
+            'duskwood-high-grade': 3,
             'djezet-high-grade': 3,
             'dragonhide-high-grade': 3,
             'inubrix-high-grade': 2,
             'mithral-high-grade': 3,
+            'dawnsilver-high-grade': 3,
             'noqual-high-grade': 5,
             'siccatite-high-grade': 5,
             'orichalcum': 11,
+            'orichalcum-high-grade': 11,
             // Common materials (no grade)
             'wood': 0,
             'steel': 0,
@@ -347,10 +376,18 @@ export class EventHandlerManager {
         return hardnessModifiers[key] ?? 0;
     }
 
+    private normalizeMaterialType(materialType: string): string {
+        const aliases: Record<string, string> = {
+            darkwood: 'duskwood',
+            mithral: 'dawnsilver'
+        };
+        return aliases[materialType] ?? materialType;
+    }
+
     private async handleMaterialChange(shieldItem: any): Promise<void> {
         // Get the base HP (wood HP with no material bonuses)
         const storedBaseHP = shieldItem.flags?.['everything-shields']?.baseHP;
-            const materialType = shieldItem.system.preciousMaterial?.value || shieldItem.system.material?.type || shieldItem.system.material?.precious?.type;
+            const materialType = this.normalizeMaterialType(shieldItem.system.preciousMaterial?.value || shieldItem.system.material?.type || shieldItem.system.material?.precious?.type);
             const materialGrade = shieldItem.system.preciousMaterialGrade?.value || shieldItem.system.material?.grade || shieldItem.system.material?.precious?.grade;
         const category = this.getShieldCategory(shieldItem);
         
@@ -361,9 +398,8 @@ export class EventHandlerManager {
         if (!baseHP) {
             const currentHP = shieldItem.system.hp.max;
             const potencyMultiplier = shieldItem.flags?.['everything-shields']?.potencyMultiplier || 1;
-            const oldMaterialModifier = shieldItem.flags?.['everything-shields']?.materialModifier || 0;
-            // Reverse: base = (current - material) / potency
-            baseHP = Math.floor((currentHP - oldMaterialModifier) / potencyMultiplier);
+            const currentMaterialModifier = this.getMaterialHPModifier(materialType, materialGrade);
+            baseHP = Math.floor((currentHP - currentMaterialModifier) / potencyMultiplier);
         }
         if (!baseHP) {
             // Fallback: use current HP as base
@@ -383,8 +419,9 @@ export class EventHandlerManager {
         const newBrokenThreshold = Math.floor(newMaxHP / 2);
 
         // Also update hardness with material modifier
-        const baseHardness = shieldItem.flags?.['everything-shields']?.baseHardness || shieldItem.system.hardness;
-            const materialHardnessModifier = this.getMaterialHardnessModifier(materialType, materialGrade);
+        const materialHardnessModifier = this.getMaterialHardnessModifier(materialType, materialGrade);
+        const storedBaseHardness = shieldItem.flags?.['everything-shields']?.baseHardness;
+        const baseHardness = storedBaseHardness ?? (shieldItem.system.hardness - materialHardnessModifier);
         const hardenedBonus = shieldItem.flags?.['everything-shields']?.hardenedBonus || 0;
         const newHardness = baseHardness + materialHardnessModifier + hardenedBonus;
 
@@ -393,15 +430,32 @@ export class EventHandlerManager {
             'system.hp.brokenThreshold': newBrokenThreshold,
             'system.hardness': newHardness,
             'flags.everything-shields.baseHP': baseHP,
+            'flags.everything-shields.baseHardness': baseHardness,
             'flags.everything-shields.materialModifier': materialModifier,
             'flags.everything-shields.materialHardnessModifier': materialHardnessModifier,
             'flags.everything-shields.isDivineAlly': isDivineAlly
         };
+        const interceptingMaterialOption = 'intercepting-shield:magical-or-unarmed';
+        const materialRules = [...(shieldItem.system.rules || [])].filter(
+            rule => rule.option !== interceptingMaterialOption
+        );
+        if (['djezet', 'noqual'].includes(materialType)) {
+            materialRules.push({
+                key: 'RollOption',
+                domain: 'all',
+                option: interceptingMaterialOption,
+                label: 'Djezet/Noqual Intercepting Shield'
+            });
+        }
+        updateData['system.rules'] = materialRules;
+        const baseBulk = shieldItem.flags?.['everything-shields']?.bulk ??
+            shieldItem.system.bulk?.value ??
+            shieldItem.system.weight?.value;
+        updateData['flags.everything-shields.bulk'] = baseBulk;
 
         // Apply material bulk modifier (e.g. darkwood/mithral reduce bulk, siccatite increases)
         const bulkMod = getMaterialBulkModifier(materialType, materialGrade);
         if (bulkMod !== 0) {
-            const baseBulk = shieldItem.flags?.['everything-shields']?.bulk;
             if (baseBulk !== undefined) {
                 // Bulk values in PF2e: 'L' = light, number = normal bulk
                 let newBulk: any = baseBulk;
@@ -447,7 +501,7 @@ export class EventHandlerManager {
         }
         
         // Get material modifier (flat addition, not affected by potency)
-        const materialType = shieldItem.system.preciousMaterial?.value || shieldItem.system.material?.type || shieldItem.system.material?.precious?.type;
+        const materialType = this.normalizeMaterialType(shieldItem.system.preciousMaterial?.value || shieldItem.system.material?.type || shieldItem.system.material?.precious?.type);
             const materialGrade = shieldItem.system.preciousMaterialGrade?.value || shieldItem.system.material?.grade || shieldItem.system.material?.precious?.grade;
             const materialModifier = this.getMaterialHPModifier(materialType, materialGrade);
         
@@ -507,10 +561,10 @@ export class EventHandlerManager {
      * Each rule gets a unique slug so multiple property runes' rules don't collide.
      * ChoiceSet flag references are also prefixed to keep selections separate.
      */
-    private async addRulesToShield(shieldItem: any, runeItem: any, runeName: string): Promise<void> {
+    private async addRulesToShield(shieldItem: any, runeItem: any, runeName: string): Promise<boolean> {
         const runeRules: any[] = runeItem?.system?.rules;
         if (!runeRules || runeRules.length === 0) {
-            return;
+            return true;
         }
 
         // Deep clone so we don't mutate the source item
@@ -539,7 +593,7 @@ export class EventHandlerManager {
                     const userChoice = await this.promptChoiceSetSelection(runeName, rule.choices);
                     if (userChoice === null) {
                         ui.notifications.warn(`Cancelled element selection for ${runeName}. Rules were not applied.`);
-                        return;
+                        return false;
                     }
                     choiceSetResolutions[originalFlag] = userChoice;
                 }
@@ -561,6 +615,8 @@ export class EventHandlerManager {
 
             // Mark each rule with its origin rune name so we can remove them later
             rule._esRuneSource = runeName;
+            rule.requiresEquipped = true;
+            rule.requiresInvestment = false;
 
             // Resolve any {item|flags.pf2e.rulesSelections.FLAG} templates
             // with the actual hardcoded choice value
@@ -580,7 +636,7 @@ export class EventHandlerManager {
         }
 
         if (rulesToAdd.length === 0) {
-            return;
+            return true;
         }
 
         // Merge into the shield's existing rules
@@ -589,6 +645,7 @@ export class EventHandlerManager {
 
         await shieldItem.update({ 'system.rules': existingRules });
         console.log(`Everything Shields | Added ${rulesToAdd.length} rule element(s) from ${runeName} to ${shieldItem.name}`);
+        return true;
     }
 
     /**
@@ -623,7 +680,7 @@ export class EventHandlerManager {
 
     /**
      * Remove a property rune's Rule Elements from the shield.
-     * Matches rules by the _esRuneSource tag we set during addRulesToShield().
+     * Matches persisted rule slugs because PF2e strips unknown rule fields.
      */
     private async removeRulesFromShield(shieldItem: any, runeName: string): Promise<void> {
         const existingRules: any[] = shieldItem.system.rules || [];
@@ -631,7 +688,11 @@ export class EventHandlerManager {
             return;
         }
 
-        const filteredRules = existingRules.filter((rule: any) => rule._esRuneSource !== runeName);
+        const runeTag = runeName.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase();
+        const filteredRules = existingRules.filter((rule: any) => {
+            const persistedSlug = typeof rule.slug === 'string' ? rule.slug.toLowerCase() : '';
+            return rule._esRuneSource !== runeName && !persistedSlug.includes(`-${runeTag}-`);
+        });
 
         if (filteredRules.length !== existingRules.length) {
             await shieldItem.update({ 'system.rules': filteredRules });
@@ -703,26 +764,29 @@ export class EventHandlerManager {
 
         // Feather Shield Rune → finesse trait
         if (runeName.toLowerCase().includes('feather')) {
-            if (!traits.includes('hb_shield-finesse')) {
-                traits.push('hb_shield-finesse');
+            if (!traits.includes('finesse')) {
+                traits.push('finesse');
                 changed = true;
             }
         }
 
-        // Throwing Shield Rune → thrown trait with range based on category
+        // Throwing Shield Rune → native shield-throw trait with PDF range by category.
+        // Returning is retained as a descriptive reaction trigger because PF2e 8.7
+        // does not expose a native weapon trait for returning thrown shields.
         if (runeName.toLowerCase().includes('throwing')) {
             const category = this.getShieldCategory(shieldItem);
-            const rangeMap: Record<string, number> = { light: 40, medium: 30, heavy: 20 };
-            const range = rangeMap[category] || 20;
-            const thrownTrait = `thrown-${range}`;
+            const rangeMap: Record<string, number> = { light: 25, medium: 20, heavy: 15 };
+            const range = rangeMap[category] || 15;
+            const thrownTrait = `shield-throw-${range}`;
             // Remove any existing thrown trait
-            const existingThrown = traits.findIndex(t => t.startsWith('thrown-'));
-            if (existingThrown >= 0) {
+            const existingThrown = traits.findIndex(t => t.startsWith('shield-throw-'));
+            if (existingThrown >= 0 && traits[existingThrown] !== thrownTrait) {
                 traits[existingThrown] = thrownTrait;
-            } else {
+                changed = true;
+            } else if (existingThrown < 0) {
                 traits.push(thrownTrait);
+                changed = true;
             }
-            changed = true;
         }
 
         if (changed) {
@@ -731,6 +795,10 @@ export class EventHandlerManager {
     }
 
     private async markAsSpecificMagicShield(shieldItem: any): Promise<void> {
+        if (!this.settings.getSetting<boolean>('should-apply-recommended-changes-to-specific-shields')) {
+            return;
+        }
+
         // Mark as specific magic shield if ANY magical modification is applied:
         // - Has runes (potency, hardened, or property runes)
         // - Has precious material (with or without runes)
@@ -787,6 +855,12 @@ export class EventHandlerManager {
         } else if (rawPrice && typeof rawPrice === 'object' && rawPrice.copperValue !== undefined) {
             // PF2e v6 uses copperValue, convert to gold
             priceValue = rawPrice.copperValue / 100;
+        } else if (rawPrice && typeof rawPrice === 'object') {
+            priceValue =
+                (rawPrice.pp || 0) * 10 +
+                (rawPrice.gp || 0) +
+                (rawPrice.sp || 0) / 10 +
+                (rawPrice.cp || 0) / 100;
         }
 
         console.log('Everything Shields | Preserving initial values:', {
@@ -923,8 +997,16 @@ export class EventHandlerManager {
         let basePrice = 0;
         if (typeof basePriceRaw === 'number') {
             basePrice = basePriceRaw;
-        } else if (basePriceRaw && typeof basePriceRaw === 'object' && basePriceRaw.copperValue !== undefined) {
-            basePrice = basePriceRaw.copperValue / 100;
+        } else if (basePriceRaw && typeof basePriceRaw === 'object') {
+            if (basePriceRaw.copperValue !== undefined) {
+                basePrice = basePriceRaw.copperValue / 100;
+            } else {
+                basePrice =
+                    (basePriceRaw.pp || 0) * 10 +
+                    (basePriceRaw.gp || 0) +
+                    (basePriceRaw.sp || 0) / 10 +
+                    (basePriceRaw.cp || 0) / 100;
+            }
         }
 
         console.log('Everything Shields | Reading from flags:', {
@@ -944,7 +1026,7 @@ export class EventHandlerManager {
         // Calculate material price and level
         let materialPrice = 0;
         let materialLevel = 0;
-        const materialType = shieldItem.system.preciousMaterial?.value || shieldItem.system.material?.type || shieldItem.system.material?.precious?.type;
+        const materialType = this.normalizeMaterialType(shieldItem.system.preciousMaterial?.value || shieldItem.system.material?.type || shieldItem.system.material?.precious?.type);
         const materialGrade = shieldItem.system.preciousMaterialGrade?.value || shieldItem.system.material?.grade || shieldItem.system.material?.precious?.grade;
         if (materialType && materialGrade) {
             const category = this.getShieldCategory(shieldItem);
@@ -1014,24 +1096,28 @@ export class EventHandlerManager {
         const goldAmount = Math.floor(totalPrice);
         const silverAmount = Math.floor((totalPrice - goldAmount) * 10);
         
-        // IMPORTANT: Mark as specific to prevent PF2e from overwriting price
-        // AND update both system.price and flags to persist through PF2e's prep cycle
         const updateData: any = {
-            'system.level.value': totalLevel,
-            'system.price.value': {
+            'system.level.value': totalLevel
+        };
+
+        if (this.settings.getSetting<boolean>('should-calculate-shield-prices')) {
+            updateData['system.price.value'] = {
                 gp: goldAmount,
                 sp: silverAmount,
                 cp: 0,
                 pp: 0
-            },
-            'system.price.per': 1,
-            // Store in flags so it persists through PF2e's data preparation
-            'flags.everything-shields.calculatedPrice': totalPrice
-        };
+            };
+            updateData['system.price.per'] = 1;
+            updateData['flags.everything-shields.calculatedPrice'] = totalPrice;
+        }
 
         console.log('Everything Shields | Price update data:', updateData);
 
         await shieldItem.update(updateData);
+    }
+
+    public async recalculatePriceAndLevel(shieldItem: any): Promise<void> {
+        await this.updatePriceAndLevel(shieldItem);
     }
 
     /**
@@ -1242,6 +1328,8 @@ export class EventHandlerManager {
                         // Check for exact duplicate and version conflicts
                         let isUpgradeVersion = false;
                         let lesserSlotIndex = -1;
+                        let assignedSlot = -1;
+                        let replacedRuneName: string | null = null;
                         for (let i = 0; i < propertyRunes.length; i++) {
                             const existingRune = propertyRunes[i];
                             if (!existingRune) continue;
@@ -1274,23 +1362,19 @@ export class EventHandlerManager {
                             }
 
                             const updateData: any = {};
+                            assignedSlot = slot + 1;
                             updateData[`system.propertyRune${slot+1}.value`] = runeName;
                             await shieldItem.update(updateData);
                         } else {
                             // Upgrade: replace the lesser rune in its slot
                             const slotNum = lesserSlotIndex + 1;
-                            const replacedRuneName = propertyRunes[lesserSlotIndex];
-
-                            // Remove the old rune's Rule Elements before replacing
-                            await this.removeRulesFromShield(shieldItem, replacedRuneName);
+                            replacedRuneName = propertyRunes[lesserSlotIndex];
+                            assignedSlot = slotNum;
 
                             const updateData: any = {};
                             updateData[`system.propertyRune${slotNum}.value`] = runeName;
                             await shieldItem.update(updateData);
                             
-                            // Return the replaced (lesser) rune to inventory
-                            await this.returnRuneToInventory(shieldItem.parent || shieldItem.actor, replacedRuneName, false);
-                            ui.notifications.info(`Upgraded ${replacedRuneName} to ${runeName}.`);
                         }
                         
                         // Reload shield item from actor to get fresh data
@@ -1303,7 +1387,24 @@ export class EventHandlerManager {
                         // Copy the rune's Rule Elements onto the shield
                         // (e.g. Energy-Resistant's ChoiceSet for element selection)
                         if (runeItemData) {
-                            await this.addRulesToShield(reloadedShieldAfterRune, runeItemData, runeName);
+                            const rulesApplied = await this.addRulesToShield(reloadedShieldAfterRune, runeItemData, runeName);
+                            if (!rulesApplied) {
+                                const restoreRune = isUpgradeVersion ? replacedRuneName : null;
+                                const rollbackSlot = assignedSlot;
+                                await reloadedShieldAfterRune.update({
+                                    [`system.propertyRune${rollbackSlot}.value`]: restoreRune
+                                });
+                                return;
+                            }
+                        }
+
+                        if (isUpgradeVersion && replacedRuneName) {
+                            await this.removeRulesFromShield(
+                                reloadedShieldAfterRune,
+                                replacedRuneName
+                            );
+                            await this.returnRuneToInventory(reloadedShieldAfterRune.parent || reloadedShieldAfterRune.actor, replacedRuneName, false);
+                            ui.notifications.info(`Upgraded ${replacedRuneName} to ${runeName}.`);
                         }
                         
                         // Apply invested trait for property runes
@@ -1313,6 +1414,7 @@ export class EventHandlerManager {
                         await this.applyPropertyRuneTraits(reloadedShieldAfterRune, runeName);
                         
                         await this.markAsSpecificMagicShield(reloadedShieldAfterRune);
+                        await this.updatePriceAndLevel(reloadedShieldAfterRune);
                         
                         // Update shield name with new property rune
                         await this.shieldManager.updateShieldName(reloadedShieldAfterRune);

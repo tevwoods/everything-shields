@@ -114,10 +114,24 @@ export class ShieldManager {
 
             // Remove any Rule Elements that were copied from this property rune
             const existingRules: any[] = (shield as any).system.rules || [];
-            const filteredRules = existingRules.filter((rule: any) => rule._esRuneSource !== runeName);
+            const runeTag = runeName.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase();
+            const filteredRules = existingRules.filter((rule: any) => {
+                const slug = typeof rule.slug === 'string' ? rule.slug.toLowerCase() : '';
+                return rule._esRuneSource !== runeName && !slug.includes(`-${runeTag}-`);
+            });
             if (filteredRules.length !== existingRules.length) {
                 await shield.update({ 'system.rules': filteredRules });
                 console.log(`Everything Shields | Removed ${existingRules.length - filteredRules.length} rule element(s) for ${runeName}`);
+            }
+
+            const updatedShield = (parent as any).items.get(shieldId);
+            if (updatedShield) {
+                await this.removePropertyRuneTraits(updatedShield, runeName);
+            }
+            const refreshedShield = (parent as any).items.get(shieldId);
+            if (refreshedShield) {
+                const { EventHandlerManager } = await import('./event-handler-manager');
+                await EventHandlerManager.getInstance().recalculatePriceAndLevel(refreshedShield);
             }
 
             // Return the removed rune to the actor's inventory
@@ -278,6 +292,29 @@ export class ShieldManager {
         }
     }
 
+    private async removePropertyRuneTraits(shield: any, runeName: string): Promise<void> {
+        const remainingRunes = [
+            shield.system.propertyRune1?.value,
+            shield.system.propertyRune2?.value,
+            shield.system.propertyRune3?.value
+        ].filter(Boolean) as string[];
+        const traits: string[] = [...(shield.system.traits?.value || [])];
+        const lowerName = runeName.toLowerCase();
+        const hasRemaining = (pattern: RegExp) => remainingRunes.some(name => pattern.test(name));
+
+        if (lowerName.includes('feather') && !hasRemaining(/feather/i)) {
+            traits.splice(traits.indexOf('finesse'), traits.includes('finesse') ? 1 : 0);
+        }
+        if (lowerName.includes('throwing') && !hasRemaining(/throwing/i)) {
+            const shieldThrowIndex = traits.findIndex(trait => trait.startsWith('shield-throw-'));
+            if (shieldThrowIndex >= 0) traits.splice(shieldThrowIndex, 1);
+        }
+
+        if (traits.length !== shield.system.traits?.value?.length) {
+            await shield.update({ 'system.traits.value': traits });
+        }
+    }
+
     public async repair(shield: Shield, amount: number): Promise<void> {
         try {
             await this.effectManager.repair(shield, amount);
@@ -286,7 +323,7 @@ export class ShieldManager {
         }
     }
 
-    public async addRune(shield: Shield, runeType: string, value: number): Promise<void> {
+    public async addRune(shield: Shield, runeType: string, value: number, persist = true): Promise<void> {
         try {
             if (this.settings.getSetting<boolean>('use-reinforcing-rune-instead-of-potency-and-hardened')) {
                 if (runeType === 'potency' || runeType === 'hardened') {
@@ -297,11 +334,13 @@ export class ShieldManager {
             await this.effectManager.applyRuneEffect(shield, runeType, value);
 
             // Update the rune system data
-            const update = {
-                [`system.runes.${runeType}`]: value
-            };
-
-            await UpdateGuard.runExclusive(shield.id, async () => shield.update(update));
+            const currentValue = (shield.system.runes as any)?.[runeType];
+            if (persist && currentValue !== value) {
+                const update = {
+                    [`system.runes.${runeType}`]: value
+                };
+                await UpdateGuard.runExclusive(shield.id, async () => shield.update(update));
+            }
 
         } catch (error) {
             handleError(error as Error);

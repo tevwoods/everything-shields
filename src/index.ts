@@ -8,6 +8,39 @@ import { organizeCompendiums } from './core/compendium-organizer';
 Hooks.once('init', () => {
     console.log('Everything Shields | Initializing module');
     try {
+        const pf2e = (globalThis as any).CONFIG.PF2E;
+        Object.assign(pf2e.shieldTraits, {
+            finesse: pf2e.weaponTraits.finesse,
+            'shield-throw-15': 'ES.Trait.ShieldThrow15',
+            'shield-throw-25': 'ES.Trait.ShieldThrow25'
+        });
+        Object.assign(pf2e.traitsDescriptions, {
+            finesse: pf2e.traitsDescriptions.finesse,
+            'shield-throw-15': 'ES.TraitDescription.ShieldThrow',
+            'shield-throw-25': 'ES.TraitDescription.ShieldThrow'
+        });
+        const ShieldClass = pf2e.Item?.documentClasses?.shield;
+        if (ShieldClass && !ShieldClass.prototype.__everythingShieldsPrepared) {
+            const prepareBaseData = ShieldClass.prototype.prepareBaseData;
+            ShieldClass.prototype.prepareBaseData = function() {
+                prepareBaseData.call(this);
+                const flags = (this as any).flags?.['everything-shields'];
+                if (!flags?.baseHP || !flags?.baseHardness) return;
+
+                const hpMultiplier = flags.potencyMultiplier ?? 1;
+                const divineAllyMultiplier = flags.isDivineAlly ? 1.5 : 1;
+                this.system.hp.max = Math.floor(
+                    (Math.floor(flags.baseHP * hpMultiplier) + (flags.materialModifier ?? 0)) *
+                    divineAllyMultiplier
+                );
+                this.system.hp.brokenThreshold = Math.floor(this.system.hp.max / 2);
+                this.system.hardness =
+                    flags.baseHardness +
+                    (flags.materialHardnessModifier ?? 0) +
+                    (flags.hardenedBonus ?? 0);
+            };
+            ShieldClass.prototype.__everythingShieldsPrepared = true;
+        }
         // Initialize settings first
         const settings = SettingsManager.getInstance();
         settings.init();
@@ -28,7 +61,19 @@ Hooks.once('setup', () => {
             RemoveHardenedRune: (shieldParentId: string, shieldId: string) => 
                 shieldManager.removeHardenedRune({ shieldParentId, shieldId }),
             RemovePotencyRune: (shieldParentId: string, shieldId: string) => 
-                shieldManager.removePotencyRune({ shieldParentId, shieldId })
+                shieldManager.removePotencyRune({ shieldParentId, shieldId }),
+            ApplyDamage: async (shieldParentId: string, shieldId: string, damage: number) => {
+                const actor = game.actors?.get(shieldParentId);
+                const shield = actor?.items.get(shieldId);
+                if (!shield) throw new Error(`Could not find shield with ID ${shieldId}`);
+                return shieldManager.applyDamage(shield as any, damage);
+            },
+            Repair: async (shieldParentId: string, shieldId: string, amount: number) => {
+                const actor = game.actors?.get(shieldParentId);
+                const shield = actor?.items.get(shieldId);
+                if (!shield) throw new Error(`Could not find shield with ID ${shieldId}`);
+                return shieldManager.repair(shield as any, amount);
+            }
         };
     } catch (error) {
         handleError(error as Error);
@@ -82,6 +127,16 @@ Hooks.on('preUpdateItem', (
                                      (changes.system && ((changes.system as any).preciousMaterial || (changes.system as any).preciousMaterialGrade || (changes.system as any).material));
             if (hasMaterialChange && !options.everythingShieldsRecalculating) {
                 console.log('preUpdateItem - Material change detected, intercepting HP change');
+                if (!(itemAny.flags?.['everything-shields']?.baseHP)) {
+                    if (itemAny.system.hp?.max !== undefined) {
+                        changes['flags.everything-shields.baseHP'] = itemAny.system.hp.max;
+                    }
+                }
+                if (!(itemAny.flags?.['everything-shields']?.baseHardness)) {
+                    if (itemAny.system.hardness !== undefined) {
+                        changes['flags.everything-shields.baseHardness'] = itemAny.system.hardness;
+                    }
+                }
                 // Remove HP changes from the update - we'll recalculate them
                 if (changes.system && (changes.system as any).hp) {
                     delete (changes.system as any).hp;

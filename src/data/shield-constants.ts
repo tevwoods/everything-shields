@@ -144,7 +144,7 @@ export const PRECIOUS_MATERIAL_PRICES: Record<string, Record<string, MaterialGra
         high: { level: 16, prices: { light: 8000, medium: 8800, heavy: 11200 }, bulk: -1 },
     },
     djezet: {
-        standard: { level: 9, prices: { light: 600, medium: 660, heavy: 660 } },
+        standard: { level: 8, prices: { light: 600, medium: 660, heavy: 660 } },
         high: { level: 16, prices: { light: 8000, medium: 8800, heavy: 8800 } },
     },
     dragonhide: {
@@ -192,7 +192,7 @@ export const PROPERTY_RUNE_PRICES: Record<string, { price: number; level: number
  */
 export function getMaterialPrice(materialType: string, materialGrade: string, category: 'light' | 'medium' | 'heavy'): number {
     // Normalize material names: Foundry uses 'coldIron' or 'cold-iron'
-    const normalizedType = materialType.replace(/([A-Z])/g, '-$1').toLowerCase().replace(/^-/, '');
+    const normalizedType = normalizeMaterialDataKey(materialType);
     const gradeData = PRECIOUS_MATERIAL_PRICES[normalizedType]?.[materialGrade];
     return gradeData?.prices?.[category] ?? 0;
 }
@@ -201,7 +201,7 @@ export function getMaterialPrice(materialType: string, materialGrade: string, ca
  * Get the material level for a given material type and grade.
  */
 export function getMaterialLevel(materialType: string, materialGrade: string): number {
-    const normalizedType = materialType.replace(/([A-Z])/g, '-$1').toLowerCase().replace(/^-/, '');
+    const normalizedType = normalizeMaterialDataKey(materialType);
     return PRECIOUS_MATERIAL_PRICES[normalizedType]?.[materialGrade]?.level ?? 0;
 }
 
@@ -210,6 +210,15 @@ export function getMaterialLevel(materialType: string, materialGrade: string): n
  * Returns 0 if no modifier, -1 for lighter materials, +1 for heavier materials.
  */
 export function getMaterialBulkModifier(materialType: string, materialGrade: string): number {
-    const normalizedType = materialType.replace(/([A-Z])/g, '-$1').toLowerCase().replace(/^-/, '');
+    const normalizedType = normalizeMaterialDataKey(materialType);
     return PRECIOUS_MATERIAL_PRICES[normalizedType]?.[materialGrade]?.bulk ?? 0;
+}
+
+function normalizeMaterialDataKey(materialType: string): string {
+    const normalized = materialType.replace(/([A-Z])/g, '-$1').toLowerCase().replace(/^-/, '');
+    const aliases: Record<string, string> = {
+        duskwood: 'darkwood',
+        dawnsilver: 'mithral'
+    };
+    return aliases[normalized] ?? normalized;
 }
