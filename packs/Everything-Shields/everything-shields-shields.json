@@ -1,7 +1,7 @@
 [
   {
     "name": "Viking Shield",
-    "type": "armor",
+    "type": "shield",
     "img": "systems/pf2e/icons/equipment/shields/specific-shields/burr-shield.webp",
     "effects": [],
     "folder": null,
@@ -48,9 +48,6 @@
         "max": 15
       },
       "hardness": 5,
-      "weight": {
-        "value": "1"
-      },
       "equippedBulk": {
         "value": ""
       },
@@ -61,7 +58,6 @@
       },
       "equipped": {
         "carryType": "worn",
-        "invested": null,
         "handsHeld": 0
       },
       "stackGroup": null,
@@ -90,15 +86,13 @@
         "misidentified": {}
       },
       "usage": {
+        "type": "held",
+        "hands": 1,
         "value": "held-in-one-hand"
       },
       "level": {
         "value": 0
       },
-      "armor": {
-        "value": 2
-      },
-      "category": "shield",
       "group": null,
       "strength": {
         "value": 0
@@ -129,6 +123,12 @@
       },
       "propertyRune4": {
         "value": null
+      },
+      "acBonus": 2,
+      "bulk": {
+        "heldOrStowed": 1,
+        "value": 1,
+        "per": 1
       }
     },
     "ownership": {
@@ -148,7 +148,7 @@
   },
   {
     "name": "Fist Shield",
-    "type": "armor",
+    "type": "shield",
     "img": "systems/pf2e/icons/equipment/shields/specific-shields/glamorous-buckler.webp",
     "effects": [],
     "folder": null,
@@ -193,9 +193,6 @@
         "max": 10
       },
       "hardness": 4,
-      "weight": {
-        "value": "L"
-      },
       "equippedBulk": {
         "value": ""
       },
@@ -206,7 +203,6 @@
       },
       "equipped": {
         "carryType": "worn",
-        "invested": null,
         "handsHeld": 0
       },
       "stackGroup": null,
@@ -235,15 +231,13 @@
         "misidentified": {}
       },
       "usage": {
+        "type": "held",
+        "hands": 1,
         "value": "held-in-one-hand"
       },
       "level": {
         "value": 0
       },
-      "armor": {
-        "value": 1
-      },
-      "category": "shield",
       "group": null,
       "strength": {
         "value": 0
@@ -274,6 +268,12 @@
       },
       "propertyRune4": {
         "value": null
+      },
+      "acBonus": 1,
+      "bulk": {
+        "heldOrStowed": "L",
+        "value": "L",
+        "per": 1
       }
     },
     "ownership": {
@@ -293,7 +293,7 @@
   },
   {
     "name": "Heater Shield",
-    "type": "armor",
+    "type": "shield",
     "img": "systems/pf2e/icons/equipment/shields/specific-shields/sturdy-shield.webp",
     "effects": [],
     "folder": null,
@@ -340,9 +340,6 @@
         "max": 18
       },
       "hardness": 5,
-      "weight": {
-        "value": "1"
-      },
       "equippedBulk": {
         "value": ""
       },
@@ -353,7 +350,6 @@
       },
       "equipped": {
         "carryType": "worn",
-        "invested": null,
         "handsHeld": 0
       },
       "stackGroup": null,
@@ -382,15 +378,13 @@
         "misidentified": {}
       },
       "usage": {
+        "type": "held",
+        "hands": 1,
         "value": "held-in-one-hand"
       },
       "level": {
         "value": 0
       },
-      "armor": {
-        "value": 2
-      },
-      "category": "shield",
       "group": null,
       "strength": {
         "value": 0
@@ -421,6 +415,12 @@
       },
       "propertyRune4": {
         "value": null
+      },
+      "acBonus": 2,
+      "bulk": {
+        "heldOrStowed": 1,
+        "value": 1,
+        "per": 1
       }
     },
     "ownership": {
@@ -440,7 +440,7 @@
   },
   {
     "name": "Scutum",
-    "type": "armor",
+    "type": "shield",
     "img": "systems/pf2e/icons/equipment/shields/precious-material-shields/adamantite-shield.webp",
     "effects": [],
     "folder": null,
@@ -467,7 +467,34 @@
         "custom": "",
         "otherTags": []
       },
-      "rules": [],
+      "rules": [
+        {
+          "key": "FlatModifier",
+          "selector": "acrobatics",
+          "type": "circumstance",
+          "value": -2,
+          "label": "Cumbersome Shield",
+          "slug": "cumbersome-shield"
+        },
+        {
+          "key": "RollOption",
+          "domain": "all",
+          "option": "deflecting-shield",
+          "toggleable": true,
+          "label": "Deflecting Shield: ranged Shield Block"
+        },
+        {
+          "key": "ActiveEffectLike",
+          "mode": "add",
+          "path": "system.attributes.shield.hardness",
+          "value": 2,
+          "phase": "afterDerived",
+          "slug": "deflecting-shield-hardness",
+          "predicate": [
+            "deflecting-shield"
+          ]
+        }
+      ],
       "slug": null,
       "schema": {
         "version": 0.93,
@@ -481,16 +508,13 @@
         }
       },
       "quantity": 1,
-      "baseItem": null,
+      "baseItem": "tower-shield",
       "hp": {
         "brokenThreshold": 13,
         "value": 26,
         "max": 26
       },
       "hardness": 6,
-      "weight": {
-        "value": "4"
-      },
       "equippedBulk": {
         "value": ""
       },
@@ -501,7 +525,6 @@
       },
       "equipped": {
         "carryType": "worn",
-        "invested": null,
         "handsHeld": 0
       },
       "stackGroup": null,
@@ -530,15 +553,13 @@
         "misidentified": {}
       },
       "usage": {
+        "type": "held",
+        "hands": 1,
         "value": "held-in-one-hand"
       },
       "level": {
         "value": 0
       },
-      "armor": {
-        "value": 2
-      },
-      "category": "shield",
       "group": null,
       "strength": {
         "value": 0
@@ -569,7 +590,14 @@
       },
       "propertyRune4": {
         "value": null
-      }
+      },
+      "acBonus": 2,
+      "bulk": {
+        "heldOrStowed": 4,
+        "value": 4,
+        "per": 1
+      },
+      "speedPenalty": -5
     },
     "ownership": {
       "default": 0,
@@ -588,7 +616,7 @@
   },
   {
     "name": "Pavise",
-    "type": "armor",
+    "type": "shield",
     "img": "systems/pf2e/icons/equipment/shields/specific-shields/guardian-shield.webp",
     "effects": [],
     "folder": null,
@@ -614,7 +642,16 @@
         "custom": "",
         "otherTags": []
       },
-      "rules": [],
+      "rules": [
+        {
+          "key": "FlatModifier",
+          "selector": "acrobatics",
+          "type": "circumstance",
+          "value": -2,
+          "label": "Cumbersome Shield",
+          "slug": "cumbersome-shield"
+        }
+      ],
       "slug": null,
       "schema": {
         "version": 0.93,
@@ -628,16 +665,13 @@
         }
       },
       "quantity": 1,
-      "baseItem": null,
+      "baseItem": "tower-shield",
       "hp": {
         "brokenThreshold": 14,
         "value": 28,
         "max": 28
       },
       "hardness": 7,
-      "weight": {
-        "value": "5"
-      },
       "equippedBulk": {
         "value": ""
       },
@@ -648,7 +682,6 @@
       },
       "equipped": {
         "carryType": "worn",
-        "invested": null,
         "handsHeld": 0
       },
       "stackGroup": null,
@@ -677,15 +710,13 @@
         "misidentified": {}
       },
       "usage": {
+        "type": "held",
+        "hands": 1,
         "value": "held-in-one-hand"
       },
       "level": {
         "value": 0
       },
-      "armor": {
-        "value": 2
-      },
-      "category": "shield",
       "group": null,
       "strength": {
         "value": 0
@@ -716,7 +747,14 @@
       },
       "propertyRune4": {
         "value": null
-      }
+      },
+      "acBonus": 2,
+      "bulk": {
+        "heldOrStowed": 5,
+        "value": 5,
+        "per": 1
+      },
+      "speedPenalty": -10
     },
     "ownership": {
       "default": 0,
@@ -735,7 +773,7 @@
   },
   {
     "name": "Shield Gauntlet",
-    "type": "armor",
+    "type": "shield",
     "img": "systems/pf2e/icons/equipment/weapons/spiked-gauntlet.webp",
     "effects": [],
     "folder": null,
@@ -755,7 +793,7 @@
       },
       "traits": {
         "value": [
-          "hb_shield-finesse"
+          "finesse"
         ],
         "rarity": "common",
         "custom": "",
@@ -782,9 +820,6 @@
         "max": 5
       },
       "hardness": 2,
-      "weight": {
-        "value": "L"
-      },
       "equippedBulk": {
         "value": ""
       },
@@ -795,7 +830,6 @@
       },
       "equipped": {
         "carryType": "worn",
-        "invested": null,
         "handsHeld": 0
       },
       "stackGroup": null,
@@ -824,15 +858,13 @@
         "misidentified": {}
       },
       "usage": {
+        "type": "held",
+        "hands": 1,
         "value": "held-in-one-hand"
       },
       "level": {
         "value": 0
       },
-      "armor": {
-        "value": 1
-      },
-      "category": "shield",
       "group": null,
       "strength": {
         "value": 0
@@ -863,6 +895,12 @@
       },
       "propertyRune4": {
         "value": null
+      },
+      "acBonus": 1,
+      "bulk": {
+        "heldOrStowed": "L",
+        "value": "L",
+        "per": 1
       }
     },
     "ownership": {
@@ -882,7 +920,7 @@
   },
   {
     "name": "Targe",
-    "type": "armor",
+    "type": "shield",
     "img": "systems/pf2e/icons/equipment/shields/precious-material-shields/adamantite-buckler.webp",
     "effects": [],
     "folder": null,
@@ -895,14 +933,14 @@
     "_id": "gwGk0Nab3tcCJfhQ",
     "system": {
       "description": {
-        "value": "<p>This light wooden shield is favored by close-quarters fghters. Most targes feature two thin wooden planks bolted together such that the grain of the wood is perpendicular to increase strength. It is light enough to wield a small weapon in the same hand that the targe is strapped to. You can Raise a Shield with your targe while carrying an object of light bulk, or while wielding a weapon of light bulk that has the agile trait. If you make an attack with this weapon while the shield is raised, your shield is no longer raised after the attack.</p>\n<table class=\"pf2-table\">\n<thead>\n<tr>\n<th>Hardness</th>\n<th>HP</th>\n<th>BT</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td class=\"everything-shields_hardness\">1</td>\n<td class=\"everything-shields_hit-points\">4</td>\n<td class=\"everything-shields_broken-threshold\">2</td>\n</tr>\n</tbody>\n</table>"
+        "value": "<p>This light wooden shield is favored by close-quarters fighters. Most targes feature two thin wooden planks bolted together such that the grain of the wood is perpendicular to increase strength. It is light enough to wield a small weapon in the same hand that the targe is strapped to. You can Raise a Shield with your targe while carrying an object of light bulk, or while wielding a weapon of light bulk that has the agile trait. If you make an attack with this weapon while the shield is raised, your shield is no longer raised after the attack.</p>\n<table class=\"pf2-table\">\n<thead>\n<tr>\n<th>Hardness</th>\n<th>HP</th>\n<th>BT</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td class=\"everything-shields_hardness\">1</td>\n<td class=\"everything-shields_hit-points\">4</td>\n<td class=\"everything-shields_broken-threshold\">2</td>\n</tr>\n</tbody>\n</table>"
       },
       "source": {
         "value": "Everything Shields"
       },
       "traits": {
         "value": [
-          "hb_shield-finesse"
+          "finesse"
         ],
         "rarity": "common",
         "custom": "",
@@ -929,9 +967,6 @@
         "max": 4
       },
       "hardness": 1,
-      "weight": {
-        "value": "L"
-      },
       "equippedBulk": {
         "value": ""
       },
@@ -942,7 +977,6 @@
       },
       "equipped": {
         "carryType": "worn",
-        "invested": null,
         "handsHeld": 0
       },
       "stackGroup": null,
@@ -971,15 +1005,13 @@
         "misidentified": {}
       },
       "usage": {
+        "type": "held",
+        "hands": 1,
         "value": "held-in-one-hand"
       },
       "level": {
         "value": 0
       },
-      "armor": {
-        "value": 1
-      },
-      "category": "shield",
       "group": null,
       "strength": {
         "value": 0
@@ -1010,6 +1042,12 @@
       },
       "propertyRune4": {
         "value": null
+      },
+      "acBonus": 1,
+      "bulk": {
+        "heldOrStowed": "L",
+        "value": "L",
+        "per": 1
       }
     },
     "ownership": {
@@ -1030,7 +1068,7 @@
   {
     "_id": "kjGBQuDDpcq4OCSP",
     "name": "Hoplon",
-    "type": "armor",
+    "type": "shield",
     "img": "systems/pf2e/icons/equipment/shields/precious-material-shields/cold-Iron-buckler.webp",
     "effects": [],
     "folder": null,
@@ -1074,9 +1112,6 @@
         "max": 24
       },
       "hardness": 5,
-      "weight": {
-        "value": "2"
-      },
       "equippedBulk": {
         "value": ""
       },
@@ -1087,7 +1122,6 @@
       },
       "equipped": {
         "carryType": "worn",
-        "invested": null,
         "handsHeld": 0
       },
       "stackGroup": null,
@@ -1116,15 +1150,13 @@
         "misidentified": {}
       },
       "usage": {
+        "type": "held",
+        "hands": 1,
         "value": "held-in-one-hand"
       },
       "level": {
         "value": 0
       },
-      "armor": {
-        "value": 2
-      },
-      "category": "shield",
       "group": null,
       "strength": {
         "value": 0
@@ -1155,7 +1187,14 @@
       },
       "propertyRune4": {
         "value": null
-      }
+      },
+      "acBonus": 2,
+      "bulk": {
+        "heldOrStowed": 2,
+        "value": 2,
+        "per": 1
+      },
+      "speedPenalty": -5
     },
     "ownership": {
       "default": 0,
@@ -1174,7 +1213,7 @@
   },
   {
     "name": "Kite Shield",
-    "type": "armor",
+    "type": "shield",
     "img": "systems/pf2e/icons/equipment/shields/specific-shields/arrow-catching-shield.webp",
     "effects": [],
     "folder": null,
@@ -1200,7 +1239,26 @@
         "custom": "",
         "otherTags": []
       },
-      "rules": [],
+      "rules": [
+        {
+          "key": "RollOption",
+          "domain": "all",
+          "option": "deflecting-shield",
+          "toggleable": true,
+          "label": "Deflecting Shield: ranged Shield Block"
+        },
+        {
+          "key": "ActiveEffectLike",
+          "mode": "add",
+          "path": "system.attributes.shield.hardness",
+          "value": 2,
+          "phase": "afterDerived",
+          "slug": "deflecting-shield-hardness",
+          "predicate": [
+            "deflecting-shield"
+          ]
+        }
+      ],
       "slug": null,
       "schema": {
         "version": 0.93,
@@ -1221,9 +1279,6 @@
         "max": 22
       },
       "hardness": 4,
-      "weight": {
-        "value": "1"
-      },
       "equippedBulk": {
         "value": ""
       },
@@ -1234,7 +1289,6 @@
       },
       "equipped": {
         "carryType": "worn",
-        "invested": null,
         "handsHeld": 0
       },
       "stackGroup": null,
@@ -1263,15 +1317,13 @@
         "misidentified": {}
       },
       "usage": {
+        "type": "held",
+        "hands": 1,
         "value": "held-in-one-hand"
       },
       "level": {
         "value": 0
       },
-      "armor": {
-        "value": 2
-      },
-      "category": "shield",
       "group": null,
       "strength": {
         "value": 0
@@ -1302,6 +1354,12 @@
       },
       "propertyRune4": {
         "value": null
+      },
+      "acBonus": 2,
+      "bulk": {
+        "heldOrStowed": 1,
+        "value": 1,
+        "per": 1
       }
     },
     "ownership": {

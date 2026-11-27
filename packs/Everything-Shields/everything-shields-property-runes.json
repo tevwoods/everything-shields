@@ -600,12 +600,10 @@
         {
           "key": "Sense",
           "label": "{item|name}",
-          "selector": "lowLightVision",
-          "predicate": {
-            "all": [
-              "self:effect:raise-a-shield"
-            ]
-          }
+          "selector": "low-light-vision",
+          "predicate": [
+            "self:effect:raise-a-shield"
+          ]
         }
       ],
       "slug": null,
@@ -813,7 +811,7 @@
         "value": [
           "magical"
         ],
-        "rarity": "common",
+        "rarity": "rare",
         "custom": "",
         "otherTags": []
       },
@@ -2021,12 +2019,14 @@
           "selector": "perception",
           "type": "item",
           "value": 1,
-          "predicate": {
-            "any": [
-              "action:sense-motive",
-              "disbelieve-an-illusion"
-            ]
-          }
+          "predicate": [
+            {
+              "or": [
+                "action:sense-motive",
+                "disbelieve-an-illusion"
+              ]
+            }
+          ]
         }
       ],
       "slug": null,
@@ -2877,7 +2877,7 @@
     "flags": {},
     "system": {
       "description": {
-        "value": "<p>This circular rune imbues your shield with the power to surround you with breathable air.</p>\n<p>In addition, when activating this rune the wielder also gains the effects of 3rd-level <em>endure elements</em>. Both effects last for 24 hours. These effects can now also be triggered when the wielder enters an area of severe cold or heat.</p>\n<hr />\n<p><strong>Activate</strong>&nbsp;<span class=\"pf2-icon\">r</span> envision; <strong>Frequency</strong> once per day; <strong>Trigger</strong> You enter an area&nbsp; where you cannot breathe or an area of severe hear or cold; <strong>Effect</strong> a protective bubble emerges from your shield, granting you the benefits of @Compendium[pf2e.spells-srd.W69zswpj0Trdy5rj]{Air Bubble}<em>&nbsp;</em>and @Compendium[pf2e.spells-srd.5esP2GVzvxWsMgaX]{Endure Elements}. Both effects last for 24 hours.</p>\n<p>&nbsp;</p>\n<p>&nbsp;</p>"
+        "value": "<p>This circular rune imbues your shield with the power to surround you with breathable air.</p>\n<p>In addition, when activating this rune the wielder also gains the effects of 3rd-rank <em>environmental endurance</em>. Both effects last for 24 hours. These effects can now also be triggered when the wielder enters an area of severe cold or heat.</p>\n<hr>\n<p><strong>Activate</strong> <span class=\"pf2-icon\">r</span> envision; <strong>Frequency</strong> once per day; <strong>Trigger</strong> You enter an area where you cannot breathe or an area of severe cold or heat; <strong>Effect</strong> A protective bubble emerges from your shield, granting you the benefits of  <em>air bubble</em> and 3rd-rank <em>environmental endurance</em>. Both effects last for 24 hours.</p>"
       },
       "source": {
         "value": "Everything Shields"
@@ -4090,12 +4090,14 @@
           "selector": "perception",
           "type": "item",
           "value": 2,
-          "predicate": {
-            "any": [
-              "action:sense-motive",
-              "disbelieve-an-illusion"
-            ]
-          }
+          "predicate": [
+            {
+              "or": [
+                "action:sense-motive",
+                "disbelieve-an-illusion"
+              ]
+            }
+          ]
         }
       ],
       "slug": null,
@@ -4320,11 +4322,9 @@
           "selector": "deception",
           "value": 1,
           "type": "item",
-          "predicate": {
-            "all": [
-              "action:feint"
-            ]
-          }
+          "predicate": [
+            "action:feint"
+          ]
         }
       ],
       "slug": null,
@@ -4886,12 +4886,14 @@
           "selector": "perception",
           "type": "item",
           "value": 3,
-          "predicate": {
-            "any": [
-              "action:sense-motive",
-              "disbelieve-an-illusion"
-            ]
-          }
+          "predicate": [
+            {
+              "or": [
+                "action:sense-motive",
+                "disbelieve-an-illusion"
+              ]
+            }
+          ]
         }
       ],
       "slug": null,
@@ -6339,13 +6341,11 @@
           "label": "Spellguarding Shield Rune (saves against spells)",
           "selector": "saving-throw",
           "type": "circumstance",
-          "value": "{actor|data.attributes.shield.ac}",
-          "predicate": {
-            "all": [
-              "item:type:spell",
-              "self:effect:raise-a-shield"
-            ]
-          }
+          "value": "{actor|system.attributes.shield.ac}",
+          "predicate": [
+            "item:type:spell",
+            "self:effect:raise-a-shield"
+          ]
         }
       ],
       "slug": null,
@@ -7002,11 +7002,9 @@
           "selector": "skill-check",
           "type": "item",
           "value": 1,
-          "predicate": {
-            "all": [
-              "action:recall-knowledge"
-            ]
-          }
+          "predicate": [
+            "action:recall-knowledge"
+          ]
         }
       ],
       "slug": null,

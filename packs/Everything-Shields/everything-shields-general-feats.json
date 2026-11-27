@@ -24,10 +24,12 @@
       },
       "rules": [
         {
-          "key": "ActiveEffectLike",
-          "mode": "upgrade",
-          "path": "data.martial.weapon-group-shield.rank",
-          "value": "@actor.data.data.martial.unarmed.rank"
+          "key": "MartialProficiency",
+          "definition": [
+            "item:type:shield"
+          ],
+          "sameAs": "unarmed",
+          "label": "Shield Proficiency"
         }
       ],
       "slug": null,
@@ -121,13 +123,11 @@
                 "value": 2
               }
             ],
-            "field": "actor|data.skills.ath.rank"
+            "field": "actor|system.skills.athletics.rank"
           },
-          "predicate": {
-            "all": [
-              "action:swim"
-            ]
-          }
+          "predicate": [
+            "action:swim"
+          ]
         }
       ],
       "slug": null,
@@ -347,7 +347,7 @@
     "flags": {},
     "system": {
       "description": {
-        "value": "<p><strong>Requirements </strong>You have a shield raised.</p>\n<p><strong>Trigger</strong> A foe misses you because of the circumstance bonus to AC granted by your shield.</p>\n<hr />\n<p>After deflecting an attack with your shield, you flaunt your prowess in your opponent's face, or shout invectives to shame them for their failure. You attempt a @Compendium[pf2e.action-macros.EDLftLWLBefTFDtu]{Bon Mot: Diplomacy} against the triggering creature. The creature must still be within the range of your Bon Mot, but it loses the auditory and linguistic traits and gains the visual trait if you only taunt the creature with your shield.</p>\n<p>When used this way, the critical failure of Bon Mot becomes the following instead of its normal effects: \"Your taunt is so poorly executed you nearly lose your grip on your shield and have to quickly change your footing to catch your balance. You are @Compendium[pf2e.conditionitems.AJh5ex99aV6VTggg]{Flat-Footed} for 1 round.\"</p>"
+        "value": "<p><strong>Requirements </strong>You have a shield raised.</p>\n<p><strong>Trigger</strong> A foe misses you because of the circumstance bonus to AC granted by your shield.</p>\n<hr />\n<p>After deflecting an attack with your shield, you flaunt your prowess in your opponent's face, or shout invectives to shame them for their failure. You attempt a @Compendium[pf2e.action-macros.EDLftLWLBefTFDtu]{Bon Mot: Diplomacy} against the triggering creature. The creature must still be within the range of your Bon Mot, but it loses the auditory and linguistic traits and gains the visual trait if you only taunt the creature with your shield.</p>\n<p>When used this way, the critical failure of Bon Mot becomes the following instead of its normal effects: \"Your taunt is so poorly executed you nearly lose your grip on your shield and have to quickly change your footing to catch your balance. You are @UUID[Compendium.pf2e.conditionitems.Item.AJh5ex99aV6VTggg]{Off-Guard} for 1 round.\"</p>"
       },
       "source": {
         "value": "Everything Shields"
@@ -675,7 +675,7 @@
     "flags": {},
     "system": {
       "description": {
-        "value": "<p>You have trained relentlessly to defend against the attacks of your ancient foes. When you use the Shield Block reaction to block an attack from an enemy whose alignment is opposite your deity's alignment, your shield's Hardness is increased by 2. For example this would apply if your deity is lawful good and you defend&nbsp; against an attack from a chaotic evil creature.</p>\n<p>If your deity is&nbsp; neutral on one axis, then this works against enemies who are also neutral on that axis and opposed on the other. For example if your deity is neutral evil, then this applies against enemies who are neutral good. If your deity is lawful neutral, then this applies against enemies who are chaotic neutral.</p>"
+        "value": "<p>You have trained relentlessly to defend against the attacks of your ancient foes. When you use the Shield Block reaction to block an attack from an enemy whose sanctification is the opposite of your own, your shield's Hardness is increased by 1. For example, this applies if you have the holy trait and defend against an attack from a creature that has the unholy trait.</p>"
       },
       "source": {
         "value": "Everything Shields"
@@ -690,58 +690,15 @@
       },
       "rules": [
         {
-          "key": "ChoiceSet",
-          "label": "Anathematic Defense Alignment",
-          "prompt": "Which alignment is your primary deity?",
-          "adjustName": true,
-          "flag": "everything-shields.anathematic-defense-alignment",
-          "choices": [
-            {
-              "label": "Lawful Good",
-              "value": " lawful-good"
-            },
-            {
-              "label": "Neutral Good",
-              "value": "neutral-good"
-            },
-            {
-              "label": "Chaotic Good",
-              "value": "chaotic-good"
-            },
-            {
-              "label": "Lawful Neutral",
-              "value": "lawful-neutral"
-            },
-            {
-              "label": "Chaotic Neutral",
-              "value": "chaotic-neutral"
-            },
-            {
-              "label": "Lawful Evil",
-              "value": "lawful-evil"
-            },
-            {
-              "label": "Neutral Evil",
-              "value": "neutral-evil"
-            },
-            {
-              "label": "Chaotic Evil",
-              "value": "chaotic-evil"
-            }
-          ]
-        },
-        {
           "key": "ActiveEffectLike",
           "mode": "add",
-          "path": "data.attributes.shield.hardness",
-          "value": 2,
+          "path": "system.attributes.shield.hardness",
+          "value": 1,
           "selector": "all",
-          "predicate": {
-            "all": [
-              "anathematic-defense"
-            ]
-          },
-          "phase": "beforeDerived"
+          "predicate": [
+            "anathematic-defense"
+          ],
+          "phase": "afterDerived"
         },
         {
           "key": "RollOption",
@@ -785,7 +742,7 @@
             "value": "master in Religion"
           },
           {
-            "value": "You follow a non-neutral deity"
+            "value": "you have the holy or unholy trait"
           }
         ]
       },
@@ -893,7 +850,7 @@
     "flags": {},
     "system": {
       "description": {
-        "value": "<p><strong>Requirements </strong>you are wielding a shield</p>\n<hr />\n<p>You are adept at charging toward an opponent just menacingly enough to convince them to square off with you, and that's when you break away. Choose a target that you can see. You Stride&nbsp; toward your target, then make a Deception check to <span data-pf2-action=\"feint\" data-pf2-glyph=\"F\">Feint</span> as long as you are&nbsp;within 20 feet of the target at the end of your Stride, ignoring the normal requirement that you be within melee reach of the target.</p>\n<p>Instead of the normal effects of a Feint, on a success the target is&nbsp; @Compendium[pf2e.conditionitems.AJh5ex99aV6VTggg]{Flat-Footed} to the next attack that an ally attempts against the target. On a critical success, the target is flat-footed to all attacks by your allies until the start of your next turn. The critical failure effects remain the same.</p>"
+        "value": "<p><strong>Requirements </strong>you are wielding a shield</p>\n<hr />\n<p>You are adept at charging toward an opponent just menacingly enough to convince them to square off with you, and that's when you break away. Choose a target that you can see. You Stride&nbsp; toward your target, then make a Deception check to <span data-pf2-action=\"feint\" data-pf2-glyph=\"F\">Feint</span> as long as you are&nbsp;within 20 feet of the target at the end of your Stride, ignoring the normal requirement that you be within melee reach of the target.</p>\n<p>Instead of the normal effects of a Feint, on a success the target is&nbsp; @UUID[Compendium.pf2e.conditionitems.Item.AJh5ex99aV6VTggg]{Off-Guard} to the next attack that an ally attempts against the target. On a critical success, the target is off-guard to all attacks by your allies until the start of your next turn. The critical failure effects remain the same.</p>"
       },
       "source": {
         "value": "Everything Shields"
@@ -970,7 +927,7 @@
     "flags": {},
     "system": {
       "description": {
-        "value": "<p><strong>Requirements </strong>You are wielding a shield in one or more hands.</p>\n<p><strong>Frequency </strong>once per minute</p>\n<hr />\n<p>You have become so accustomed to wielding a shield while casting your spells that you can occasionally reach quickly into your component pouch with your shield hand. You do not need a free hand to supply material components until the end of your turn.</p>"
+        "value": "<p><strong>Requirements</strong> You are wielding a shield in one or more hands.</p>\n<p><strong>Frequency</strong> once per minute</p>\n<hr>\n<p>You have become so accustomed to wielding a shield while casting your spells that you can occasionally reach quickly into a pouch with your shield hand. You draw a scroll or wand into the hand that is wielding your shield and may Cast the Spell from the retrieved item (spending actions to do so as normal). You cannot Raise the Shield as long as the scroll or wand is in this hand.</p>"
       },
       "source": {
         "value": "Everything Shields"
@@ -1016,7 +973,7 @@
       "prerequisites": {
         "value": [
           {
-            "value": "expert in Arcana or Occultism"
+            "value": "expert in Arcana, Nature, Occultism, or Religion"
           }
         ]
       },
@@ -1155,7 +1112,7 @@
         {
           "allowDuplicate": false,
           "key": "GrantItem",
-          "uuid": "Compendium.everything-shields.everything-shields-actions.hEAs9KLDWgpXIOzi"
+          "uuid": "Compendium.everything-shields.everything-shields-actions.Rqh2hHC1ZvQwnust"
         }
       ],
       "slug": null,

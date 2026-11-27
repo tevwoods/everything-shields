@@ -646,7 +646,7 @@
     "flags": {},
     "system": {
       "description": {
-        "value": "<p>You aim for one of the weakest parts of an enemy's body, not just to hurt them but to prevent them from calling out for help or casting spells. Make a melee Strike, or a ranged Strike against a creature within the first range increment of your shield. On a successful attack roll, the creature must attempt a Fortitude save against your class DC. If the Strike was a critical success, treat the result of this save as one degree worse.</p>\n<hr>\n<p><strong>Critical Success&nbsp;</strong>The creature is unaffected</p>\n<p><strong>Success</strong> The creature cannot cast spells with verbal components for 1 round.</p>\n<p><strong>Failure&nbsp;</strong>The creature cannot speak or use actions with the auditory trait for 1 round. This prevents it from casting spells that include verbal components.</p>\n<p><strong>Critical Failure</strong> As failure, except the duration is 1 minute.&nbsp;</p>"
+        "value": "<p>You aim for one of the weakest parts of an enemy's body, not just to hurt them but to prevent them from calling out for help or casting spells. Make a melee Strike, or a ranged Strike against a creature within the first range increment of your shield. On a successful attack roll, the creature must attempt a Fortitude save against your class DC. If the Strike was a critical success, treat the result of this save as one degree worse.</p>\n<hr>\n<p><strong>Critical Success&nbsp;</strong>The creature is unaffected</p>\n<p><strong>Success</strong> The creature cannot cast spells with the concentrate trait for 1 round.</p>\n<p><strong>Failure&nbsp;</strong>The creature cannot speak or use actions with the auditory trait for 1 round. This prevents it from casting spells that have the concentrate trait.</p>\n<p><strong>Critical Failure</strong> As failure, except the duration is 1 minute.&nbsp;</p>"
       },
       "source": {
         "value": "Everything Shields"
@@ -798,7 +798,7 @@
     "flags": {},
     "system": {
       "description": {
-        "value": "<p><strong>Requirements</strong> You have your Mirror Shield raised, and you are in bright light.</p>\n<p><strong>Trigger</strong> An ally attempts an attack against an enemy within 30 feet of you but hasn't rolled yet.</p>\n<hr>\n<p>You quickly change the angle of your Mirror Shield to shine a light in an enemy's eyes right as your ally attacks them. The target is @Compendium[pf2e.conditionitems.AJh5ex99aV6VTggg]{Flat-Footed} to the attack.&nbsp;</p>"
+        "value": "<p><strong>Requirements</strong> You have your Mirror Shield raised, and you are in bright light.</p>\n<p><strong>Trigger</strong> An ally attempts an attack against an enemy within 30 feet of you but hasn't rolled yet.</p>\n<hr>\n<p>You quickly change the angle of your Mirror Shield to shine a light in an enemy's eyes right as your ally attacks them. The target is @UUID[Compendium.pf2e.conditionitems.Item.AJh5ex99aV6VTggg]{Off-Guard} to the attack.&nbsp;</p>"
       },
       "source": {
         "value": "Everything Shields"
@@ -955,7 +955,7 @@
     "flags": {},
     "system": {
       "description": {
-        "value": "<p>You are perpetually bathed in light. A 30-foot emanation of bright light surrounds you at all times, though you can @Compendium[pf2e.actionspf2e.AjLSHZSWQ90exdLo]{Dismiss} this effect, and reactivate it with a single action that has the concentrate trait. This effect functions as a 9th-level @Compendium[pf2e.spells-srd.WBmvzNDfpwka3qT4]{Light} spell. You gain access to the following reaction. You gain an additional reaction each round that can only be used to take this reaction.</p>\n<hr>\n<p><strong>Trigger</strong> a creature damages you or an ally that is within your light emanation, and the creature is also in your light emanation</p>\n<p><strong>Effect</strong> If this was triggered when you took damage, you may target either yourself or the creature that damaged you. If this was triggered by an ally taking damage, you may target either that ally or the creature that damaged them. If you target the creature who dealt damage, a pure beam of heaven's judging light blasts the target dealing [[/r 5d12]] fire or positive damage (your choice) with a basic Reflex save. If you target yourself or an ally, the target is bathed in heaven's soothing light and has [[/r 5d12]] Hit Points healed. This is a positive healing effect.&nbsp;</p>"
+        "value": "<p>You are perpetually bathed in light. A 30-foot emanation of bright light surrounds you at all times, though you can @Compendium[pf2e.actionspf2e.AjLSHZSWQ90exdLo]{Dismiss} this effect, and reactivate it with a single action that has the concentrate trait. This effect functions as a 9th-level @Compendium[pf2e.spells-srd.WBmvzNDfpwka3qT4]{Light} spell. You gain access to the following reaction. You gain an additional reaction each round that can only be used to take this reaction.</p>\n<hr>\n<p><strong>Trigger</strong> a creature damages you or an ally that is within your light emanation, and the creature is also in your light emanation</p>\n<p><strong>Effect</strong> If this was triggered when you took damage, you may target either yourself or the creature that damaged you. If this was triggered by an ally taking damage, you may target either that ally or the creature that damaged them. If you target the creature who dealt damage, a pure beam of heaven's judging light blasts the target dealing [[/r 5d12]] fire or vitality damage (your choice) with a basic Reflex save. If you target yourself or an ally, the target is bathed in heaven's soothing light and has [[/r 5d12]] Hit Points healed. This is a vitality healing effect.&nbsp;</p>"
       },
       "source": {
         "value": "Everything Shields"
@@ -1290,12 +1290,14 @@
         {
           "key": "FlatModifier",
           "selector": "deception",
-          "predicate": {
-            "any": [
-              "action:create-a-diversion",
-              "action:feint"
-            ]
-          },
+          "predicate": [
+            {
+              "or": [
+                "action:create-a-diversion",
+                "action:feint"
+              ]
+            }
+          ],
           "value": {
             "brackets": [
               {
@@ -2012,7 +2014,7 @@
     "flags": {},
     "system": {
       "description": {
-        "value": "<p><strong>Requirements</strong> You are in dim light or darkness.</p>\n<p><strong>Frequency</strong> once per hour</p>\n<hr>\n<p>Your understanding of shadow energy increases, and you learn to blend shadow and light to create a shadow puppet from the reflection of your shield. You cast @Compendium[pf2e.spells-srd.f8SBoXiXQjlCKqly]{Illusory Creature}&nbsp;as a 4th-level spell, except that it has a range of 100 feet instead of the normal range, and it does not have a verbal component when used this way.</p>\n<p>Instead of the normal way to sustain a spell, you Sustain the Spell by spending an action to @Compendium[pf2e.actionspf2e.xjGwis0uaC2305pm]{Raise a Shield}. When you Raise a Shield for this purpose, it does not trigger any other feats or abilities that would otherwise trigger when you Raise a Shield. As you increase in level, so does your Shadow Puppet. For every 2 levels after 10th, increase the spell level of&nbsp;<em>illusory creature</em> when used this way by 1.</p>\n<p>@Compendium[everything-shields.everything-shields-effects.9OOi7tR8bjiAnpyn]{Effect: Shadow Puppet Expended}&nbsp;</p>"
+        "value": "<p><strong>Requirements</strong> You are in dim light or darkness.</p>\n<p><strong>Frequency</strong> once per hour</p>\n<hr>\n<p>Your understanding of shadow energy increases, and you learn to blend shadow and light to create a shadow puppet from the reflection of your shield. You cast @Compendium[pf2e.spells-srd.f8SBoXiXQjlCKqly]{Illusory Creature}&nbsp;as a 4th-rank spell, except that it has a range of 100 feet instead of the normal range, and it does not have the concentrate trait when cast this way.</p>\n<p>Instead of the normal way to Sustain, you Sustain by spending an action to @Compendium[pf2e.actionspf2e.xjGwis0uaC2305pm]{Raise a Shield}. When you Raise a Shield for this purpose, it does not trigger any other feats or abilities that would otherwise trigger when you Raise a Shield. As you increase in level, so does your Shadow Puppet. For every 2 levels after 10th, increase the spell rank of&nbsp;<em>illusory creature</em> when used this way by 1.</p>\n<p>@Compendium[everything-shields.everything-shields-effects.9OOi7tR8bjiAnpyn]{Effect: Shadow Puppet Expended}&nbsp;</p>"
       },
       "source": {
         "value": "Everything Shields"

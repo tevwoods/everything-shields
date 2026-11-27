@@ -14,7 +14,7 @@
     "flags": {},
     "system": {
       "description": {
-        "value": "<p><strong>Prerequisites&nbsp;</strong>trained in shield attacks</p>\n<p><strong>Requirements&nbsp;</strong>You have a light shield raised.</p>\n<p><strong>Trigger&nbsp;</strong>An adjacent enemy uses an action with the concentrate trait.</p>\n<hr />\n<p>You watch enemies for that single moment when they focus their attention on a diffcult task, and that's when you strike. Attempt an attack roll against the target's AC using a shield that satisfies the requirements of this ability.</p>\n<p>This attack deals no damage, but on a hit the target is flat-footed until the start of your next turn.</p>\n<p>On a critical hit, the target's action is disrupted and has no effect.</p>\n<p>On a failure or critical failure, your shield loses Hit Points equal to the creature's level. On a success or critical success, your shield loses Hit Points equal to two times the creature's level.</p>"
+        "value": "<p><strong>Prerequisites&nbsp;</strong>trained in shield attacks</p>\n<p><strong>Requirements&nbsp;</strong>You have a light shield raised.</p>\n<p><strong>Trigger&nbsp;</strong>An adjacent enemy uses an action with the concentrate trait.</p>\n<hr />\n<p>You watch enemies for that single moment when they focus their attention on a diffcult task, and that's when you strike. Attempt an attack roll against the target's AC using a shield that satisfies the requirements of this ability.</p>\n<p>This attack deals no damage, but on a hit the target is off-guard until the start of your next turn.</p>\n<p>On a critical hit, the target's action is disrupted and has no effect.</p>\n<p>On a failure or critical failure, your shield loses Hit Points equal to the creature's level. On a success or critical success, your shield loses Hit Points equal to two times the creature's level.</p>"
       },
       "source": {
         "value": "Everything Shields"
@@ -107,10 +107,10 @@
         "value": null
       },
       "requirements": {
-        "value": ""
+        "value": "You have a heavy shield raised."
       },
       "trigger": {
-        "value": ""
+        "value": "You and at least one other ally are in an area of effect that deals damage or has the visual trait."
       },
       "deathNote": false
     },
@@ -164,10 +164,10 @@
         "value": null
       },
       "requirements": {
-        "value": ""
+        "value": "You have a heavy shield raised."
       },
       "trigger": {
-        "value": ""
+        "value": "An adjacent enemy critically fails an attack against you or an ally."
       },
       "deathNote": false
     },
@@ -223,10 +223,10 @@
         "value": null
       },
       "requirements": {
-        "value": ""
+        "value": "You have a medium shield raised."
       },
       "trigger": {
-        "value": ""
+        "value": "An enemy attacks an adjacent ally with a reaction that was triggered by the ally leaving their current square, but has not yet rolled."
       },
       "deathNote": false
     },
@@ -306,7 +306,7 @@
     "flags": {},
     "system": {
       "description": {
-        "value": "<p><strong>Requirements</strong> You have a light shield raised. This cannot be used with a shield gauntlet.</p>\n<p><strong>Trigger</strong> An ally within 15 feet is hit by a ranged weapon attack, and a +2 circumstance bonus to AC would turn the critical hit into a hit or the hit into a miss.</p>\n<hr />\n<p>You quickly throw your shield to intercept a projectile and knock it slightly off course. Your ally gains a +2 circumstance bonus to AC against the triggering attack. This turns the triggering critical hit into a hit, or the triggering hit into a miss. Your shield is no longer raised.</p>\n<p>If the shield has a returning or throwing rune, it returns immediately to the hand that threw it. Otherwise, the shield lands in a square of your choosing that is adjacent to the ally who&nbsp; received the bonus.</p>\n<p>If you have Reflexive Shield or Mirror Shield, or any other feat that allows you to reduce or redirect damage from non-physical attacks using your shield, you can use Intercepting Shield to grant your ally this bonus against ranged unarmed attacks and ranged magical attacks in addition to the normal trigger.&nbsp;</p>"
+        "value": "<p><strong>Requirements</strong> You have a light shield raised. This cannot be used with a shield gauntlet.</p>\n<p><strong>Trigger</strong> An ally within 15 feet is hit by a ranged weapon attack, and a +2 circumstance bonus to AC would turn the critical hit into a hit or the hit into a miss.</p>\n<hr />\n<p>You quickly throw your shield to intercept a projectile and knock it slightly off course. Your ally gains a +2 circumstance bonus to AC against the triggering attack. This turns the triggering critical hit into a hit, or the triggering hit into a miss. Your shield is no longer raised.</p>\n<p>If the shield has a returning or throwing rune, it returns immediately to the hand that threw it. Otherwise, the shield lands in a square of your choosing that is adjacent to the ally who&nbsp; received the bonus.</p>\n<p>If you have Reflexive Shield or Mirror Shield, or any other feat that allows you to reduce or redirect damage from non-physical attacks using your shield, you can use Intercepting Shield to grant your ally this bonus against ranged unarmed attacks and ranged magical attacks in addition to the normal trigger.&nbsp;</p><p><strong>Precious-material note:</strong> A djezet or noqual shield also grants this reaction against ranged magical attacks and ranged unarmed attacks.</p>"
       },
       "source": {
         "value": "Everything Shields"
@@ -341,10 +341,10 @@
         "value": null
       },
       "requirements": {
-        "value": ""
+        "value": "You have a light shield raised. This cannot be used with a shield gauntlet."
       },
       "trigger": {
-        "value": ""
+        "value": "An ally within 15 feet is hit by a ranged weapon attack, and a +2 circumstance bonus to AC would turn the critical hit into a hit or the hit into a miss."
       },
       "deathNote": false
     },
@@ -406,7 +406,7 @@
         "value": ""
       },
       "trigger": {
-        "value": ""
+        "value": "You use the Shield Block reaction in response to a critical success from an attack and your Mirror adjustment would be broken or destroyed."
       },
       "deathNote": false
     },
@@ -462,10 +462,10 @@
         "value": null
       },
       "requirements": {
-        "value": ""
+        "value": "You have a medium shield raised."
       },
       "trigger": {
-        "value": ""
+        "value": "An ally attempts a skill check against an enemy that you are adjacent to."
       },
       "deathNote": false
     },

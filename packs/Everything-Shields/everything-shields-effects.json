@@ -2,7 +2,7 @@
   {
     "_id": "9OOi7tR8bjiAnpyn",
     "name": "Effect: Shadow Puppet Expended",
-    "type": "item",
+    "type": "effect",
     "img": "systems/pf2e/icons/spells/illusory-creature.webp",
     "effects": [],
     "folder": null,
@@ -72,7 +72,7 @@
   {
     "_id": "VKE86U2ppCEhmbAs",
     "name": "Effect: Shield Ricochet Stance",
-    "type": "item",
+    "type": "effect",
     "img": "systems/pf2e/icons/equipment/shields/precious-material-shields/dragonhide-buckler.webp",
     "effects": [],
     "folder": null,
@@ -142,7 +142,7 @@
   {
     "_id": "hfbBeIKAbBJLmB97",
     "name": "Effect: Floating Shield Rune",
-    "type": "item",
+    "type": "effect",
     "img": "systems/pf2e/icons/spells/levitate.webp",
     "effects": [],
     "folder": null,
@@ -212,7 +212,7 @@
   {
     "_id": "kGIRwjKiulM0GwYb",
     "name": "Effect: Coruscating Beam Expended",
-    "type": "item",
+    "type": "effect",
     "img": "systems/pf2e/icons/spells/radiant-beam.webp",
     "effects": [],
     "folder": null,
@@ -282,7 +282,7 @@
   {
     "_id": "oXoRE0v4LK3Zk5ka",
     "name": "Effect: Leaking Darkness Expended",
-    "type": "item",
+    "type": "effect",
     "img": "systems/pf2e/icons/spells/dance-of-darkness.webp",
     "effects": [],
     "folder": null,
@@ -352,7 +352,7 @@
   {
     "_id": "shNds8nxBjEl4QEM",
     "name": "Effect: Mirror",
-    "type": "item",
+    "type": "effect",
     "img": "systems/pf2e/icons/equipment/adventuring-gear/mirror.webp",
     "effects": [],
     "folder": null,

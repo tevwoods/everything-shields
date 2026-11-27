@@ -1,4 +1,13 @@
 {
+    "ES": {
+        "Trait": {
+            "ShieldThrow15": "Shield Throw 15 feet",
+            "ShieldThrow25": "Shield Throw 25 feet"
+        },
+        "TraitDescription": {
+            "ShieldThrow": "This shield can be thrown as a martial ranged weapon using the listed range increment."
+        }
+    },
     "everything-shields": {
         "runes": {
             "reinforcing": "Reinforcing",
