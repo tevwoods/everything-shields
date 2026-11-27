@@ -43,6 +43,22 @@ const reconcile = (document) => {
         document.system.description.value = descriptions[document.name];
     }
 
+    if (document.system?.description?.value) {
+        document.system.description.value = document.system.description.value
+            .replace(/\b(\d+(?:st|nd|rd|th))-level\b/g, "$1-rank");
+    }
+
+    if (document.name === "Disrupting Shield") {
+        document.system.description.value = document.system.description.value
+            .replace("diffcult task", "difficult task")
+            .replace("On a critical hit, the target's action", "On a critical success, the target's action");
+    }
+
+    if (document.name === "Shield Smash") {
+        document.system.description.value = document.system.description.value
+            .replace("is Stupefied 2", "is stupefied 2");
+    }
+
     if (document.name === "Practiced Materials") {
         document.system.actionType.value = "free";
         document.system.prerequisites.value = [

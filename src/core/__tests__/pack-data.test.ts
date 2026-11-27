@@ -168,4 +168,29 @@ describe('Shields compendium source data', () => {
         expect(intercepting.system.trigger.value)
             .toContain('An ally within 15 feet is hit');
     });
+
+    it('uses Remaster rank and condition wording in descriptions', () => {
+        for (const file of packFiles) {
+            const documents = JSON.parse(
+                fs.readFileSync(path.join(packsDirectory, file), 'utf8')
+            );
+            for (const document of documents) {
+                const description = document.system?.description?.value ?? '';
+                expect(description).not.toMatch(/\b\d+(?:st|nd|rd|th)-level\b/i);
+            }
+        }
+
+        const actions = JSON.parse(
+            fs.readFileSync(path.join(packsDirectory, 'everything-shields-actions.json'), 'utf8')
+        );
+        const disrupting = actions.find((document: any) => document.name === 'Disrupting Shield');
+        expect(disrupting.system.description.value).toContain('On a critical success');
+        expect(disrupting.system.description.value).not.toContain('diffcult');
+
+        const feats = JSON.parse(
+            fs.readFileSync(path.join(packsDirectory, 'everything-shields-general-feats.json'), 'utf8')
+        );
+        const shieldSmash = feats.find((document: any) => document.name === 'Shield Smash');
+        expect(shieldSmash.system.description.value).not.toContain('is Stupefied 2');
+    });
 });
