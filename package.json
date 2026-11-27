@@ -5,13 +5,15 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "npm run clean && npm run compile && npm run bundle",
+    "build": "npm run clean && npm run compile && npm run bundle && npm run build-packs",
     "clean": "rimraf dist",
     "compile": "tsc --noEmit",
     "bundle": "rollup -c rollup.config.js",
+    "build-packs": "node scripts/build-native-packs.mjs",
     "watch": "rollup -c rollup.config.js -w",
     "lint": "eslint src/**/*.ts",
     "test": "jest",
+    "test:release-watch": "node --test scripts/foundry-release-watch.test.mjs",
     "package": "npm test && npm run build && npm run package-module",
     "convert-packs": "node scripts/convert-packs-v13.js",
     "migrate-pf2e-87": "node scripts/migrate-pf2e-8.7-rules.js",
@@ -19,6 +21,7 @@
     "package-module": "node ./scripts/create-package.js"
   },
   "devDependencies": {
+    "@foundryvtt/foundryvtt-cli": "^3.0.5",
     "@rollup/plugin-commonjs": "^25.0.0",
     "@rollup/plugin-node-resolve": "^15.0.0",
     "@rollup/plugin-typescript": "^11.0.0",

@@ -12,71 +12,71 @@
   "manifest": "https://github.com/tevwoods/everything-shields/releases/latest/download/module.json",
   "download": "https://github.com/tevwoods/everything-shields/releases/download/v1.0.0/everything-shields.zip",
   "compatibility": {
-     "minimum": "10",
-     "verified": "13",
-     "maximum": "13"
+     "minimum": "11",
+     "verified": "14.370",
+     "maximum": "14"
     },
     "packs": [
       {
         "name": "everything-shields-actions",
         "label": "Actions",
-  "path": "packs/Everything-Shields/everything-shields-actions.db",
+  "path": "packs/Everything-Shields/everything-shields-actions",
         "folder": "Everything-Shields",
         "type": "Item"
       },
       {
         "name": "everything-shields-adjustments",
         "label": "Adjustments",
-  "path": "packs/Everything-Shields/everything-shields-adjustments.db",
+  "path": "packs/Everything-Shields/everything-shields-adjustments",
         "folder": "Everything-Shields",
         "type": "Item"
       },
       {
         "name": "everything-shields-archetypes",
         "label": "Archetypes",
-  "path": "packs/Everything-Shields/everything-shields-archetypes.db",
+  "path": "packs/Everything-Shields/everything-shields-archetypes",
         "folder": "Everything-Shields",
         "type": "Item"
       },
       {
         "name": "everything-shields-effects",
         "label": "Effects",
-  "path": "packs/Everything-Shields/everything-shields-effects.db",
+  "path": "packs/Everything-Shields/everything-shields-effects",
         "folder": "Everything-Shields",
         "type": "Item"
       },
       {
         "name": "everything-shields-fundamental-runes",
         "label": "Fundamental Runes",
-  "path": "packs/Everything-Shields/everything-shields-fundamental-runes.db",
+  "path": "packs/Everything-Shields/everything-shields-fundamental-runes",
         "folder": "Everything-Shields",
         "type": "Item"
       },
       {
         "name": "everything-shields-general-feats",
         "label": "General Feats",
-  "path": "packs/Everything-Shields/everything-shields-general-feats.db",
+  "path": "packs/Everything-Shields/everything-shields-general-feats",
         "folder": "Everything-Shields",
         "type": "Item"
       },
       {
         "name": "everything-shields-guide",
         "label": "Guide",
-  "path": "packs/Everything-Shields/everything-shields-guide.db",
+  "path": "packs/Everything-Shields/everything-shields-guide",
         "folder": "Everything-Shields",
         "type": "JournalEntry"
       },
       {
         "name": "everything-shields-property-runes",
         "label": "Property Runes",
-  "path": "packs/Everything-Shields/everything-shields-property-runes.db",
+  "path": "packs/Everything-Shields/everything-shields-property-runes",
         "folder": "Everything-Shields",
         "type": "Item"
       },
       {
         "name": "everything-shields-shields",
         "label": "Shields",
-  "path": "packs/Everything-Shields/everything-shields-shields.db",
+  "path": "packs/Everything-Shields/everything-shields-shields",
         "folder": "Everything-Shields",
         "type": "Item"
       }

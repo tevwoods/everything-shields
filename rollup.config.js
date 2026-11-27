@@ -29,8 +29,7 @@ export default {
             targets: [
                 { src: 'module.json', dest: 'dist' },
                 { src: 'styles', dest: 'dist' },
-                { src: 'lang', dest: 'dist' },
-                { src: 'packs/Everything-Shields/*.db', dest: 'dist/packs/Everything-Shields' }
+                { src: 'lang', dest: 'dist' }
             ]
         })
     ],
