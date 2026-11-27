@@ -14,6 +14,8 @@
     "test": "jest",
     "package": "npm test && npm run build && npm run package-module",
     "convert-packs": "node scripts/convert-packs-v13.js",
+    "migrate-pf2e-87": "node scripts/migrate-pf2e-8.7-rules.js",
+    "reconcile-pdf-v6": "node scripts/reconcile-pdf-v6.js",
     "package-module": "node ./scripts/create-package.js"
   },
   "devDependencies": {

@@ -196,6 +196,15 @@ describe('EventHandlerManager - Rune Price Calculations', () => {
             const category = (manager as any).getShieldCategory(shield);
             expect(category).toBe('heavy');
         });
+
+        it('uses the material-adjusted bulk instead of the preserved base bulk', () => {
+            const shield = {
+                system: { bulk: { value: 'L' } },
+                flags: { 'everything-shields': { bulk: 1 } }
+            };
+            const category = (manager as any).getShieldCategory(shield);
+            expect(category).toBe('light');
+        });
     });
 });
 
